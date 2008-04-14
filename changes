@@ -2053,3 +2053,18 @@ Directory .
  README                    Locally Added               0 
 
 m5 2.0b5 (http://www.m5sim.org/)
+
+----------
+mcadler     Date: Mon Apr 14 19:51:50 EDT 2008  CSN: CSN-m5-3
+                  Mon Apr 14 23:51:50 UTC 2008
+
+
+Directory m5/src
+ SConscript                Locally Modified            2 
+
+Directory m5/src/sim
+ main.cc                   Locally Modified            2 
+ SConscript                Locally Modified            2 
+
+Build m5 as a library so HAsim can link to it.  The m5 binary is still built,
+but using the library.

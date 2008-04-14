@@ -89,6 +89,17 @@ def Source(source):
 
     cc_sources.append(source)
 
+cc_main = []
+def SourceMain(source):
+    '''Add a C/C++ source file holding main() to the build'''
+    if not isinstance(source, SCons.Node.FS.File):
+        source = File(source)
+
+    if (cc_main != []):
+        print "Error: Multiple instances of SourceMain() declared"
+
+    cc_main.append(source)
+
 py_sources = []
 def PySource(package, source):
     '''Add a python source file to the named package'''
@@ -126,6 +137,7 @@ def SwigSource(package, source):
 
 # Children should have access
 Export('Source')
+Export('SourceMain')
 Export('PySource')
 Export('SimObject')
 Export('SwigSource')
@@ -380,9 +392,18 @@ def makeEnv(label, objsfx, strip = False, **kwargs):
     newEnv = env.Copy(OBJSUFFIX=objsfx)
     newEnv.Label = label
     newEnv.Append(**kwargs)
+
+    # First make a library of everything but main() so other programs can
+    # link against m5.  They will call the entry m5_main().
+    #
+    # SCons doesn't know to append a library suffix when there is a '.' in the
+    # name.  Use '_' instead.
+    m5lib = newEnv.Library('m5_' + label, make_objs(cc_sources, newEnv))
+
+    # Now link a stub with main() and the library.
     exe = 'm5.' + label  # final executable
     bin = exe + '.bin'   # executable w/o appended Python zip archive
-    newEnv.Program(bin, make_objs(cc_sources, newEnv))
+    newEnv.Program(bin, newEnv.Object(cc_main) + m5lib)
     if strip:
         stripped_bin = bin + '.stripped'
         if sys.platform == 'sunos5':
