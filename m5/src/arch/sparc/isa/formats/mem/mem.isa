@@ -1,0 +1,16 @@
+////////////////////////////////////////////////////////////////////
+//
+// Mem formats
+//
+
+//Include mem utility templates and functions
+##include "util.isa"
+
+//Include the basic memory format
+##include "basicmem.isa"
+
+//Include the block memory format
+##include "blockmem.isa"
+
+//Include the load/store and cas memory format
+##include "swap.isa"

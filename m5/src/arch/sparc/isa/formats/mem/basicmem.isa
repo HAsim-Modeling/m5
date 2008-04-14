@@ -1,0 +1,90 @@
+////////////////////////////////////////////////////////////////////
+//
+// Mem instructions
+//
+
+def template MemDeclare {{
+        /**
+         * Static instruction class for "%(mnemonic)s".
+         */
+        class %(class_name)s : public %(base_class)s
+        {
+          public:
+
+            /// Constructor.
+            %(class_name)s(ExtMachInst machInst);
+
+            %(BasicExecDeclare)s
+
+            %(InitiateAccDeclare)s
+
+            %(CompleteAccDeclare)s
+        };
+}};
+
+let {{
+    def doMemFormat(code, execute, faultCode, name, Name, asi, opt_flags, postacc_code = ''):
+        addrCalcReg = 'EA = Rs1 + Rs2;'
+        addrCalcImm = 'EA = Rs1 + imm;'
+        iop = InstObjParams(name, Name, 'Mem',
+                {"code": code, "postacc_code" : postacc_code,
+                 "fault_check": faultCode, "ea_code": addrCalcReg,
+                 "EA_trunc": TruncateEA}, opt_flags)
+        iop_imm = InstObjParams(name, Name + "Imm", 'MemImm',
+                {"code": code, "postacc_code" : postacc_code,
+                 "fault_check": faultCode, "ea_code": addrCalcImm,
+                 "EA_trunc": TruncateEA}, opt_flags)
+        header_output = MemDeclare.subst(iop) + MemDeclare.subst(iop_imm)
+        decoder_output = BasicConstructor.subst(iop) + BasicConstructor.subst(iop_imm)
+        decode_block = ROrImmDecode.subst(iop)
+        exec_output = doDualSplitExecute(code, postacc_code, addrCalcReg,
+                addrCalcImm, execute, faultCode, name, name + "Imm",
+                Name, Name + "Imm", asi, opt_flags)
+        return (header_output, decoder_output, exec_output, decode_block)
+}};
+
+def format LoadAlt(code, *opt_flags) {{
+        code = filterDoubles(code)
+        (header_output,
+         decoder_output,
+         exec_output,
+         decode_block) = doMemFormat(code, LoadFuncs,
+            AlternateASIPrivFaultCheck, name, Name, "EXT_ASI", opt_flags)
+}};
+
+def format StoreAlt(code, *opt_flags) {{
+        code = filterDoubles(code)
+        (header_output,
+         decoder_output,
+         exec_output,
+         decode_block) = doMemFormat(code, StoreFuncs,
+            AlternateASIPrivFaultCheck, name, Name, "EXT_ASI", opt_flags)
+}};
+
+def format Load(code, *opt_flags) {{
+        code = filterDoubles(code)
+        (header_output,
+         decoder_output,
+         exec_output,
+         decode_block) = doMemFormat(code,
+             LoadFuncs, '', name, Name, 0, opt_flags)
+}};
+
+def format Store(code, *opt_flags) {{
+        code = filterDoubles(code)
+        (header_output,
+         decoder_output,
+         exec_output,
+         decode_block) = doMemFormat(code,
+             StoreFuncs, '', name, Name, 0, opt_flags)
+}};
+
+def format TwinLoad(code, *opt_flags) {{
+        (header_output,
+         decoder_output,
+         exec_output,
+         decode_block) = doMemFormat(code, LoadFuncs,
+            AlternateASIPrivFaultCheck + TwinAlignmentFaultCheck,
+            name, Name, "EXT_ASI", opt_flags)
+}};
+

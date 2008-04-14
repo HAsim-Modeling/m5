@@ -1,0 +1,56 @@
+#! /usr/bin/env python
+
+import re
+import os
+import sys
+from getopt import getopt, GetoptError
+
+tabs = re.compile(r'^[ \t]+')
+def fixwhite(filename, tabsize):
+    try:
+        f = file(filename, 'r+')
+    except OSError, msg:
+        print 'could not open file %s: %s' % (filename, msg)
+        return
+
+    lines = list(f)
+
+    f.seek(0)
+    f.truncate()
+    
+    for line in lines:
+        if tabs.search(line):
+            newline = ''
+            for i,c in enumerate(line):
+                if c == ' ':
+                    newline += ' '
+                elif c == '\t':
+                    newline += ' ' * (tabsize - len(newline) % tabsize)
+                else:
+                    newline += line[i:]
+                    break
+
+            line = newline
+
+        print >>f, line.rstrip()
+
+if __name__ == '__main__':
+    progname = sys.argv[0]
+
+    def usage(code=None):
+        print >>sys.stderr, '''%s [-t <tabsize>] <filenames>''' % progname
+        if code is not None:
+            sys.exit(code)
+
+    try:
+        opts, args = getopt(sys.argv[1:], '-t:')
+    except GetoptError:
+        usage(2)
+
+    tabsize = 8
+    for opt,arg in opts:
+        if opt == '-t':
+            tabsize = int(arg)
+
+    for filename in args:
+        fixwhite(filename, tabsize)
