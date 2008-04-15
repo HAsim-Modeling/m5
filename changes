@@ -2068,3 +2068,15 @@ Directory m5/src/sim
 
 Build m5 as a library so HAsim can link to it.  The m5 binary is still built,
 but using the library.
+
+----------
+mcadler     Date: Tue Apr 15 15:29:57 EDT 2008  CSN: CSN-m5-4
+                  Tue Apr 15 19:29:57 UTC 2008
+
+
+Directory m5/src/sim
+ m5_main.hh                Locally Added               0 
+ m5_main.cc                Locally Added               0 
+
+Add new m5 main, where the entry is called m5_main(argc, argv).  This lets
+us load m5 as a library.
