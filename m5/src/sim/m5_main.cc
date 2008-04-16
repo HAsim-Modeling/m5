@@ -147,10 +147,5 @@ m5_main(int argc, char **argv)
     // initialize SWIG modules
     init_swig();
 
-    int ret = python_main();
-
-    // clean up Python intepreter.
-    Py_Finalize();
-
-    return ret;
+    return python_main();
 }

@@ -2080,3 +2080,14 @@ Directory m5/src/sim
 
 Add new m5 main, where the entry is called m5_main(argc, argv).  This lets
 us load m5 as a library.
+
+----------
+mcadler     Date: Wed Apr 16 15:18:47 EDT 2008  CSN: CSN-m5-5
+                  Wed Apr 16 19:18:47 UTC 2008
+
+
+Directory m5/src/sim
+ main.cc                   Locally Modified            4 
+ m5_main.cc                Locally Modified            4 
+
+Don't clean up Python on exit from m5_main().  Moved to the real main().

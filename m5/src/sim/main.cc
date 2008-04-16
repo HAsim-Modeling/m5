@@ -28,6 +28,8 @@
  * Authors: Nathan L. Binkert
  */
 
+#include <Python.h>
+
 #include "sim/m5_main.hh"
 
 using namespace std;
@@ -40,5 +42,10 @@ using namespace std;
 int
 main(int argc, char **argv)
 {
-    return m5_main(argc, argv);
+    int ret = m5_main(argc, argv);
+
+    // clean up Python intepreter.
+    Py_Finalize();
+
+    return ret;
 }
