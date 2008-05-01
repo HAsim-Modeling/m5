@@ -1,0 +1,22 @@
+#/********************************************************************
+# *
+# * Awb module specification
+# *
+# *******************************************************************/
+
+#/*
+# %AWB_START
+#
+# %name m5 ISA Emulator Implementation
+# %desc m5 ISA Emulator Implementation
+# %provides isa_emulator_impl
+#
+#
+# %attributes hasim
+#
+# %sources -v PUBLIC  m5-isa-emulator-impl.h
+# %sources -v PRIVATE m5-isa-emulator-impl.cpp
+#
+# %AWB_END
+# */
+

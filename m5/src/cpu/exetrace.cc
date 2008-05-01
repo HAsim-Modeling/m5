@@ -64,15 +64,13 @@ Trace::ExeTracerRecord::dump()
 
     std::string sym_str;
     Addr sym_addr;
+    outs << "0x" << hex << PC << " : ";
     if (debugSymbolTable
         && IsOn(ExecSymbol)
         && debugSymbolTable->findNearestSymbol(PC, sym_str, sym_addr)) {
         if (PC != sym_addr)
             sym_str += csprintf("+%d", PC - sym_addr);
         outs << "@" << sym_str << " : ";
-    }
-    else {
-        outs << "0x" << hex << PC << " : ";
     }
 
     //

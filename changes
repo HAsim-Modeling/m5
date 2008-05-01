@@ -2091,3 +2091,45 @@ Directory m5/src/sim
  m5_main.cc                Locally Modified            4 
 
 Don't clean up Python on exit from m5_main().  Moved to the real main().
+
+----------
+mcadler     Date: Thu May  1 17:52:03 EDT 2008  CSN: CSN-m5-6
+                  Thu May  1 21:52:03 UTC 2008
+
+
+Directory m5/src/cpu
+ exetrace.cc               Locally Modified            5 
+
+Directory modules
+ hasim/                    Locally Added               0 
+
+Directory modules/hasim
+ functional/               Locally Added               0 
+
+Directory modules/hasim/functional
+ isa-emulator/             Locally Added               0 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Added               0 
+ m5-isa-emulator-impl.h    Locally Added               0 
+ m5-isa-emulator-impl.awb  Locally Added               0 
+
+Directory modules/hasim/functional
+ memory/                   Locally Added               0 
+
+Directory modules/hasim/functional/memory
+ m5-memory.awb             Locally Added               0 
+ m5-memory.cpp             Locally Added               0 
+ m5-memory.h               Locally Added               0 
+
+Directory modules/hasim/functional
+ hasim-base/               Locally Added               0 
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.awb         Locally Added               0 
+ m5-hasim-base.cpp         Locally Added               0 
+ m5-hasim-base.h           Locally Added               0 
+
+- Always write hex address in Exec dump mode (exetrace.cc)
+- Initial m5 implementations of memory and ISA emulation.  So far everything
+  is ISA neutral.
