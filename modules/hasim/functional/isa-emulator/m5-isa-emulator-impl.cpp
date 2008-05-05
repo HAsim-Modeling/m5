@@ -67,9 +67,73 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         return ISA_EMULATOR_BRANCH;
     }
     
-    ASIMWARNING("m5 ISA emulation not yet working\n");
+    ASSERTX(sizeof(ISA_INSTRUCTION) == sizeof(TheISA::MachInst));
 
-    *newPC = 0;
-    return ISA_EMULATOR_EXIT_FAIL;
+    //
+    // Set the m5 state and emulate a tick.  The code below is derived from
+    // m5's AtomicSimpleCPU::tick()
+    //
+
+    AtomicSimpleCPU *cpu = M5Cpu(0);
+
+    // m5 better not be in the middle of an instruction
+    VERIFYX(! cpu->curMacroStaticInst);
+
+    //
+    // Set the machine state and execute the instruction
+    //
+    cpu->setPC(pc);
+    cpu->setNextPC(pc + sizeof(TheISA::MachInst));
+    cpu->inst = inst;
+    cpu->preExecute();
+
+    VERIFYX(cpu->curStaticInst);
+
+    //
+    // Is the instruction a branch?
+    //
+    Addr branchTarget;
+    bool isBranch = cpu->curStaticInst->isControl();
+    if (isBranch)
+    {
+        cpu->curStaticInst->hasBranchTarget(pc, cpu->tc, branchTarget);
+    }
+
+    Fault fault = cpu->curStaticInst->execute(cpu, NULL);
+    VERIFY(fault == NoFault, "Fault emulating instr at 0x" << fmt_x(pc) << " in m5");
+
+    cpu->postExecute();
+    VERIFYX(! cpu->stayAtPC);
+
+    cpu->advancePC(fault);
+
+    //
+    // Update registers
+    //
+    for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+    {
+        ISA_REG_INDEX_CLASS rName;
+        rName.SetArchReg(r);
+        parent->UpdateRegister(rName, cpu->tc->readIntReg(r));
+    }
+
+    if (isBranch)
+    {
+        if (cpu->readPC() == branchTarget)
+        {
+            *newPC = cpu->readPC();
+        }
+        else
+        {
+            *newPC = 0;
+            isBranch = false;
+        }
+    }
+
+    if (cpu->tc->exitCalled())
+    {
+        return ISA_EMULATOR_EXIT_OK;
+    }
+
+    return isBranch ? ISA_EMULATOR_BRANCH : ISA_EMULATOR_NORMAL;
 }
-

@@ -2133,3 +2133,17 @@ Directory modules/hasim/functional/hasim-base
 - Always write hex address in Exec dump mode (exetrace.cc)
 - Initial m5 implementations of memory and ISA emulation.  So far everything
   is ISA neutral.
+
+----------
+mcadler     Date: Mon May  5 10:32:49 EDT 2008  CSN: CSN-m5-7
+                  Mon May  5 14:32:49 UTC 2008
+
+
+Directory m5/src/cpu
+ thread_context.hh         Locally Modified            6 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified            6 
+
+- Implement ISA emulation
+- Modify m5 thread context so an outside caller can know when exit() was called.

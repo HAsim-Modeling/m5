@@ -111,6 +111,8 @@ class ThreadContext
         Halted
     };
 
+    ThreadContext() : exit_called(false) { };
+
     virtual ~ThreadContext() { };
 
     virtual BaseCPU *getCpuPtr() = 0;
@@ -271,7 +273,14 @@ class ThreadContext
     // This function exits the thread context in the CPU and returns
     // 1 if the CPU has no more active threads (meaning it's OK to exit);
     // Used in syscall-emulation mode when a  thread calls the exit syscall.
-    virtual int exit() { return 1; };
+    virtual int exit() { exit_called = true; return 1; };
+
+    virtual bool exitCalled() const { return exit_called; };
+
+  private:
+    bool exit_called;
+
+  public:
 #endif
 
     virtual void changeRegFileContext(TheISA::RegContextParam param,
