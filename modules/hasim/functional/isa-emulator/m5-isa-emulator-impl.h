@@ -43,8 +43,13 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
         FUNCP_ADDR *newPC);
 
   private:
+    ISA_EMULATOR_RESULT StartProgram(
+        FUNCP_ADDR *newPC);
+
     ISA_EMULATOR parent;
     bool didInit;
+
+    FUNCP_INT_REG intRegCache[TheISA::NumIntArchRegs];
 };
 
 #endif // _M5_ISA_EMULATOR_IMPL_

@@ -91,8 +91,9 @@ SyscallReturn
 exitFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
          ThreadContext *tc)
 {
-    if (tc->exit()) {
-        exitSimLoop("target called exit()", tc->getSyscallArg(0) & 0xff);
+    int code = tc->getSyscallArg(0) & 0xff;
+    if (tc->exit(code)) {
+        exitSimLoop("target called exit()", code);
     }
 
     return 1;

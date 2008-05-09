@@ -37,6 +37,9 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
 {
     if (refCnt++ == 0)
     {
+        //
+        // Initialize m5
+        //
         m5_main(globalArgs->FuncPlatformArgc(), globalArgs->FuncPlatformArgv());
     }
 
