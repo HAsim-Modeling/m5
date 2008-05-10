@@ -2182,3 +2182,13 @@ Directory modules/hasim/functional/hasim-base
 - Only request update of register that change as a result of an emulated instr
 - Return exit with success or failure depending on argument to exit syscall
 - Detect Alpha HALT instruction and abort.
+
+----------
+jsemer      Date: Sat May 10 12:57:09 EDT 2008  CSN: CSN-m5-10
+                  Sat May 10 16:57:09 UTC 2008
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified            9 
+
+Get command line switches from command_switches module now.
