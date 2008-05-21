@@ -2192,3 +2192,23 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.cpp         Locally Modified            9 
 
 Get command line switches from command_switches module now.
+
+----------
+mcadler     Date: Wed May 21 17:58:01 EDT 2008  CSN: CSN-m5-11
+                  Wed May 21 21:58:01 UTC 2008
+
+
+Directory m5/src/sim
+ syscall_emul.hh           Locally Modified           10 
+ Process.py                Locally Modified           10 
+ process.cc                Locally Modified           10 
+
+Directory m5/configs/example
+ se.py                     Locally Modified           10 
+
+- Fix TTY emulation of stdout, forcing fwrites to be line buffered even
+  when redirected to a file.  m5 had code to do this already, but failed
+  to set S_IFCHR in the fstat() user-mode emulator.
+- Add separate --output and --errout redirection options.  --output was
+  implemented in the C++ but not in the Python code.  --errout is
+  completely new.
