@@ -2212,3 +2212,20 @@ Directory m5/configs/example
 - Add separate --output and --errout redirection options.  --output was
   implemented in the C++ but not in the Python code.  --errout is
   completely new.
+
+----------
+mcadler     Date: Tue May 27 16:49:58 EDT 2008  CSN: CSN-m5-12
+                  Tue May 27 20:49:58 UTC 2008
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           11 
+
+Directory modules/hasim/functional/memory
+ m5-memory.awb             Locally Modified           11 
+ m5-memory.cpp             Locally Modified           11 
+
+- Start address for m5 simulations is now 0.
+- Force page 0 to be full of 0's.  Probably a bug in m5 checkpoint recovery
+  that it isn't.
+- Handle page faults in ISA simulation loop.

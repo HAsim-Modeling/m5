@@ -48,7 +48,15 @@ FUNCP_SIMULATED_MEMORY_CLASS::Read(
 
     ASSERTX(size > 0);
 
-    if (addr & (size - 1))
+    if (addr < 0x1000)
+    {
+        // HAsim starts by fetching an instruction at 0.  Force the first
+        // page to be 0.
+        bzero(dest, size);
+        return;
+    }
+
+    if ((addr & (size - 1)) || (size > 8))
     {
         // Unaligned
         if (! mem_port->tryReadBlob(addr, (uint8_t*)dest, size))

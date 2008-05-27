@@ -30,7 +30,7 @@ ISA_EMULATOR_IMPL_CLASS::SyncReg(
 {
     //
     // Skip register sync until the hardware has asked to emulate one instruction.
-    // It will start simulation at address 0x1000, which holds 0's.
+    // It will start simulation at address 0, which holds 0's.
     //
     if (! didInit) return;
 
@@ -97,8 +97,19 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         cpu->curStaticInst->hasBranchTarget(pc, cpu->tc, branchTarget);
     }
 
-    Fault fault = cpu->curStaticInst->execute(cpu, NULL);
-    VERIFY(fault == NoFault, "Fault emulating instr at 0x" << fmt_x(pc) << " in m5");
+    Fault fault;
+    int fault_trips = 0;
+    do
+    {
+        fault = cpu->curStaticInst->execute(cpu, NULL);
+        if (fault != NoFault)
+        {
+            fault_trips += 1;
+            VERIFY(fault_trips < 10, "Too many faults while emulating instr at 0x" << fmt_x(pc) << " in m5");
+            fault->invoke(cpu->tc);
+        }
+    }
+    while (fault != NoFault);
 
     cpu->postExecute();
     VERIFYX(! cpu->stayAtPC);
@@ -153,7 +164,7 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
     ASSERTX(sizeof(ISA_INSTRUCTION) == sizeof(TheISA::MachInst));
 
     //
-    // Startup sequence.  HAsim model starts at PC 0x1000.  m5 returns 0
+    // Startup sequence.  HAsim model starts at PC 0.  m5 returns 0
     // for the instruction.  HAsim calls here to emulate the instruction.
     // Now set all the start register values and jump to the right PC.
     //

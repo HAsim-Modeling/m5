@@ -6,3 +6,5 @@
 
 %sources -v PUBLIC  m5-memory.h
 %sources -v PRIVATE m5-memory.cpp
+
+%param PROGRAM_START_ADDR 0             "Address where model should start fetching"
