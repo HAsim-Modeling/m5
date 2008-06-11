@@ -40,6 +40,9 @@
 
 %inline %{
 extern void schedBreakCycle(Tick when);
+
+// Remote gdb base port.  0 disables remote gdb.
+extern void setRemoteGDBPort(int port);
 %}
 
 %wrapper %{

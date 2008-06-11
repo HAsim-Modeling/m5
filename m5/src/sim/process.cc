@@ -51,6 +51,7 @@
 #include "sim/stats.hh"
 #include "sim/syscall_emul.hh"
 #include "sim/system.hh"
+#include "sim/debug.hh"
 
 #include "arch/isa_specific.hh"
 #if THE_ISA == ALPHA_ISA
@@ -209,12 +210,15 @@ Process::registerThreadContext(ThreadContext *tc)
     int myIndex = threadContexts.size();
     threadContexts.push_back(tc);
 
-    RemoteGDB *rgdb = new RemoteGDB(system, tc);
-    GDBListener *gdbl = new GDBListener(rgdb, 7000 + myIndex);
-    gdbl->listen();
-    //gdbl->accept();
+    int port = getRemoteGDBPort();
+    if (port) {
+        RemoteGDB *rgdb = new RemoteGDB(system, tc);
+        GDBListener *gdbl = new GDBListener(rgdb, port + myIndex);
+        gdbl->listen();
+        //gdbl->accept();
 
-    remoteGDB.push_back(rgdb);
+        remoteGDB.push_back(rgdb);
+    }
 
     // return CPU number to caller
     return myIndex;

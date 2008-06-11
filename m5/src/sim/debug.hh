@@ -33,4 +33,6 @@
 
 void debug_break();
 
+int getRemoteGDBPort();
+
 #endif // __DEBUG_HH__

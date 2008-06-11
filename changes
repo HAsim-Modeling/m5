@@ -2229,3 +2229,25 @@ Directory modules/hasim/functional/memory
 - Force page 0 to be full of 0's.  Probably a bug in m5 checkpoint recovery
   that it isn't.
 - Handle page faults in ISA simulation loop.
+
+----------
+mcadler     Date: Wed Jun 11 16:22:34 EDT 2008  CSN: CSN-m5-13
+                  Wed Jun 11 20:22:34 UTC 2008
+
+
+Directory m5/src/python/m5
+ main.py                   Locally Modified           12 
+
+Directory m5/src/python/swig
+ debug.i                   Locally Modified           12 
+
+Directory m5/src/sim
+ debug.hh                  Locally Modified           12 
+ process.cc                Locally Modified           12 
+ system.cc                 Locally Modified           12 
+ debug.cc                  Locally Modified           12 
+
+Add --remote-gdb-port option.  The main purpose was to be able to disable
+the remote gdb port, since something is attaching to it on netbatch machines
+and hanging simulations.  The general implementation here allows changing
+the port.
