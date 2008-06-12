@@ -2251,3 +2251,30 @@ Add --remote-gdb-port option.  The main purpose was to be able to disable
 the remote gdb port, since something is attaching to it on netbatch machines
 and hanging simulations.  The general implementation here allows changing
 the port.
+
+----------
+mcadler     Date: Thu Jun 12 16:28:18 EDT 2008  CSN: CSN-m5-14
+                  Thu Jun 12 20:28:18 UTC 2008
+
+
+Directory m5/src/sim
+ syscall_emul.hh           Locally Modified           13 
+ process.hh                Locally Modified           13 
+ syscall_emul.cc           Locally Modified           13 
+
+Directory m5/src/arch/alpha/tru64
+ process.cc                Locally Modified           13 
+
+Directory m5/src/arch/alpha/linux
+ process.cc                Locally Modified           13 
+
+Directory m5/src/arch/mips/linux
+ process.cc                Locally Modified           13 
+
+Directory m5/src/arch/sparc/solaris
+ process.cc                Locally Modified           13 
+
+Directory m5/src/arch/sparc/linux
+ syscalls.cc               Locally Modified           13 
+
+New syscall emulation for getcwd, readlink, mkdir, truncate and ftruncate
