@@ -58,7 +58,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::Read(
 
     if ((addr & (size - 1)) || (size > 8))
     {
-        // Unaligned
+        // Unaligned or large
         if (! mem_port->tryReadBlob(addr, (uint8_t*)dest, size))
         {
             bzero(dest, size);
@@ -127,9 +127,9 @@ FUNCP_SIMULATED_MEMORY_CLASS::Write(
 
     ASSERTX(size > 0);
 
-    if (addr & (size - 1))
+    if ((addr & (size - 1)) || (size > 8))
     {
-        // Unaligned
+        // Unaligned or large
         mem_port->writeBlob(addr, (uint8_t*)src, size);
         return;
     }

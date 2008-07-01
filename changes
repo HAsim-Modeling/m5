@@ -2278,3 +2278,13 @@ Directory m5/src/arch/sparc/linux
  syscalls.cc               Locally Modified           13 
 
 New syscall emulation for getcwd, readlink, mkdir, truncate and ftruncate
+
+----------
+mcadler     Date: Tue Jul  1 12:42:44 EDT 2008  CSN: CSN-m5-15
+                  Tue Jul  1 16:42:44 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           14 
+
+Handle large store requests.
