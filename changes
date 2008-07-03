@@ -2310,3 +2310,14 @@ Directory m5/src/mem
  bus.cc                    Locally Modified           15 
 
 panic for address out of range instead of SEGV.
+
+----------
+mcadler     Date: Thu Jul  3 16:22:15 EDT 2008  CSN: CSN-m5-18
+                  Thu Jul  3 20:22:15 UTC 2008
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           17 
+
+Get rid of m5's SIGINT and SIGABRT handlers.  They don't work when the m5
+event loop isn't running and keep ^C from working.

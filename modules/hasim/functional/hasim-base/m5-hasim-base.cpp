@@ -18,6 +18,8 @@
 // @author Michael Adler
 //
 
+#include <signal.h>
+
 #include "asim/syntax.h"
 #include "asim/mesg.h"
 
@@ -34,6 +36,13 @@ extern SimObject *resolveSimObject(const string &);
 ATOMIC32_CLASS M5_HASIM_BASE_CLASS::refCnt;
 
 
+void
+m5HAsimExitNowHandler(int sigtype)
+{
+    exit(1);
+}
+
+
 M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
 {
     if (refCnt++ == 0)
@@ -42,6 +51,12 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         // Initialize m5
         //
         m5_main(globalArgs->FuncPlatformArgc(), globalArgs->FuncPlatformArgv());
+
+        // Drop m5 handling of SIGINT and SIGABRT.  These don't work well since
+        // m5's event loop isn't running.  Simply exit, hoping that some buffers
+        // will be flushed.
+        signal(SIGINT, m5HAsimExitNowHandler);
+        signal(SIGABRT, m5HAsimExitNowHandler);
     }
 
     SimObject *so = resolveSimObject("system.cpu");
