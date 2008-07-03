@@ -2300,3 +2300,13 @@ Directory modules/hasim/functional/memory
 
 - Add virtual to physical method
 - Hybrid m5 memory now uses physical addressing
+
+----------
+mcadler     Date: Thu Jul  3 12:51:04 EDT 2008  CSN: CSN-m5-17
+                  Thu Jul  3 16:51:04 UTC 2008
+
+
+Directory m5/src/mem
+ bus.cc                    Locally Modified           15 
+
+panic for address out of range instead of SEGV.
