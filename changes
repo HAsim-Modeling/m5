@@ -2288,3 +2288,15 @@ Directory modules/hasim/functional/memory
  m5-memory.cpp             Locally Modified           14 
 
 Handle large store requests.
+
+----------
+mcadler     Date: Wed Jul  2 21:58:59 EDT 2008  CSN: CSN-m5-16
+                  Thu Jul  3 01:58:59 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           15 
+ m5-memory.h               Locally Modified           15 
+
+- Add virtual to physical method
+- Hybrid m5 memory now uses physical addressing

@@ -41,12 +41,17 @@ class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS
     FUNCP_SIMULATED_MEMORY_CLASS();
     ~FUNCP_SIMULATED_MEMORY_CLASS();
 
-    void Read(UINT64 addr, UINT64 size, void *dest);
-    void Write(UINT64 addr, UINT64 size, void *src);
+    void Read(UINT64 paddr, UINT64 size, void *dest);
+    void Write(UINT64 paddr, UINT64 size, void *src);
+
+    UINT64 VtoP(UINT64 va);
 
   private:
     TranslatingPort *mem_port;
     PageTable *pTable;
+    Addr guard_page;        // Mapped to virtual address 0
+
+    void BlobHelper(Addr paddr, uint8_t *p, int size, MemCmd cmd);
 };
 
 #endif //  __HASIM_M5_MEMORY__

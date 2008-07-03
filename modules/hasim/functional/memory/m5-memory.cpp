@@ -24,11 +24,23 @@
 
 #include "asim/provides/funcp_simulated_memory.h"
 
+// m5 includes
+#include "base/chunk_generator.hh"
+
 
 FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
 {
     mem_port = M5Cpu(0)->tc->getMemPort();
     pTable = M5Cpu(0)->tc->getProcessPtr()->pTable;
+
+    //
+    // Allocate a guard page at 0.  m5 doesn't do this by default.  It would be
+    // nice if it got physical address 0, but this is better than nothing.
+    //
+    if (! pTable->translate(0, guard_page)) {
+        pTable->allocate(0, TheISA::VMPageSize);
+        VERIFY(pTable->translate(0, guard_page), "Guard page allocation failed");
+    }
 }
 
 
@@ -40,142 +52,84 @@ FUNCP_SIMULATED_MEMORY_CLASS::~FUNCP_SIMULATED_MEMORY_CLASS()
 
 void
 FUNCP_SIMULATED_MEMORY_CLASS::Read(
-    UINT64 addr,
+    UINT64 paddr,
     UINT64 size,
     void *dest)
 {
-    Fault fault;
-
     ASSERTX(size > 0);
 
-    if (addr < 0x1000)
-    {
-        // HAsim starts by fetching an instruction at 0.  Force the first
-        // page to be 0.
-        bzero(dest, size);
-        return;
-    }
-
-    if ((addr & (size - 1)) || (size > 8))
-    {
-        // Unaligned or large
-        if (! mem_port->tryReadBlob(addr, (uint8_t*)dest, size))
-        {
-            bzero(dest, size);
-        }
-        return;
-    }
-
-    //
-    // First try doing the read directly through the CPU.  This is a
-    // faster path through m5.
-    //
-    while (1)
-    {
-        switch (size)
-        {
-          case 8:
-            fault = M5Cpu(0)->read(addr, *(UINT64*)dest, 0);
-            break;
-          case 4:
-            fault = M5Cpu(0)->read(addr, *(UINT32*)dest, 0);
-            break;
-          case 2:
-            fault = M5Cpu(0)->read(addr, *(UINT16*)dest, 0);
-            break;
-          case 1:
-            fault = M5Cpu(0)->read(addr, *(UINT8*)dest, 0);
-            break;
-          default:
-            cerr << "Attempted to read " << size << " bytes" << endl;
-            ASIMERROR("Unsupport memory read size");
-            break;
-        }
-
-        if (fault == NoFault) return;
-
-        //
-        // If a translation exists for the address then invoke the fault
-        // handler to add the address to the DTB.  Otherwise, use the
-        // remote_gdb style interface and try to get the page allocated.
-        //
-        Addr paddr;
-        if (pTable->translate(addr, paddr))
-        {
-            fault->invoke(M5Cpu(0)->tc);
-        }
-        else
-        {
-            // Last resort for allocating the page.  Otherwise, just return 0.
-            if (! mem_port->tryReadBlob(addr, (uint8_t*)dest, size))
-            {
-                bzero(dest, size);
-            }
-            return;
-        }
-    }
+    BlobHelper(paddr, (uint8_t*)dest, size, MemCmd::ReadReq);
 }
 
 
 void
 FUNCP_SIMULATED_MEMORY_CLASS::Write(
-    UINT64 addr,
+    UINT64 paddr,
     UINT64 size,
     void *src)
 {
-    Fault fault;
-
     ASSERTX(size > 0);
 
-    if ((addr & (size - 1)) || (size > 8))
+    BlobHelper(paddr, (uint8_t*)src, size, MemCmd::WriteReq);
+}
+
+
+//
+// BlobHelper is a standard m5 style, such as in mem/port.cc, for sending a
+// request to physical memory.
+//
+void
+FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
+    Addr paddr,
+    uint8_t *p,
+    int size,
+    MemCmd cmd)
+{
+    if ((paddr & TheISA::PageMask) == guard_page)
     {
-        // Unaligned or large
-        mem_port->writeBlob(addr, (uint8_t*)src, size);
+        //
+        // Reference to page 0.
+        if (cmd == MemCmd::WriteReq)
+        {
+            ASIMERROR("Attempted write to page 0!");
+        }
+
+        // Just return 0.
+        bzero(p, size);
+
         return;
     }
 
-    //
-    // First try doing the write directly through the CPU.  This is a
-    // faster path through m5.
-    //
-    while (1)
-    {
-        switch (size)
-        {
-          case 8:
-            fault = M5Cpu(0)->write(*(UINT64*)src, addr, 0, NULL);
-            break;
-          case 4:
-            fault = M5Cpu(0)->write(*(UINT32*)src, addr, 0, NULL);
-            break;
-          case 2:
-            fault = M5Cpu(0)->write(*(UINT16*)src, addr, 0, NULL);
-            break;
-          case 1:
-            fault = M5Cpu(0)->write(*(UINT8*)src, addr, 0, NULL);
-            break;
-          default:
-            cerr << "Attempted to write " << size << " bytes" << endl;
-            ASIMERROR("Unsupport memory write size");
-            break;
-        }
-    
-        if (fault == NoFault) return;
+    Request req;
 
-        //
-        // If a translation exists for the address then invoke the fault
-        // handler to add the address to the DTB.  Otherwise, use the
-        // remote_gdb style interface and try to get the page allocated.
-        //
-        Addr paddr;
-        if (pTable->translate(addr, paddr))
-        {
-            fault->invoke(M5Cpu(0)->tc);
-        }
-        else
-        {
-            // Last resort for writing to the page.
-            mem_port->writeBlob(addr, (uint8_t*)src, size);
-        }
+    for (ChunkGenerator gen(paddr, size, mem_port->peerBlockSize());
+         ! gen.done(); gen.next())
+    {
+        req.setPhys(gen.addr(), gen.size(), 0);
+        Packet pkt(&req, cmd, Packet::Broadcast);
+        pkt.dataStatic(p);
+        mem_port->sendFunctional(&pkt);
+        p += gen.size();
     }
+}
+
+
+//
+// Virtual to physical mapping
+//
+UINT64
+FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
+{
+    Addr paddr;
+
+    if (! pTable->translate(va, paddr)) {
+        pTable->allocate(roundDown(va, TheISA::VMPageSize), TheISA::VMPageSize);
+
+        // For now just fail.  The functional model treats setting bit 0 of the
+        // response as a translation failed flag, so we could signal a failure
+        // back to the model.
+        VERIFY(pTable->translate(va, paddr), "Page translation failed");
+    }
+   
+    return paddr;
 }
