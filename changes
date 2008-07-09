@@ -2321,3 +2321,22 @@ Directory modules/hasim/functional/hasim-base
 
 Get rid of m5's SIGINT and SIGABRT handlers.  They don't work when the m5
 event loop isn't running and keep ^C from working.
+
+----------
+mcadler     Date: Wed Jul  9 07:21:25 EDT 2008  CSN: CSN-m5-19
+                  Wed Jul  9 11:21:25 UTC 2008
+
+
+Directory m5/src/mem
+ physical.cc               Locally Modified           18 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           18 
+
+Call back from m5 physical memory access to the HAsim ISA emulation code so
+HAsim can track access to memory during instruction emulation.  Tracking code
+can then invalidate specific cache lines in FPGA-side caches.
+
+A true m5-style tracker would be a small module with a memory interface
+between the CPU and physical memory.  Adding a couple of lines to physical.cc
+was less work.

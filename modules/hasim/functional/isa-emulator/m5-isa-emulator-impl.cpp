@@ -14,12 +14,58 @@
 #include "asim/syntax.h"
 
 #include "asim/provides/isa_emulator_impl.h"
+#include "asim/provides/funcp_memory.h"
+
+
+//***********************************************************************
+//
+// Callbacks from m5's physical memory access routines so HAsim
+// can monitor memory updates during emulation and invalid FPGA-side
+// memory caches.
+//
+//***********************************************************************
+
+extern void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size);
+extern void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size);
+
+static bool inEmulation = false;
+
+void
+HAsimEmulMemoryRead(Addr paddr, UINT64 size)
+{
+    if (inEmulation)
+    {
+        inEmulation = false;    // Prevent loops
+        FUNCP_MEMORY_CLASS::NoteSystemMemoryRead(paddr, size);
+        inEmulation = true;
+    }
+}
+
+void
+HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
+{
+    if (inEmulation)
+    {
+        inEmulation = false;    // Prevent loops
+        FUNCP_MEMORY_CLASS::NoteSystemMemoryWrite(paddr, size);
+        inEmulation = true;
+    }
+}
+
+
+//***********************************************************************
+//
+// m5 Emulation...
+//
+//***********************************************************************
 
 ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
     ISA_EMULATOR parent) :
     parent(parent),
     didInit(false)
 {
+    HAsimNoteMemoryRead = &HAsimEmulMemoryRead;
+    HAsimNoteMemoryWrite = &HAsimEmulMemoryWrite;
 }
 
 
@@ -87,6 +133,9 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     VERIFYX(cpu->curStaticInst);
 
+    // Start watching memory
+    inEmulation = true;
+
     //
     // Is the instruction a branch?
     //
@@ -115,6 +164,9 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     VERIFYX(! cpu->stayAtPC);
 
     cpu->advancePC(fault);
+
+    // Stop watching memory
+    inEmulation = false;
 
     //
     // Update registers
