@@ -2340,3 +2340,22 @@ can then invalidate specific cache lines in FPGA-side caches.
 A true m5-style tracker would be a small module with a memory interface
 between the CPU and physical memory.  Adding a couple of lines to physical.cc
 was less work.
+
+----------
+mcadler     Date: Wed Jul  9 09:36:47 EDT 2008  CSN: CSN-m5-20
+                  Wed Jul  9 13:36:47 UTC 2008
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.h    Locally Modified           18 
+ m5-isa-emulator-impl.cpp  Locally Modified           19 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           18 
+ m5-memory.h               Locally Modified           18 
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           18 
+ m5-hasim-base.h           Locally Modified           18 
+
+GPL v2.
