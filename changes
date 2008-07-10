@@ -2359,3 +2359,14 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.h           Locally Modified           18 
 
 GPL v2.
+
+----------
+mcadler     Date: Thu Jul 10 15:53:58 EDT 2008  CSN: CSN-m5-21
+                  Thu Jul 10 19:53:58 UTC 2008
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           20 
+ m5-isa-emulator-impl.h    Locally Modified           20 
+
+PC uses virtual address size.

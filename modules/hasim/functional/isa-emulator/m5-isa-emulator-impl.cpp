@@ -97,9 +97,9 @@ ISA_EMULATOR_IMPL_CLASS::SyncReg(
 
 ISA_EMULATOR_RESULT
 ISA_EMULATOR_IMPL_CLASS::Emulate(
-    FUNCP_ADDR pc,
+    FUNCP_VADDR pc,
     ISA_INSTRUCTION inst,
-    FUNCP_ADDR *newPC)
+    FUNCP_VADDR *newPC)
 {
     if (! didInit)
     {
@@ -112,7 +112,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     if (inst == 0)
     {
-        ASIMWARNING("HALT instruction executed.  Probably a bug.")
+        ASIMWARNING("HALT instruction executed.  Probably a bug." << endl)
         *newPC = 0;
         return ISA_EMULATOR_EXIT_FAIL;
     }
@@ -216,7 +216,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 //
 ISA_EMULATOR_RESULT
 ISA_EMULATOR_IMPL_CLASS::StartProgram(
-    FUNCP_ADDR *newPC)
+    FUNCP_VADDR *newPC)
 {
     ASSERTX(sizeof(ISA_INSTRUCTION) == sizeof(TheISA::MachInst));
 
