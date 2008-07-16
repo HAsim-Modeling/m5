@@ -26,6 +26,7 @@
 #include "asim/mesg.h"
 #include "asim/atomic.h"
 
+#include "asim/provides/funcp_base_types.h"
 #include "asim/provides/funcp_simulated_memory.h"
 
 // m5 includes
@@ -40,11 +41,18 @@ FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
     //
     // Allocate a guard page at 0.  m5 doesn't do this by default.  It would be
     // nice if it got physical address 0, but this is better than nothing.
+    // Put the guard page as the highest page in physical memory.
     //
-    if (! pTable->translate(0, guard_page)) {
-        pTable->allocate(0, TheISA::VMPageSize);
-        VERIFY(pTable->translate(0, guard_page), "Guard page allocation failed");
+    if (FUNCP_ISA_P_ADDR_SIZE == sizeof(Addr))
+    {
+        guard_page = Addr(-1);
     }
+    else
+    {
+        guard_page = (Addr(1) << FUNCP_ISA_P_ADDR_SIZE) - 1;
+    }
+
+    guard_page &= TheISA::PageMask;
 }
 
 
@@ -92,10 +100,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
     if ((paddr & TheISA::PageMask) == guard_page)
     {
         //
-        // Reference to page 0.
+        // Reference to virtual page 0.
         if (cmd == MemCmd::WriteReq)
         {
-            ASIMERROR("Attempted write to page 0!");
+            ASIMERROR("Attempted write to virtual page 0!");
         }
 
         // Just return 0.
@@ -125,6 +133,11 @@ UINT64
 FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
 {
     Addr paddr;
+
+    if ((va & TheISA::PageMask) == 0)
+    {
+        return guard_page | (va & TheISA::PageMask);
+    }
 
     if (! pTable->translate(va, paddr)) {
         pTable->allocate(roundDown(va, TheISA::VMPageSize), TheISA::VMPageSize);

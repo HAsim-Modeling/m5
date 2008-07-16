@@ -2370,3 +2370,15 @@ Directory modules/hasim/functional/isa-emulator
  m5-isa-emulator-impl.h    Locally Modified           20 
 
 PC uses virtual address size.
+
+----------
+mcadler     Date: Wed Jul 16 18:24:08 EDT 2008  CSN: CSN-m5-22
+                  Wed Jul 16 22:24:08 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           21 
+
+Change virtual page 0 mapping to the last page of physical memory instead of
+allocating a page inside m5.  Using m5's allocator didn't work when restoring
+checkpoints.
