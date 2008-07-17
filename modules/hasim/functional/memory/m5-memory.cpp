@@ -139,14 +139,19 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
         return guard_page | (va & TheISA::PageMask);
     }
 
-    if (! pTable->translate(va, paddr)) {
-        pTable->allocate(roundDown(va, TheISA::VMPageSize), TheISA::VMPageSize);
-
-        // For now just fail.  The functional model treats setting bit 0 of the
-        // response as a translation failed flag, so we could signal a failure
-        // back to the model.
-        VERIFY(pTable->translate(va, paddr), "Page translation failed");
+    Fault fault;
+    int fault_trips = 0;
+    do
+    {
+        fault = M5Cpu(0)->translateDataReadAddr(roundDown(va, TheISA::VMPageSize), paddr, TheISA::VMPageSize, 0);
+        if (fault != NoFault)
+        {
+            fault_trips += 1;
+            VERIFY(fault_trips < 10, "Too many faults translating VtoP of VA 0x" << fmt_x(va) << " in m5");
+            fault->invoke(M5Cpu(0)->tc);
+        }
     }
-   
+    while (fault != NoFault);
+
     return paddr;
 }

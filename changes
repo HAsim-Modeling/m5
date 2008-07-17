@@ -2382,3 +2382,15 @@ Directory modules/hasim/functional/memory
 Change virtual page 0 mapping to the last page of physical memory instead of
 allocating a page inside m5.  Using m5's allocator didn't work when restoring
 checkpoints.
+
+----------
+mcadler     Date: Thu Jul 17 15:47:38 EDT 2008  CSN: CSN-m5-23
+                  Thu Jul 17 19:47:38 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           22 
+
+Virtual to physical translation path has to go through the CPU or emulated
+instructions handle page faults incorrectly.  Old code went straight to the
+page table.
