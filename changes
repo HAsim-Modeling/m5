@@ -2394,3 +2394,17 @@ Directory modules/hasim/functional/memory
 Virtual to physical translation path has to go through the CPU or emulated
 instructions handle page faults incorrectly.  Old code went straight to the
 page table.
+
+----------
+mcadler     Date: Mon Aug 25 14:03:34 EDT 2008  CSN: CSN-m5-24
+                  Mon Aug 25 18:03:34 UTC 2008
+
+
+Directory m5/src/cpu/simple
+ base.hh                   Locally Modified           23 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           23 
+
+Expose traceData for proper handling of page faults during instruction
+emulation.

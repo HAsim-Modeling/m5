@@ -155,7 +155,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     int fault_trips = 0;
     do
     {
-        fault = cpu->curStaticInst->execute(cpu, NULL);
+        fault = cpu->curStaticInst->execute(cpu, cpu->getTraceData());
         if (fault != NoFault)
         {
             fault_trips += 1;
