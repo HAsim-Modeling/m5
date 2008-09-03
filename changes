@@ -2408,3 +2408,20 @@ Directory modules/hasim/functional/isa-emulator
 
 Expose traceData for proper handling of page faults during instruction
 emulation.
+
+----------
+mcadler     Date: Tue Sep  2 22:14:33 EDT 2008  CSN: CSN-m5-25
+                  Wed Sep  3 02:14:33 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           24 
+ m5-memory.h               Locally Modified           24 
+
+- Move some of the handling of faults out of the m5 code and into the HAsim stub
+  in order to handle speculative references.  m5 was panicking.  On an illegal
+  translation we now return the guard page, which has the right semantics but
+  lacks some error checking.  It will raise an exception on an attempt to store
+  to the guard page, but loads from the guard page are currently allowed to
+  commit.  Thus, illegal programs may appear to run correctly.
+- Improve tracing of fault handler.

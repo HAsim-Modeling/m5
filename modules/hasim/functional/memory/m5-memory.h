@@ -27,6 +27,7 @@
 
 #include "asim/syntax.h"
 #include "asim/provides/m5_hasim_base.h"
+#include "asim/provides/funcp_base_types.h"
 
 // m5 includes
 #include "config/full_system.hh"
@@ -35,7 +36,8 @@
 
 typedef class FUNCP_SIMULATED_MEMORY_CLASS *FUNCP_SIMULATED_MEMORY;
 
-class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS
+class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS,
+                                     public TRACEABLE_CLASS
 {
   public:
     //
@@ -53,6 +55,8 @@ class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS
   private:
     TranslatingPort *mem_port;
     PageTable *pTable;
+    Format fmt_va;
+
     Addr guard_page;        // Mapped to virtual address 0
 
     void BlobHelper(Addr paddr, uint8_t *p, int size, MemCmd cmd);

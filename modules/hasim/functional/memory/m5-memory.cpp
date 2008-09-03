@@ -27,6 +27,7 @@
 #include "asim/atomic.h"
 
 #include "asim/provides/funcp_base_types.h"
+#include "asim/provides/funcp_memory.h"
 #include "asim/provides/funcp_simulated_memory.h"
 
 // m5 includes
@@ -35,8 +36,14 @@
 
 FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
 {
+    SetTraceableName("funcp_memory_m5");
+
     mem_port = M5Cpu(0)->tc->getMemPort();
     pTable = M5Cpu(0)->tc->getProcessPtr()->pTable;
+
+    char fmt[16];
+    sprintf(fmt, "0%dx", sizeof(MEM_VALUE) * 2);
+    fmt_va = Format("0x", fmt);
 
     //
     // Allocate a guard page at 0.  m5 doesn't do this by default.  It would be
@@ -134,6 +141,9 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
 {
     Addr paddr;
 
+    static const char *dfault = NULL;
+    static const char *dtb_miss_single = NULL;
+
     if ((va & TheISA::PageMask) == 0)
     {
         return guard_page | (va & TheISA::PageMask);
@@ -146,8 +156,52 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
         fault = M5Cpu(0)->translateDataReadAddr(roundDown(va, TheISA::VMPageSize), paddr, TheISA::VMPageSize, 0);
         if (fault != NoFault)
         {
+            const char *fault_name = fault->name();
+
+            T1("\tfuncp_memory_m5: VtoP FAULT (" << fault_name << ") VA " << fmt_va(va));
+
+            //
+            // Check for fatal fault and assume it is caused by a speculative path.
+            // For now we will fail on attempts to write through the guard page.
+            // Ideally we would mark loads using this guard page and trigger an
+            // assertion if they commit.
+            //
+            if ((fault_name == dfault) || ! strcmp("dfault", fault_name))
+            {
+                // Remember fault name pointer to avoid using strcmp next time
+                dfault = fault_name;
+
+                T1("\t\tfuncp_memory_m5: VtoP FAULT is fatal.  Assuming speculative path...");
+                return guard_page | (va & TheISA::PageMask);
+            }
+
             fault_trips += 1;
             VERIFY(fault_trips < 10, "Too many faults translating VtoP of VA 0x" << fmt_x(va) << " in m5");
+
+            if ((fault_name == dtb_miss_single) || ! strcmp("dtb_miss_single", fault_name))
+            {
+                // Remember fault name pointer to avoid using strcmp next time
+                dtb_miss_single = fault_name;
+
+                // Make sure the translation won't cause a panic before invoking
+                // the handler.  This code does the early stages of
+                // NDtbMissFault::invoke
+                Process *p = M5Cpu(0)->tc->getProcessPtr();
+                TheISA::TlbEntry entry;
+                bool success = p->pTable->lookup(va, entry);
+                if (! success)
+                {
+                    p->checkAndAllocNextPage(va);
+                    success = p->pTable->lookup(va, entry);
+                }
+                if (! success)
+                {
+                    T1("\t\tfuncp_memory_m5: VtoP FAULT is fatal.  Assuming speculative path...");
+                    return guard_page | (va & TheISA::PageMask);
+                }
+            }
+
+            // Invoke the real handler
             fault->invoke(M5Cpu(0)->tc);
         }
     }
