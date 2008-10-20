@@ -197,7 +197,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
                 if (! success)
                 {
                     T1("\t\tfuncp_memory_m5: VtoP FAULT is fatal.  Assuming speculative path...");
-                    return guard_page | (va & TheISA::PageMask);
+                    // Return the guard page but also set bit 1, indicating an
+                    // uncachable translation.  The translation may change to a
+                    // valid one later, permitting stores.
+                    return guard_page | (va & TheISA::PageMask) | 2;
                 }
             }
 

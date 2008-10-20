@@ -2425,3 +2425,14 @@ Directory modules/hasim/functional/memory
   to the guard page, but loads from the guard page are currently allowed to
   commit.  Thus, illegal programs may appear to run correctly.
 - Improve tracing of fault handler.
+
+----------
+mcadler     Date: Sun Oct 19 23:07:19 EDT 2008  CSN: CSN-m5-26
+                  Mon Oct 20 03:07:19 UTC 2008
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           25 
+
+Tag failed virtual to physical translations uncacheable so they'll be retried.
+Syscall or other action may make the translation succeed if tried later.
