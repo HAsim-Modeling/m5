@@ -2436,3 +2436,19 @@ Directory modules/hasim/functional/memory
 
 Tag failed virtual to physical translations uncacheable so they'll be retried.
 Syscall or other action may make the translation succeed if tried later.
+
+----------
+mcadler     Date: Mon Nov  3 08:32:24 EST 2008  CSN: CSN-m5-27
+                  Mon Nov  3 13:32:24 UTC 2008
+
+
+Directory m5/src/sim
+ syscall_emul.cc           Locally Modified           26 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           26 
+ m5-memory.h               Locally Modified           26 
+
+- Don't allocate a new memory page unless allocOnFault bit is set.
+- Stop printing warning message for some unimplemented syscalls (mainly
+  about timing).  They were getting annoying.

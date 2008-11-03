@@ -36,6 +36,13 @@
 
 typedef class FUNCP_SIMULATED_MEMORY_CLASS *FUNCP_SIMULATED_MEMORY;
 
+// Response from VtoP
+struct FUNCP_MEM_VTOP_RESP
+{
+    UINT64 pa;
+    bool page_fault;    // Translation failed
+};
+
 class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS,
                                      public TRACEABLE_CLASS
 {
@@ -50,7 +57,7 @@ class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS,
     void Read(UINT64 paddr, UINT64 size, void *dest);
     void Write(UINT64 paddr, UINT64 size, void *src);
 
-    UINT64 VtoP(UINT64 va);
+    FUNCP_MEM_VTOP_RESP VtoP(UINT64 va, bool allocOnFault);
 
   private:
     TranslatingPort *mem_port;

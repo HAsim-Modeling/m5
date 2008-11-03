@@ -136,8 +136,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
 //
 // Virtual to physical mapping
 //
-UINT64
-FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
+FUNCP_MEM_VTOP_RESP
+FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
 {
     Addr paddr;
 
@@ -146,7 +146,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
 
     if ((va & TheISA::PageMask) == 0)
     {
-        return guard_page | (va & TheISA::PageMask);
+        FUNCP_MEM_VTOP_RESP resp;
+        resp.pa = guard_page | (va & TheISA::PageMask);
+        resp.page_fault = false;
+        return resp;
     }
 
     Fault fault;
@@ -162,17 +165,23 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
 
             //
             // Check for fatal fault and assume it is caused by a speculative path.
-            // For now we will fail on attempts to write through the guard page.
-            // Ideally we would mark loads using this guard page and trigger an
-            // assertion if they commit.
             //
             if ((fault_name == dfault) || ! strcmp("dfault", fault_name))
             {
                 // Remember fault name pointer to avoid using strcmp next time
                 dfault = fault_name;
 
-                T1("\t\tfuncp_memory_m5: VtoP FAULT is fatal.  Assuming speculative path...");
-                return guard_page | (va & TheISA::PageMask);
+                if (! allocOnFault)
+                {
+                    // Fault returns guard page as translation so the model doesn't
+                    // need too much special case code to handle faults.
+                    FUNCP_MEM_VTOP_RESP resp;
+                    resp.pa = guard_page | (va & TheISA::PageMask);
+                    resp.page_fault = true;
+                    return resp;
+                }
+
+                ASIMERROR("VtoP failed: unable to allocate page for VA 0x" << fmt_x(va));
             }
 
             fault_trips += 1;
@@ -191,16 +200,21 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
                 bool success = p->pTable->lookup(va, entry);
                 if (! success)
                 {
+                    if (! allocOnFault)
+                    {
+                        FUNCP_MEM_VTOP_RESP resp;
+                        resp.pa = guard_page | (va & TheISA::PageMask);
+                        resp.page_fault = true;
+                        return resp;
+                    }
+
                     p->checkAndAllocNextPage(va);
                     success = p->pTable->lookup(va, entry);
                 }
+
                 if (! success)
                 {
-                    T1("\t\tfuncp_memory_m5: VtoP FAULT is fatal.  Assuming speculative path...");
-                    // Return the guard page but also set bit 1, indicating an
-                    // uncachable translation.  The translation may change to a
-                    // valid one later, permitting stores.
-                    return guard_page | (va & TheISA::PageMask) | 2;
+                    ASIMERROR("VtoP failed: unable to allocate page for VA 0x" << fmt_x(va));
                 }
             }
 
@@ -210,5 +224,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va)
     }
     while (fault != NoFault);
 
-    return paddr;
+    FUNCP_MEM_VTOP_RESP resp;
+    resp.pa = paddr;
+    resp.page_fault = false;
+    return resp;
 }

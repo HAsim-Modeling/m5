@@ -80,8 +80,9 @@ SyscallReturn
 ignoreFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
            ThreadContext *tc)
 {
-    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
-         tc->getSyscallArg(0), tc->getSyscallArg(1));
+// Too many messages...
+//    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
+//         tc->getSyscallArg(0), tc->getSyscallArg(1));
 
     return 0;
 }
