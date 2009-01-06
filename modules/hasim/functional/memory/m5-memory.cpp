@@ -71,6 +71,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::~FUNCP_SIMULATED_MEMORY_CLASS()
 
 void
 FUNCP_SIMULATED_MEMORY_CLASS::Read(
+    CONTEXT_ID ctx_id,
     UINT64 paddr,
     UINT64 size,
     void *dest)
@@ -83,6 +84,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::Read(
 
 void
 FUNCP_SIMULATED_MEMORY_CLASS::Write(
+    CONTEXT_ID ctx_id,
     UINT64 paddr,
     UINT64 size,
     void *src)
@@ -137,7 +139,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
 // Virtual to physical mapping
 //
 FUNCP_MEM_VTOP_RESP
-FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
+FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
+    CONTEXT_ID ctx_id,
+    UINT64 va,
+    bool allocOnFault)
 {
     Addr paddr;
 
@@ -148,7 +153,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
     {
         FUNCP_MEM_VTOP_RESP resp;
         resp.pa = guard_page | (va & TheISA::PageMask);
-        resp.page_fault = false;
+        resp.pageFault = false;
+        resp.ioSpace = false;
         return resp;
     }
 
@@ -177,7 +183,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
                     // need too much special case code to handle faults.
                     FUNCP_MEM_VTOP_RESP resp;
                     resp.pa = guard_page | (va & TheISA::PageMask);
-                    resp.page_fault = true;
+                    resp.pageFault = true;
+                    resp.ioSpace = false;
                     return resp;
                 }
 
@@ -204,7 +211,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
                     {
                         FUNCP_MEM_VTOP_RESP resp;
                         resp.pa = guard_page | (va & TheISA::PageMask);
-                        resp.page_fault = true;
+                        resp.pageFault = true;
+                        resp.ioSpace = false;
                         return resp;
                     }
 
@@ -226,6 +234,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(UINT64 va, bool allocOnFault)
 
     FUNCP_MEM_VTOP_RESP resp;
     resp.pa = paddr;
-    resp.page_fault = false;
+    resp.pageFault = false;
+    resp.ioSpace = false;
     return resp;
 }

@@ -2452,3 +2452,15 @@ Directory modules/hasim/functional/memory
 - Don't allocate a new memory page unless allocOnFault bit is set.
 - Stop printing warning message for some unimplemented syscalls (mainly
   about timing).  They were getting annoying.
+
+----------
+mcadler     Date: Mon Jan  5 20:10:09 EST 2009  CSN: CSN-m5-28
+                  Tue Jan  6 01:10:09 UTC 2009
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           27 
+ m5-memory.h               Locally Modified           27 
+
+- Pass context ID for memory requests.  Doesn't do anything with them, yet.
+- Add a flag for I/O space on virtual to physical translation results.
