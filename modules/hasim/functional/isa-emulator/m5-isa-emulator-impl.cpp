@@ -76,6 +76,7 @@ ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
 
 void
 ISA_EMULATOR_IMPL_CLASS::SyncReg(
+    CONTEXT_ID ctxId,
     ISA_REG_INDEX_CLASS rName,
     FUNCP_INT_REG rVal)
 {
@@ -97,13 +98,14 @@ ISA_EMULATOR_IMPL_CLASS::SyncReg(
 
 ISA_EMULATOR_RESULT
 ISA_EMULATOR_IMPL_CLASS::Emulate(
+    CONTEXT_ID ctxId,
     FUNCP_VADDR pc,
     ISA_INSTRUCTION inst,
     FUNCP_VADDR *newPC)
 {
     if (! didInit)
     {
-        return StartProgram(newPC);
+        return StartProgram(ctxId, newPC);
     }
 
 #if THE_ISA == ALPHA_ISA
@@ -183,7 +185,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         FUNCP_INT_REG rVal = M5Cpu(0)->tc->readIntReg(r);
         if (intRegCache[r] != rVal)
         {
-            parent->UpdateRegister(rName, cpu->tc->readIntReg(r));
+            parent->UpdateRegister(ctxId, rName, cpu->tc->readIntReg(r));
             intRegCache[r] = rVal;
         }
     }
@@ -216,6 +218,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 //
 ISA_EMULATOR_RESULT
 ISA_EMULATOR_IMPL_CLASS::StartProgram(
+    CONTEXT_ID ctxId,
     FUNCP_VADDR *newPC)
 {
     ASSERTX(sizeof(ISA_INSTRUCTION) == sizeof(TheISA::MachInst));
@@ -231,7 +234,7 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         ISA_REG_INDEX_CLASS rName;
         rName.SetArchReg(r);
         FUNCP_INT_REG rVal = M5Cpu(0)->tc->readIntReg(r);
-        parent->UpdateRegister(rName, rVal);
+        parent->UpdateRegister(ctxId, rName, rVal);
         intRegCache[r] = rVal;
     }
 

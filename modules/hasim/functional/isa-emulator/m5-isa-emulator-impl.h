@@ -40,15 +40,20 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
     ISA_EMULATOR_IMPL_CLASS(ISA_EMULATOR parent);
     ~ISA_EMULATOR_IMPL_CLASS() {};
 
-    void SyncReg(ISA_REG_INDEX_CLASS rName, FUNCP_INT_REG rVal);
+    void SyncReg(
+        CONTEXT_ID ctxId,
+        ISA_REG_INDEX_CLASS rName,
+        FUNCP_INT_REG rVal);
 
     ISA_EMULATOR_RESULT Emulate(
+        CONTEXT_ID ctxId,
         FUNCP_VADDR pc,
         ISA_INSTRUCTION inst,
         FUNCP_VADDR *newPC);
 
   private:
     ISA_EMULATOR_RESULT StartProgram(
+        CONTEXT_ID ctxId,
         FUNCP_VADDR *newPC);
 
     ISA_EMULATOR parent;

@@ -2464,3 +2464,14 @@ Directory modules/hasim/functional/memory
 
 - Pass context ID for memory requests.  Doesn't do anything with them, yet.
 - Add a flag for I/O space on virtual to physical translation results.
+
+----------
+mcadler     Date: Tue Jan  6 11:56:07 EST 2009  CSN: CSN-m5-29
+                  Tue Jan  6 16:56:07 UTC 2009
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           28 
+ m5-isa-emulator-impl.h    Locally Modified           28 
+
+Pass context ID to ISA emulator methods.
