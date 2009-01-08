@@ -55,10 +55,10 @@ class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS,
     FUNCP_SIMULATED_MEMORY_CLASS();
     ~FUNCP_SIMULATED_MEMORY_CLASS();
 
-    void Read(CONTEXT_ID ctx_id, UINT64 paddr, UINT64 size, void *dest);
-    void Write(CONTEXT_ID ctx_id, UINT64 paddr, UINT64 size, void *src);
+    void Read(CONTEXT_ID ctxId, UINT64 paddr, UINT64 size, void *dest);
+    void Write(CONTEXT_ID ctxId, UINT64 paddr, UINT64 size, void *src);
 
-    FUNCP_MEM_VTOP_RESP VtoP(CONTEXT_ID ctx_id, UINT64 va, bool allocOnFault);
+    FUNCP_MEM_VTOP_RESP VtoP(CONTEXT_ID ctxId, UINT64 va, bool allocOnFault);
 
   private:
     TranslatingPort *mem_port;

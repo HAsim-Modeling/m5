@@ -34,6 +34,7 @@ extern void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size);
 extern void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size);
 
 static bool inEmulation = false;
+static CONTEXT_ID emulationCtxId = 0;
 
 void
 HAsimEmulMemoryRead(Addr paddr, UINT64 size)
@@ -41,7 +42,7 @@ HAsimEmulMemoryRead(Addr paddr, UINT64 size)
     if (inEmulation)
     {
         inEmulation = false;    // Prevent loops
-        FUNCP_MEMORY_CLASS::NoteSystemMemoryRead(paddr, size);
+        FUNCP_MEMORY_CLASS::NoteSystemMemoryRead(emulationCtxId, paddr, size);
         inEmulation = true;
     }
 }
@@ -52,7 +53,7 @@ HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
     if (inEmulation)
     {
         inEmulation = false;    // Prevent loops
-        FUNCP_MEMORY_CLASS::NoteSystemMemoryWrite(paddr, size);
+        FUNCP_MEMORY_CLASS::NoteSystemMemoryWrite(emulationCtxId, paddr, size);
         inEmulation = true;
     }
 }
@@ -142,6 +143,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     // Start watching memory
     inEmulation = true;
+    emulationCtxId = ctxId;
 
     //
     // Is the instruction a branch?
