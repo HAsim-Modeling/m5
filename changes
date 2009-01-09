@@ -2489,3 +2489,21 @@ Directory modules/hasim/functional/memory
  m5-memory.h               Locally Modified           29 
 
 Pass context ID to memory and emulation methods.
+
+----------
+mcadler     Date: Thu Jan  8 19:37:37 EST 2009  CSN: CSN-m5-31
+                  Fri Jan  9 00:37:37 UTC 2009
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           30 
+ m5-isa-emulator-impl.h    Locally Modified           30 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           30 
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           30 
+ m5-hasim-base.h           Locally Modified           30 
+
+Pass hardware context to m5.

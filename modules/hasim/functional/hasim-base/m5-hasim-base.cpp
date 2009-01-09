@@ -38,6 +38,8 @@ extern SimObject *resolveSimObject(const string &);
 #include <Python.h>
 
 ATOMIC32_CLASS M5_HASIM_BASE_CLASS::refCnt;
+AtomicSimpleCPU_PTR *M5_HASIM_BASE_CLASS::m5cpus;
+UINT32 M5_HASIM_BASE_CLASS::numCPUs;
 
 
 void
@@ -61,11 +63,33 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         // will be flushed.
         signal(SIGINT, m5HAsimExitNowHandler);
         signal(SIGABRT, m5HAsimExitNowHandler);
-    }
 
-    SimObject *so = resolveSimObject("system.cpu");
-    m5cpu = dynamic_cast<AtomicSimpleCPU*>(so);
-    ASSERT(m5cpu != NULL, "Failed to find m5 cpu object");
+        numCPUs = globalArgs->NumContexts();
+        ASSERTX(numCPUs != 0);
+
+        // Cache pointers to m5 CPUs here
+        m5cpus = new AtomicSimpleCPU_PTR[numCPUs];
+
+        if (numCPUs == 1)
+        {
+            // If there is a single CPU it is named system.cpu
+            SimObject *so = resolveSimObject("system.cpu");
+            m5cpus[0] = dynamic_cast<AtomicSimpleCPU*>(so);
+            ASSERT(m5cpus[0] != NULL, "Failed to find m5 cpu object:  system.cpu");
+        }
+        else
+        {
+            // If there is a single CPU it is named system.cpu
+            for (int cpu = 0; cpu < numCPUs; cpu++)
+            {
+                char cpu_name[64];
+                sprintf(cpu_name, "system.cpu%d", cpu);
+                SimObject *so = resolveSimObject(cpu_name);
+                m5cpus[cpu] = dynamic_cast<AtomicSimpleCPU*>(so);
+                ASSERT(m5cpus[cpu] != NULL, "Failed to find m5 cpu object: " << cpu_name);
+            }
+        }
+    }
 }
 
 
@@ -74,5 +98,6 @@ M5_HASIM_BASE_CLASS::~M5_HASIM_BASE_CLASS()
     if (refCnt-- == 1)
     {
         Py_Finalize();
+        delete[] m5cpus;
     }
 }

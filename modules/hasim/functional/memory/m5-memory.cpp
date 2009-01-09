@@ -162,7 +162,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
     int fault_trips = 0;
     do
     {
-        fault = M5Cpu(0)->translateDataReadAddr(roundDown(va, TheISA::VMPageSize), paddr, TheISA::VMPageSize, 0);
+        fault = M5Cpu(ctxId)->translateDataReadAddr(roundDown(va, TheISA::VMPageSize), paddr, TheISA::VMPageSize, 0);
         if (fault != NoFault)
         {
             const char *fault_name = fault->name();
@@ -202,7 +202,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
                 // Make sure the translation won't cause a panic before invoking
                 // the handler.  This code does the early stages of
                 // NDtbMissFault::invoke
-                Process *p = M5Cpu(0)->tc->getProcessPtr();
+                Process *p = M5Cpu(ctxId)->tc->getProcessPtr();
                 TheISA::TlbEntry entry;
                 bool success = p->pTable->lookup(va, entry);
                 if (! success)
@@ -227,7 +227,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
             }
 
             // Invoke the real handler
-            fault->invoke(M5Cpu(0)->tc);
+            fault->invoke(M5Cpu(ctxId)->tc);
         }
     }
     while (fault != NoFault);

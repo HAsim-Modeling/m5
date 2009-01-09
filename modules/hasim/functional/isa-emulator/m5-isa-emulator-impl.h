@@ -38,7 +38,7 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
 {
   public:
     ISA_EMULATOR_IMPL_CLASS(ISA_EMULATOR parent);
-    ~ISA_EMULATOR_IMPL_CLASS() {};
+    ~ISA_EMULATOR_IMPL_CLASS();
 
     void SyncReg(
         CONTEXT_ID ctxId,
@@ -57,7 +57,7 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
         FUNCP_VADDR *newPC);
 
     ISA_EMULATOR parent;
-    bool didInit;
+    bool *didInit;      // Initialized bit (one per hardware context)
 
     FUNCP_INT_REG intRegCache[TheISA::NumIntArchRegs];
 };

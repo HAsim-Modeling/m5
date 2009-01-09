@@ -33,6 +33,7 @@
 #include "cpu/simple/atomic.hh"
 
 typedef class M5_HASIM_BASE_CLASS *M5_HASIM_BASE;
+typedef AtomicSimpleCPU *AtomicSimpleCPU_PTR;
 
 class M5_HASIM_BASE_CLASS
 {
@@ -40,16 +41,19 @@ class M5_HASIM_BASE_CLASS
     M5_HASIM_BASE_CLASS();
     ~M5_HASIM_BASE_CLASS();
 
+    UINT32 NumCPUs() const { return numCPUs; };
+
   protected:
     AtomicSimpleCPU *M5Cpu(UINT32 cpuId) const
     {
-        ASSERTX(cpuId == 0);
-        return m5cpu;
+        ASSERTX(cpuId < numCPUs);
+        return m5cpus[cpuId];
     };
 
   private:
     static ATOMIC32_CLASS refCnt;
-    AtomicSimpleCPU *m5cpu;
+    static AtomicSimpleCPU_PTR *m5cpus;
+    static UINT32 numCPUs;
 };
 
 #endif //  __HASIM_M5_BASE__

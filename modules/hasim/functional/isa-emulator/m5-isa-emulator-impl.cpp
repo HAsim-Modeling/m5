@@ -67,11 +67,22 @@ HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
 
 ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
     ISA_EMULATOR parent) :
-    parent(parent),
-    didInit(false)
+    parent(parent)
 {
     HAsimNoteMemoryRead = &HAsimEmulMemoryRead;
     HAsimNoteMemoryWrite = &HAsimEmulMemoryWrite;
+
+    didInit = new bool[NumCPUs()];
+    for (UINT32 c = 0; c < NumCPUs(); c++)
+    {
+        didInit[c] = false;
+    }
+}
+
+
+ISA_EMULATOR_IMPL_CLASS::~ISA_EMULATOR_IMPL_CLASS()
+{
+    delete[] didInit;
 }
 
 
@@ -85,11 +96,11 @@ ISA_EMULATOR_IMPL_CLASS::SyncReg(
     // Skip register sync until the hardware has asked to emulate one instruction.
     // It will start simulation at address 0, which holds 0's.
     //
-    if (! didInit) return;
+    if (! didInit[ctxId]) return;
 
     if (rName.IsArchReg())
     {
-        M5Cpu(0)->tc->setIntReg(rName.ArchRegNum(), rVal);
+        M5Cpu(ctxId)->tc->setIntReg(rName.ArchRegNum(), rVal);
 
         ASSERTX(rName.ArchRegNum() < TheISA::NumIntArchRegs);
         intRegCache[rName.ArchRegNum()] = rVal;
@@ -104,7 +115,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     ISA_INSTRUCTION inst,
     FUNCP_VADDR *newPC)
 {
-    if (! didInit)
+    if (! didInit[ctxId])
     {
         return StartProgram(ctxId, newPC);
     }
@@ -126,7 +137,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     // m5's AtomicSimpleCPU::tick()
     //
 
-    AtomicSimpleCPU *cpu = M5Cpu(0);
+    AtomicSimpleCPU *cpu = M5Cpu(ctxId);
 
     // m5 better not be in the middle of an instruction
     VERIFYX(! cpu->curMacroStaticInst);
@@ -184,7 +195,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     {
         ISA_REG_INDEX_CLASS rName;
         rName.SetArchReg(r);
-        FUNCP_INT_REG rVal = M5Cpu(0)->tc->readIntReg(r);
+        FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
         if (intRegCache[r] != rVal)
         {
             parent->UpdateRegister(ctxId, rName, cpu->tc->readIntReg(r));
@@ -235,12 +246,12 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
     {
         ISA_REG_INDEX_CLASS rName;
         rName.SetArchReg(r);
-        FUNCP_INT_REG rVal = M5Cpu(0)->tc->readIntReg(r);
+        FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
         parent->UpdateRegister(ctxId, rName, rVal);
         intRegCache[r] = rVal;
     }
 
-    *newPC = M5Cpu(0)->readPC();
-    didInit = true;
+    *newPC = M5Cpu(ctxId)->readPC();
+    didInit[ctxId] = true;
     return ISA_EMULATOR_BRANCH;
 }
