@@ -2507,3 +2507,17 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.h           Locally Modified           30 
 
 Pass hardware context to m5.
+
+----------
+mcadler     Date: Mon Feb 16 21:13:21 EST 2009  CSN: CSN-m5-32
+                  Tue Feb 17 02:13:21 UTC 2009
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           31 
+ m5-isa-emulator-impl.h    Locally Modified           31 
+ m5-isa-emulator-impl.awb  Locally Modified           31 
+
+Skew independent contexts at start-up in case they are running copies of the
+same workload.  Skew is accomplished by repeatedly jumping to the start
+PC for SKEW_CONTEXTS * context Id cycles.  SKEW_CONTEXTS is a dynamic parameter.

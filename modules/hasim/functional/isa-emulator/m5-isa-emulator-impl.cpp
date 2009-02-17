@@ -73,9 +73,11 @@ ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
     HAsimNoteMemoryWrite = &HAsimEmulMemoryWrite;
 
     didInit = new bool[NumCPUs()];
+    skewCnt = new UINT32[NumCPUs()];
     for (UINT32 c = 0; c < NumCPUs(); c++)
     {
         didInit[c] = false;
+        skewCnt[c] = c * SKEW_CONTEXTS;
     }
 }
 
@@ -83,6 +85,7 @@ ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
 ISA_EMULATOR_IMPL_CLASS::~ISA_EMULATOR_IMPL_CLASS()
 {
     delete[] didInit;
+    delete[] skewCnt;
 }
 
 
@@ -117,7 +120,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 {
     if (! didInit[ctxId])
     {
-        return StartProgram(ctxId, newPC);
+        return StartProgram(ctxId, pc, newPC);
     }
 
 #if THE_ISA == ALPHA_ISA
@@ -232,26 +235,45 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 ISA_EMULATOR_RESULT
 ISA_EMULATOR_IMPL_CLASS::StartProgram(
     CONTEXT_ID ctxId,
+    FUNCP_VADDR curPC,
     FUNCP_VADDR *newPC)
 {
     ASSERTX(sizeof(ISA_INSTRUCTION) == sizeof(TheISA::MachInst));
 
     //
-    // Startup sequence.  HAsim model starts at PC 0.  m5 returns 0
-    // for the instruction.  HAsim calls here to emulate the instruction.
-    // Now set all the start register values and jump to the right PC.
+    // Skewed start forces contexts to loop back to the start PC for some
+    // number of instructions so that the contexts won't all be doing the
+    // same thing every cycle when each context is running the same workload.
     //
 
-    for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+    if (skewCnt[ctxId] != 0)
     {
-        ISA_REG_INDEX_CLASS rName;
-        rName.SetArchReg(r);
-        FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
-        parent->UpdateRegister(ctxId, rName, rVal);
-        intRegCache[r] = rVal;
+        //
+        // Not ready to start this context.  Loop back to same PC.
+        //
+        *newPC = curPC;
+        skewCnt[ctxId] -= 1;
+        return ISA_EMULATOR_BRANCH;
     }
+    else
+    {
+        //
+        // Startup sequence.  HAsim model starts at PC 0.  m5 returns 0
+        // for the instruction.  HAsim calls here to emulate the instruction.
+        // Now set all the start register values and jump to the right PC.
+        //
 
-    *newPC = M5Cpu(ctxId)->readPC();
-    didInit[ctxId] = true;
-    return ISA_EMULATOR_BRANCH;
+        for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+        {
+            ISA_REG_INDEX_CLASS rName;
+            rName.SetArchReg(r);
+            FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
+            parent->UpdateRegister(ctxId, rName, rVal);
+            intRegCache[r] = rVal;
+        }
+
+        *newPC = M5Cpu(ctxId)->readPC();
+        didInit[ctxId] = true;
+        return ISA_EMULATOR_BRANCH;
+    }
 }

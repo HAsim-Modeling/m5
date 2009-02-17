@@ -54,10 +54,12 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
   private:
     ISA_EMULATOR_RESULT StartProgram(
         CONTEXT_ID ctxId,
+        FUNCP_VADDR curPC,
         FUNCP_VADDR *newPC);
 
     ISA_EMULATOR parent;
     bool *didInit;      // Initialized bit (one per hardware context)
+    UINT32 *skewCnt;    // Counter used during skewed start
 
     FUNCP_INT_REG intRegCache[TheISA::NumIntArchRegs];
 };
