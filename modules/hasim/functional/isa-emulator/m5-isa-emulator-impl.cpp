@@ -93,7 +93,7 @@ void
 ISA_EMULATOR_IMPL_CLASS::SyncReg(
     CONTEXT_ID ctxId,
     ISA_REG_INDEX_CLASS rName,
-    FUNCP_INT_REG rVal)
+    FUNCP_REG rVal)
 {
     //
     // Skip register sync until the hardware has asked to emulate one instruction.
@@ -103,10 +103,18 @@ ISA_EMULATOR_IMPL_CLASS::SyncReg(
 
     if (rName.IsArchReg())
     {
-        M5Cpu(ctxId)->tc->setIntReg(rName.ArchRegNum(), rVal);
+        M5Cpu(ctxId)->tc->setIntReg(rName.ArchRegNum(), rVal.intReg);
 
         ASSERTX(rName.ArchRegNum() < TheISA::NumIntArchRegs);
-        intRegCache[rName.ArchRegNum()] = rVal;
+        intRegCache[rName.ArchRegNum()] = rVal.intReg;
+    }
+
+    if (rName.IsFPReg())
+    {
+        M5Cpu(ctxId)->tc->setFloatReg(rName.FPRegNum(), rVal.fpReg);
+
+        ASSERTX(rName.FPRegNum() < TheISA::NumFloatArchRegs);
+        fpRegCache[rName.FPRegNum()] = rVal.fpReg;
     }
 }
 
@@ -201,8 +209,24 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
         if (intRegCache[r] != rVal)
         {
-            parent->UpdateRegister(ctxId, rName, cpu->tc->readIntReg(r));
+            FUNCP_REG v;
+            v.intReg = rVal;
+            parent->UpdateRegister(ctxId, rName, v);
             intRegCache[r] = rVal;
+        }
+    }
+
+    for (int r = 0; r < TheISA::NumFloatArchRegs; r++)
+    {
+        ISA_REG_INDEX_CLASS rName;
+        rName.SetFPReg(r);
+        FUNCP_FP_REG rVal = M5Cpu(ctxId)->tc->readFloatReg(r);
+        if (fpRegCache[r] != rVal)
+        {
+            FUNCP_REG v;
+            v.fpReg = rVal;
+            parent->UpdateRegister(ctxId, rName, v);
+            fpRegCache[r] = rVal;
         }
     }
 
@@ -266,10 +290,21 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         for (int r = 0; r < TheISA::NumIntArchRegs; r++)
         {
             ISA_REG_INDEX_CLASS rName;
+            FUNCP_REG rVal;
             rName.SetArchReg(r);
-            FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
+            rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(r);
             parent->UpdateRegister(ctxId, rName, rVal);
-            intRegCache[r] = rVal;
+            intRegCache[r] = rVal.intReg;
+        }
+
+        for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+        {
+            ISA_REG_INDEX_CLASS rName;
+            FUNCP_REG rVal;
+            rName.SetFPReg(r);
+            rVal.fpReg = M5Cpu(ctxId)->tc->readFloatReg(r);
+            parent->UpdateRegister(ctxId, rName, rVal);
+            fpRegCache[r] = rVal.fpReg;
         }
 
         *newPC = M5Cpu(ctxId)->readPC();

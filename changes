@@ -2521,3 +2521,14 @@ Directory modules/hasim/functional/isa-emulator
 Skew independent contexts at start-up in case they are running copies of the
 same workload.  Skew is accomplished by repeatedly jumping to the start
 PC for SKEW_CONTEXTS * context Id cycles.  SKEW_CONTEXTS is a dynamic parameter.
+
+----------
+mcadler     Date: Thu Aug 13 08:48:59 EDT 2009  CSN: CSN-m5-33
+                  Thu Aug 13 12:48:59 UTC 2009
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           32 
+ m5-isa-emulator-impl.h    Locally Modified           32 
+
+Handle floating point register copies to/from the FPGA.

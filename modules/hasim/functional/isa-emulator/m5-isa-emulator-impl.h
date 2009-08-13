@@ -43,7 +43,7 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
     void SyncReg(
         CONTEXT_ID ctxId,
         ISA_REG_INDEX_CLASS rName,
-        FUNCP_INT_REG rVal);
+        FUNCP_REG rVal);
 
     ISA_EMULATOR_RESULT Emulate(
         CONTEXT_ID ctxId,
@@ -62,6 +62,7 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
     UINT32 *skewCnt;    // Counter used during skewed start
 
     FUNCP_INT_REG intRegCache[TheISA::NumIntArchRegs];
+    FUNCP_FP_REG fpRegCache[TheISA::NumFloatArchRegs];
 };
 
 #endif // _M5_ISA_EMULATOR_IMPL_
