@@ -2532,3 +2532,18 @@ Directory modules/hasim/functional/isa-emulator
  m5-isa-emulator-impl.h    Locally Modified           32 
 
 Handle floating point register copies to/from the FPGA.
+
+----------
+mpellaue    Date: Mon Aug 17 12:35:29 EDT 2009  CSN: CSN-m5-34
+                  Mon Aug 17 16:35:29 UTC 2009
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           33 
+
+
+* Small change in the way command line parameters are handled. Now gets the base
+  executable name from a separate variable.
+  
+ Michael P.
+ 

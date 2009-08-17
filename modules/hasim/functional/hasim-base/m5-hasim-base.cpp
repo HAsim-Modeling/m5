@@ -56,7 +56,16 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         //
         // Initialize m5
         //
-        m5_main(globalArgs->FuncPlatformArgc(), globalArgs->FuncPlatformArgv());
+        // M5 expects the executable name to be in argv[0].
+        char** new_argv = new char* [globalArgs->FuncPlatformArgc() + 2];
+        new_argv[0] = globalArgs->ExecutableName();
+        
+        for (int i = 0; i < globalArgs->FuncPlatformArgc(); i++)
+        {
+            new_argv[i + 1] = strdup(globalArgs->FuncPlatformArgv()[i]);
+        }
+
+        m5_main(globalArgs->FuncPlatformArgc() + 1, new_argv);
 
         // Drop m5 handling of SIGINT and SIGABRT.  These don't work well since
         // m5's event loop isn't running.  Simply exit, hoping that some buffers
