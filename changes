@@ -2547,3 +2547,17 @@ Directory modules/hasim/functional/hasim-base
   
  Michael P.
  
+
+----------
+mcadler     Date: Tue Aug 25 10:46:37 EDT 2009  CSN: CSN-m5-35
+                  Tue Aug 25 14:46:37 UTC 2009
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           34 
+ m5-isa-emulator-impl.h    Locally Modified           34 
+
+Implement register-only emulation method.  The method is similar to full
+emulation except that the caller provides values for all input registers.
+The method enforces the requirement that it may not read or write simulated
+memory.

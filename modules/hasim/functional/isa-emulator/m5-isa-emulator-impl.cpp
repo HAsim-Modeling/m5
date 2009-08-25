@@ -34,6 +34,7 @@ extern void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size);
 extern void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size);
 
 static bool inEmulation = false;
+static bool emulationMayRefMemory = false;
 static CONTEXT_ID emulationCtxId = 0;
 
 void
@@ -41,6 +42,9 @@ HAsimEmulMemoryRead(Addr paddr, UINT64 size)
 {
     if (inEmulation)
     {
+        // Some emulation modes assume no memory is referenced
+        VERIFY(emulationMayRefMemory, "Emulated REGOP touches memory!");
+
         inEmulation = false;    // Prevent loops
         FUNCP_MEMORY_CLASS::NoteSystemMemoryRead(emulationCtxId, paddr, size);
         inEmulation = true;
@@ -52,6 +56,9 @@ HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
 {
     if (inEmulation)
     {
+        // Some emulation modes assume no memory is referenced
+        VERIFY(emulationMayRefMemory, "Emulated REGOP touches memory!");
+
         inEmulation = false;    // Prevent loops
         FUNCP_MEMORY_CLASS::NoteSystemMemoryWrite(emulationCtxId, paddr, size);
         inEmulation = true;
@@ -59,11 +66,11 @@ HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
 }
 
 
-//***********************************************************************
+// ========================================================================
 //
-// m5 Emulation...
+// m5 Full Instruction Emulation...
 //
-//***********************************************************************
+// ========================================================================
 
 ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
     ISA_EMULATOR parent) :
@@ -165,6 +172,8 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     // Start watching memory
     inEmulation = true;
+    emulationMayRefMemory = true;
+
     emulationCtxId = ctxId;
 
     //
@@ -311,4 +320,112 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         didInit[ctxId] = true;
         return ISA_EMULATOR_BRANCH;
     }
+}
+
+
+// ========================================================================
+//
+// m5 Operation-Level Emulation...
+//
+// ========================================================================
+
+ISA_REGOP_EMULATOR_IMPL_CLASS::ISA_REGOP_EMULATOR_IMPL_CLASS(
+    ISA_REGOP_EMULATOR parent) :
+    parent(parent)
+{}
+
+
+ISA_REGOP_EMULATOR_IMPL_CLASS::~ISA_REGOP_EMULATOR_IMPL_CLASS()
+{}
+
+
+FUNCP_REG
+ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
+    CONTEXT_ID ctxId,
+    FUNCP_VADDR pc,
+    ISA_INSTRUCTION inst,
+    FUNCP_REG srcVal0,
+    FUNCP_REG srcVal1,
+    ISA_REG_INDEX_CLASS rNameSrc0,
+    ISA_REG_INDEX_CLASS rNameSrc1,
+    ISA_REG_INDEX_CLASS rNameDst)
+{
+    if (rNameSrc0.IsArchReg())
+    {
+        M5Cpu(ctxId)->tc->setIntReg(rNameSrc0.ArchRegNum(), srcVal0.intReg);
+    }
+
+    if (rNameSrc0.IsFPReg())
+    {
+        M5Cpu(ctxId)->tc->setFloatReg(rNameSrc0.FPRegNum(), srcVal0.fpReg);
+    }
+
+    if (rNameSrc1.IsArchReg())
+    {
+        M5Cpu(ctxId)->tc->setIntReg(rNameSrc1.ArchRegNum(), srcVal1.intReg);
+    }
+
+    if (rNameSrc1.IsFPReg())
+    {
+        M5Cpu(ctxId)->tc->setFloatReg(rNameSrc1.FPRegNum(), srcVal1.fpReg);
+    }
+
+
+    //
+    // Similar to Emulate() above but restricts the instruction to non-branch,
+    // no faults and no memory.
+    //
+
+    AtomicSimpleCPU *cpu = M5Cpu(ctxId);
+
+    // m5 better not be in the middle of an instruction
+    VERIFYX(! cpu->curMacroStaticInst);
+
+    //
+    // Set the machine state and execute the instruction
+    //
+    cpu->setPC(pc);
+    cpu->setNextPC(pc + sizeof(TheISA::MachInst));
+    cpu->inst = inst;
+    cpu->preExecute();
+
+    VERIFYX(cpu->curStaticInst);
+
+    // Start watching memory
+    inEmulation = true;
+    emulationMayRefMemory = false;
+    emulationCtxId = ctxId;
+
+    //
+    // Is the instruction a branch?
+    //
+    bool isBranch = cpu->curStaticInst->isControl();
+    Fault fault = cpu->curStaticInst->execute(cpu, cpu->getTraceData());
+
+    VERIFY((fault == NoFault), "RegOP Emulator triggered a fault!");
+    VERIFY(! isBranch, "RegOP attempted emulation of branch!");
+
+    cpu->postExecute();
+    VERIFYX(! cpu->stayAtPC);
+
+    cpu->advancePC(fault);
+
+    // Stop watching memory
+    inEmulation = false;
+
+    FUNCP_REG rVal;
+    if (rNameDst.IsArchReg())
+    {
+        rVal.intReg = cpu->tc->readIntReg(rNameDst.ArchRegNum());
+    }
+    else if (rNameDst.IsFPReg())
+    {
+        rVal.fpReg = cpu->tc->readFloatReg(rNameDst.FPRegNum());
+    }
+    else
+    {
+        ASIMERROR("Unexpected register type");
+    }
+
+    return rVal;
 }

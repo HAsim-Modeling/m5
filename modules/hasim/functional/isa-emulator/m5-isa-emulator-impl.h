@@ -65,4 +65,28 @@ class ISA_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
     FUNCP_FP_REG fpRegCache[TheISA::NumFloatArchRegs];
 };
 
+
+// this module provides both client and service functionalities
+typedef class ISA_REGOP_EMULATOR_IMPL_CLASS* ISA_REGOP_EMULATOR_IMPL;
+
+class ISA_REGOP_EMULATOR_IMPL_CLASS : public M5_HASIM_BASE_CLASS
+{
+  public:
+    ISA_REGOP_EMULATOR_IMPL_CLASS(ISA_REGOP_EMULATOR parent);
+    ~ISA_REGOP_EMULATOR_IMPL_CLASS();
+
+    FUNCP_REG EmulateRegOp(
+        CONTEXT_ID ctxId,
+        FUNCP_VADDR pc,
+        ISA_INSTRUCTION inst,
+        FUNCP_REG srcVal0,
+        FUNCP_REG srcVal1,
+        ISA_REG_INDEX_CLASS rNameSrc0,
+        ISA_REG_INDEX_CLASS rNameSrc1,
+        ISA_REG_INDEX_CLASS rNameDst);
+
+  private:
+    ISA_REGOP_EMULATOR parent;
+};
+
 #endif // _M5_ISA_EMULATOR_IMPL_
