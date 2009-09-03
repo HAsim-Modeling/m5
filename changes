@@ -2561,3 +2561,17 @@ Implement register-only emulation method.  The method is similar to full
 emulation except that the caller provides values for all input registers.
 The method enforces the requirement that it may not read or write simulated
 memory.
+
+----------
+mpellaue    Date: Thu Sep  3 17:33:22 EDT 2009  CSN: CSN-m5-36
+                  Thu Sep  3 21:33:22 UTC 2009
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.awb         Locally Modified           35 
+ m5-hasim-base.cpp         Locally Modified           35 
+
+
+* Dynamic contexts now set to MAX_HW_THREADS.
+
+Michael

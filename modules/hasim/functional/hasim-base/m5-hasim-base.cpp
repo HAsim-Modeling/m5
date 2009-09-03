@@ -56,16 +56,23 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         //
         // Initialize m5
         //
-        // M5 expects the executable name to be in argv[0].
-        char** new_argv = new char* [globalArgs->FuncPlatformArgc() + 2];
+        // M5 expects the executable name to be in argv[0]
+        // and to receive MAX_NUM_CPUS in --num-cpus
+        char** new_argv = new char* [globalArgs->FuncPlatformArgc() + 3];
         new_argv[0] = globalArgs->ExecutableName();
-        
+
+
         for (int i = 0; i < globalArgs->FuncPlatformArgc(); i++)
         {
             new_argv[i + 1] = strdup(globalArgs->FuncPlatformArgv()[i]);
         }
 
-        m5_main(globalArgs->FuncPlatformArgc() + 1, new_argv);
+        char* cpuArg = new char[32];
+        numCPUs = MAX_NUM_CONTEXTS;
+        sprintf(cpuArg, "--num-cpus=%d", numCPUs);
+        new_argv[globalArgs->FuncPlatformArgc() + 1] = cpuArg;
+
+        m5_main(globalArgs->FuncPlatformArgc() + 2, new_argv);
 
         // Drop m5 handling of SIGINT and SIGABRT.  These don't work well since
         // m5's event loop isn't running.  Simply exit, hoping that some buffers
@@ -73,7 +80,6 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         signal(SIGINT, m5HAsimExitNowHandler);
         signal(SIGABRT, m5HAsimExitNowHandler);
 
-        numCPUs = globalArgs->NumContexts();
         ASSERTX(numCPUs != 0);
 
         // Cache pointers to m5 CPUs here
