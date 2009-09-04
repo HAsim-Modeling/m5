@@ -67,8 +67,34 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
             new_argv[i + 1] = strdup(globalArgs->FuncPlatformArgv()[i]);
         }
 
-        char* cpuArg = new char[32];
-        numCPUs = MAX_NUM_CONTEXTS;
+        char* cpuArg  = new char[32];
+        char* dirName = new char[32];
+
+        // TEMPORARY:: For now we only load an M5 CPU for each existing
+        // program.N directory. In the future this should be specified better.
+        // Note that if the run script specifies it then it should only specify
+        // it for HAsim models, not for every application.
+        
+        // Probably the right solution in the future involves have separate setup/run
+        // scripts for hasim benchmarks and generic benchmarks.
+        
+        numCPUs = 0;
+        
+        VERIFY(numCPUs < MAX_NUM_CONTEXTS, "Error: more programs set up than available hardware threads!");
+        for (int i = 0; i < MAX_NUM_CONTEXTS; i++)
+        {
+            
+            sprintf(dirName, "program.%d", i);
+            struct stat stFileInfo; 
+            int statRes = stat(dirName,&stFileInfo); 
+            bool program_exists = statRes ==0;
+            if (program_exists)
+                numCPUs++;
+        }
+        delete dirName;
+        
+        VERIFY(numCPUs > 0, "Error: no programs found for hardware threads.");
+
         sprintf(cpuArg, "--num-cpus=%d", numCPUs);
         new_argv[globalArgs->FuncPlatformArgc() + 1] = cpuArg;
 

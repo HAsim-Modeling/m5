@@ -2575,3 +2575,20 @@ Directory modules/hasim/functional/hasim-base
 * Dynamic contexts now set to MAX_HW_THREADS.
 
 Michael
+
+----------
+mpellaue    Date: Fri Sep  4 14:01:35 EDT 2009  CSN: CSN-m5-37
+                  Fri Sep  4 18:01:35 UTC 2009
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           36 
+
+
+* Temporily start a number of M5 cpus equal to the number of program.N
+  directories. This will change as our benchmark scripts get smarter.
+  
+* Probably in the long-term we'll want separate benchmark/setup scripts for
+  hasim and non-hasim benchmarks.
+  
+Michael P.
