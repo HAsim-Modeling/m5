@@ -46,7 +46,7 @@ class M5_HASIM_BASE_CLASS
   protected:
     AtomicSimpleCPU *M5Cpu(UINT32 cpuId) const
     {
-        ASSERTX(cpuId < numCPUs);
+        VERIFY(cpuId <= numCPUs, "Told to load a workload context that does not exist!");
         return m5cpus[cpuId];
     };
 

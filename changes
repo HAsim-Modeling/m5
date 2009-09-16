@@ -2592,3 +2592,19 @@ Directory modules/hasim/functional/hasim-base
   hasim and non-hasim benchmarks.
   
 Michael P.
+
+----------
+pellauer    Date: Wed Sep 16 11:24:49 EDT 2009  CSN: CSN-m5-38
+                  Wed Sep 16 15:24:49 UTC 2009
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.h           Locally Modified           37 
+
+
+* Add an error message to an assertion. 
+
+* TODO: The simulator program load is done in the constructor, perhaps it should
+  be moved to the Init() method so that command-line switches can be queried.
+
+Michael
