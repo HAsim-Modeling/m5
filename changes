@@ -2608,3 +2608,12 @@ Directory modules/hasim/functional/hasim-base
   be moved to the Init() method so that command-line switches can be queried.
 
 Michael
+
+----------
+pellauer    Date: Tue Jun  1 17:46:43 EDT 2010  CSN: CSN-m5-39
+                  Tue Jun  1 21:46:43 UTC 2010
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           38 
+
