@@ -133,7 +133,6 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     ISA_INSTRUCTION inst,
     FUNCP_VADDR *newPC)
 {
-    ASIMWARNING("EMULATION BEGIN:" << (int) ctxId << endl)
     if (! didInit[ctxId])
     {
         return StartProgram(ctxId, pc, newPC);
@@ -318,7 +317,6 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         }
 
         *newPC = M5Cpu(ctxId)->readPC();
-        ASIMWARNING("READ PC: " << (*newPC) << endl)
         didInit[ctxId] = true;
         return ISA_EMULATOR_BRANCH;
     }

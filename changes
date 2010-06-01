@@ -2617,3 +2617,16 @@ pellauer    Date: Tue Jun  1 17:46:43 EDT 2010  CSN: CSN-m5-39
 Directory modules/hasim/functional/isa-emulator
  m5-isa-emulator-impl.cpp  Locally Modified           38 
 
+
+----------
+pellauer    Date: Tue Jun  1 17:50:04 EDT 2010  CSN: CSN-m5-40
+                  Tue Jun  1 21:50:04 UTC 2010
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           39 
+
+
+* Undo spurious checkin of printfs...
+
+Michael P.
