@@ -282,43 +282,62 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
     if (skewCnt[ctxId] != 0)
     {
         //
-        // Not ready to start this context.  Loop back to same PC.
+        // Not ready to start this context.  Loop back to same PC for a while, then check again.
         //
         *newPC = curPC;
         skewCnt[ctxId] -= 1;
-        return ISA_EMULATOR_BRANCH;
+        return ISA_EMULATOR_SLEEP;
     }
     else
     {
         //
         // Startup sequence.  HAsim model starts at PC 0.  m5 returns 0
         // for the instruction.  HAsim calls here to emulate the instruction.
-        // Now set all the start register values and jump to the right PC.
-        //
-
-        for (int r = 0; r < TheISA::NumIntArchRegs; r++)
-        {
-            ISA_REG_INDEX_CLASS rName;
-            FUNCP_REG rVal;
-            rName.SetArchReg(r);
-            rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(r);
-            parent->UpdateRegister(ctxId, rName, rVal);
-            intRegCache[r] = rVal.intReg;
-        }
-
-        for (int r = 0; r < TheISA::NumIntArchRegs; r++)
-        {
-            ISA_REG_INDEX_CLASS rName;
-            FUNCP_REG rVal;
-            rName.SetFPReg(r);
-            rVal.fpReg = M5Cpu(ctxId)->tc->readFloatReg(r);
-            parent->UpdateRegister(ctxId, rName, rVal);
-            fpRegCache[r] = rVal.fpReg;
-        }
+        // If the PC is non-0 in M5 then the context is ready to start.
+        // Otherwise tell it to sleep for a while and then check again.
 
         *newPC = M5Cpu(ctxId)->readPC();
-        didInit[ctxId] = true;
-        return ISA_EMULATOR_BRANCH;
+        didInit[ctxId] = (*newPC != 0);
+        
+        if (didInit[ctxId])
+        {
+
+            //
+            // Context is ready to start.
+            // Now set all the start register values and jump to the right PC.
+            //
+
+            for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+            {
+                ISA_REG_INDEX_CLASS rName;
+                FUNCP_REG rVal;
+                rName.SetArchReg(r);
+                rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(r);
+                parent->UpdateRegister(ctxId, rName, rVal);
+                intRegCache[r] = rVal.intReg;
+            }
+
+            for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+            {
+                ISA_REG_INDEX_CLASS rName;
+                FUNCP_REG rVal;
+                rName.SetFPReg(r);
+                rVal.fpReg = M5Cpu(ctxId)->tc->readFloatReg(r);
+                parent->UpdateRegister(ctxId, rName, rVal);
+                fpRegCache[r] = rVal.fpReg;
+            }
+
+            ASIMWARNING("Activating Context: " << (int) ctxId << endl);
+            return ISA_EMULATOR_BRANCH;
+        }
+        else
+        {
+        
+            // Context is not ready. Tell the functional partition to sleep
+            // this context for a while, and then check again.
+            return ISA_EMULATOR_SLEEP;
+        }
+
     }
 }
 

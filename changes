@@ -2630,3 +2630,16 @@ Directory modules/hasim/functional/isa-emulator
 * Undo spurious checkin of printfs...
 
 Michael P.
+
+----------
+pellauer    Date: Thu Jun  3 23:00:13 EDT 2010  CSN: CSN-m5-41
+                  Fri Jun  4 03:00:13 UTC 2010
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           40 
+
+
+* Support for new polling interface.
+
+Michael P.
