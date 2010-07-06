@@ -222,6 +222,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
 
                 if (! success)
                 {
+                    T1("\tfuncp_memory_m5: VtoP FAULT ERROR (" << fault_name << ") VA " << fmt_va(va));
                     ASIMERROR("VtoP failed: unable to allocate page for VA 0x" << fmt_x(va));
                 }
             }

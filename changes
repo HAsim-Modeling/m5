@@ -2643,3 +2643,16 @@ Directory modules/hasim/functional/isa-emulator
 * Support for new polling interface.
 
 Michael P.
+
+----------
+pellauer    Date: Tue Jul  6 15:58:45 EDT 2010  CSN: CSN-m5-42
+                  Tue Jul  6 19:58:45 UTC 2010
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           41 
+
+
+* Small change to fault debug tracing.
+
+Michael
