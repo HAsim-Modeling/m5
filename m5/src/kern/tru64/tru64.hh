@@ -832,7 +832,7 @@ class Tru64 : public OperatingSystem
                          ThreadContext *tc)
     {
         using namespace std;
-
+/*
         uint64_t tid = tc->getSyscallArg(0);
         uint64_t secs = tc->getSyscallArg(1);
         uint64_t flags = tc->getSyscallArg(2);
@@ -841,7 +841,7 @@ class Tru64 : public OperatingSystem
 
         cout << tc->getCpuPtr()->name() << ": nxm_thread_block " << tid << " "
              << secs << " " << flags << " " << action << " " << usecs << endl;
-
+*/
         return 0;
     }
 
@@ -851,7 +851,7 @@ class Tru64 : public OperatingSystem
                   ThreadContext *tc)
     {
         using namespace std;
-
+/*
         Addr uaddr = tc->getSyscallArg(0);
         uint64_t val = tc->getSyscallArg(1);
         uint64_t secs = tc->getSyscallArg(2);
@@ -864,7 +864,7 @@ class Tru64 : public OperatingSystem
              << hex << uaddr << dec << " " << val
              << " " << secs << " " << usecs
              << " " << flags << endl;
-
+*/
         return 0;
     }
 
@@ -874,12 +874,12 @@ class Tru64 : public OperatingSystem
                     ThreadContext *tc)
     {
         using namespace std;
-
+/*
         Addr uaddr = tc->getSyscallArg(0);
 
         cout << tc->getCpuPtr()->name() << ": nxm_unblock "
              << hex << uaddr << dec << endl;
-
+*/
         return 0;
     }
 
@@ -916,7 +916,7 @@ class Tru64 : public OperatingSystem
             if (i->waitChan == uaddr) {
                 // found waiting process: make it active
                 ThreadContext *newCtx = i->waitingContext;
-                assert(newCtx->status() == ThreadContext::Suspended);
+                //assert(newCtx->status() == ThreadContext::Suspended);
                 newCtx->activate();
 
                 // get rid of this record
@@ -1074,7 +1074,7 @@ class Tru64 : public OperatingSystem
     m5_thread_exitFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
                        ThreadContext *tc)
     {
-        assert(tc->status() == ThreadContext::Active);
+        //assert(tc->status() == ThreadContext::Active);
         tc->deallocate();
 
         return 0;

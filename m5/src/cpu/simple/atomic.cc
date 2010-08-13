@@ -255,7 +255,7 @@ AtomicSimpleCPU::activateContext(int thread_num, int delay)
     assert(thread_num == 0);
     assert(thread);
 
-    assert(_status == Idle);
+    //assert(_status == Idle);
     assert(!tickEvent.scheduled());
 
     notIdleFraction++;
@@ -275,7 +275,7 @@ AtomicSimpleCPU::suspendContext(int thread_num)
     assert(thread_num == 0);
     assert(thread);
 
-    assert(_status == Running);
+    //assert(_status == Running);
 
     // tick event may not be scheduled if this gets called from inside
     // an instruction's execution, e.g. "quiesce"

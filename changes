@@ -2656,3 +2656,27 @@ Directory modules/hasim/functional/memory
 * Small change to fault debug tracing.
 
 Michael
+
+----------
+pellauer    Date: Fri Aug 13 14:08:31 EDT 2010  CSN: CSN-m5-43
+                  Fri Aug 13 18:08:31 UTC 2010
+
+
+Directory m5/src/kern/tru64
+ tru64.hh                  Locally Modified           42 
+
+Directory m5/src/cpu/simple
+ atomic.cc                 Locally Modified           42 
+
+Directory m5/src/sim
+ system.hh                 Locally Modified           42 
+
+Directory m5
+ SConstruct                Locally Modified           42 
+
+
+* Support for running splash benchmarks in SE mode, a la the instructions
+  found on Google.
+
+* SConstruct was dying if the MySQL version had a letter in it, like 5.3a.
+
