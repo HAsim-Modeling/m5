@@ -389,7 +389,7 @@ def make_objs(sources, env):
 # binary.  Additional keyword arguments are appended to corresponding
 # build environment vars.
 def makeEnv(label, objsfx, strip = False, **kwargs):
-    newEnv = env.Copy(OBJSUFFIX=objsfx)
+    newEnv = env.Clone(OBJSUFFIX=objsfx)
     newEnv.Label = label
     newEnv.Append(**kwargs)
 
