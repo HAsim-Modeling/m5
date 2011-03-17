@@ -4757,3 +4757,13 @@ Directory .
  m5-releases/              Locally Added               0 
 
 Move m5 to a directory in which multiple releases can be stored.
+
+----------
+mcadler     Date: Thu Mar 17 16:19:47 EDT 2011  CSN: CSN-m5-46
+                  Thu Mar 17 20:19:47 UTC 2011
+
+
+Directory .
+ m5/                       Locally Added               0 
+
+Add a link to the active m5 release.
