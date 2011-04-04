@@ -136,7 +136,7 @@ class System : public SimObject
 
 #else
 
-    int page_ptr;
+    uint64_t page_ptr;
 
   protected:
     uint64_t next_PID;

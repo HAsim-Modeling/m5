@@ -21,6 +21,9 @@
 #include "asim/provides/isa_emulator_impl.h"
 #include "asim/provides/funcp_memory.h"
 
+// m5 includes
+#include "sim/faults.hh"
+
 
 //***********************************************************************
 //

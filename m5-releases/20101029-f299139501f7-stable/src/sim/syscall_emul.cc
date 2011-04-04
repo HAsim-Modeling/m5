@@ -89,9 +89,10 @@ SyscallReturn
 ignoreFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
            ThreadContext *tc)
 {
-    int index = 0;
-    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
-         process->getSyscallArg(tc, index), process->getSyscallArg(tc, index));
+// Too many messages...
+//    int index = 0;
+//    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
+//         process->getSyscallArg(tc, index), process->getSyscallArg(tc, index));
 
     return 0;
 }
@@ -104,8 +105,10 @@ exitFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
     if (process->system->numRunningContexts() == 1) {
         // Last running context... exit simulator
         int index = 0;
-        exitSimLoop("target called exit()",
-                    process->getSyscallArg(tc, index) & 0xff);
+        int code = process->getSyscallArg(tc, index) & 0xff;
+        if (tc->exit(code)) {
+            exitSimLoop("target called exit()", code);
+        }
     } else {
         // other running threads... just halt this one
         tc->halt();

@@ -76,6 +76,7 @@ Trace::ExeTracerRecord::traceInst(StaticInstPtr inst, bool ran)
 #if THE_ISA == ARM_ISA
     cur_pc &= ~PcModeMask;
 #endif
+    outs << "0x" << hex << cur_pc;
     if (debugSymbolTable
         && IsOn(ExecSymbol)
 #if FULL_SYSTEM
@@ -84,10 +85,7 @@ Trace::ExeTracerRecord::traceInst(StaticInstPtr inst, bool ran)
         && debugSymbolTable->findNearestSymbol(cur_pc, sym_str, sym_addr)) {
         if (cur_pc != sym_addr)
             sym_str += csprintf("+%d",cur_pc - sym_addr);
-        outs << "@" << sym_str;
-    }
-    else {
-        outs << "0x" << hex << cur_pc;
+        outs << " @" << sym_str;
     }
 
     if (inst->isMicroop()) {

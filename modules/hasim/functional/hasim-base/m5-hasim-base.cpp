@@ -23,6 +23,11 @@
 //
 
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#include <Python.h>
 
 #include "asim/syntax.h"
 #include "asim/mesg.h"
@@ -31,11 +36,10 @@
 #include "asim/provides/m5_hasim_base.h"
 
 // m5
-#include "sim/m5_main.hh"
+#include "sim/init.hh"
 #include "sim/sim_object.hh"
 extern SimObject *resolveSimObject(const string &);
 
-#include <Python.h>
 
 ATOMIC32_CLASS M5_HASIM_BASE_CLASS::refCnt;
 AtomicSimpleCPU_PTR *M5_HASIM_BASE_CLASS::m5cpus;
@@ -56,10 +60,22 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         //
         // Initialize m5
         //
+
         // M5 expects the executable name to be in argv[0]
         // and to receive MAX_NUM_CPUS in --num-cpus
         char** new_argv = new char* [globalArgs->FuncPlatformArgc() + 3];
         new_argv[0] = globalArgs->ExecutableName();
+
+        // Initialize m5 special signal handling.
+        initSignals();
+
+        Py_SetProgramName(new_argv[0]);
+
+        // initialize embedded Python interpreter
+        Py_Initialize();
+
+        // Initialize the embedded m5 python library
+        VERIFY(initM5Python() == 0, "Failed to initialize m5 Python");
 
 
         for (int i = 0; i < globalArgs->FuncPlatformArgc(); i++)
@@ -86,7 +102,7 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
             
             sprintf(dirName, "program.%d", i);
             struct stat stFileInfo; 
-            int statRes = stat(dirName,&stFileInfo); 
+            int statRes = stat(dirName, &stFileInfo); 
             bool program_exists = statRes ==0;
             if (program_exists)
                 numCPUs++;
@@ -98,7 +114,7 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         sprintf(cpuArg, "--num-cpus=%d", numCPUs);
         new_argv[globalArgs->FuncPlatformArgc() + 1] = cpuArg;
 
-        m5_main(globalArgs->FuncPlatformArgc() + 2, new_argv);
+        m5Main(globalArgs->FuncPlatformArgc() + 2, new_argv);
 
         // Drop m5 handling of SIGINT and SIGABRT.  These don't work well since
         // m5's event loop isn't running.  Simply exit, hoping that some buffers

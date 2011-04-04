@@ -53,6 +53,15 @@
 using namespace std;
 using namespace TheISA;
 
+//
+// Hack!  Instead of adding a layer of memory looking like a cache to report
+// memory modified during emulation back to HAsim we simply use a few lines
+// of code to call back.
+//
+void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size) = NULL;
+void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size) = NULL;
+
+
 PhysicalMemory::PhysicalMemory(const Params *p)
     : MemObject(p), pmemAddr(NULL), pagePtr(0),
       lat(p->latency), lat_var(p->latency_var),
@@ -249,6 +258,16 @@ PhysicalMemory::doAtomicAccess(PacketPtr pkt)
         return 0;
     }
 
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
+
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - start();
 
     if (pkt->cmd == MemCmd::SwapReq) {
@@ -322,6 +341,15 @@ PhysicalMemory::doFunctionalAccess(PacketPtr pkt)
     assert(pkt->getAddr() >= start() &&
            pkt->getAddr() + pkt->getSize() <= start() + size());
 
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
 
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - start();
 

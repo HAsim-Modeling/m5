@@ -9701,3 +9701,56 @@ Directory m5-releases/20101029-f299139501f7-stable/util
  chkformat                 Locally Added               0 
 
 Add unmodified instance of the most recent m5-stable release.
+
+----------
+mcadler     Date: Mon Apr  4 18:21:21 EDT 2011  CSN: CSN-m5-48
+                  Mon Apr  4 22:21:21 UTC 2011
+
+
+Directory .
+ m5/                       Locally Modified           47 
+
+Directory m5-releases
+ 20101029-f299139501f7-stable/ Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable
+ SConstruct                Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/python/m5
+ main.py                   Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src
+ SConscript                Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/cpu/simple
+ base.hh                   Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/cpu
+ exetrace.cc               Locally Modified           47 
+ thread_context.hh         Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/sim
+ syscall_emul.cc           Locally Modified           47 
+ system.hh                 Locally Modified           47 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/mem
+ physical.cc               Locally Modified           47 
+ bus.cc                    Locally Modified           47 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           47 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           47 
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           47 
+
+Switch to m5-stable from 2010/10/29 with local patches.
+
+Bug fixes:
+  main.py checked the wrong verbose flag.
+  system.hh should use 64 bits for the page_ptr (fails with large memory).
+
+Local changes for exporting exit() value to HAsim and for memory read/write
+callback hooks.

@@ -126,6 +126,7 @@ from m5.util import compareVersions, readCommand
 #
 ########################################################################
 use_vars = set([ 'AS', 'AR', 'CC', 'CXX', 'HOME', 'LD_LIBRARY_PATH', 'PATH',
+                 'USER_ITOOLS',
                  'PYTHONPATH', 'RANLIB' ])
 
 use_env = {}

@@ -32,6 +32,7 @@
 
 // m5 includes
 #include "base/chunk_generator.hh"
+#include "sim/faults.hh"
 
 
 FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
@@ -158,11 +159,13 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
         return resp;
     }
 
+    Request req;
     Fault fault;
     int fault_trips = 0;
     do
     {
-        fault = M5Cpu(ctxId)->translateDataReadAddr(roundDown(va, TheISA::VMPageSize), paddr, TheISA::VMPageSize, 0);
+        req.setVirt(0, roundDown(va, TheISA::VMPageSize), TheISA::VMPageSize, 0, 0);
+        fault = M5Cpu(ctxId)->thread->dtb->translateAtomic(&req, M5Cpu(ctxId)->tc, BaseTLB::Read);
         if (fault != NoFault)
         {
             const char *fault_name = fault->name();
@@ -234,7 +237,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
     while (fault != NoFault);
 
     FUNCP_MEM_VTOP_RESP resp;
-    resp.pa = paddr;
+    resp.pa = req.getPaddr();
     resp.pageFault = false;
     resp.ioSpace = false;
     return resp;

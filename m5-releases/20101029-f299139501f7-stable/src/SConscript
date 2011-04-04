@@ -981,7 +981,15 @@ def makeEnv(label, objsfx, strip = False, **kwargs):
     if strip:
         progname += '.unstripped'
 
-    targets = new_env.Program(progname, bin_objs + static_objs)
+    targets = new_env.Program(progname, bin_objs)
+    ##
+    ## Ideally static_lib would just be added to bin_objs above in the Program()
+    ## dependence.  Unfortunately this does not work.  The entire archive must
+    ## be included in order to load the Python and Swig constructors automatically.
+    ## Scons has no clean way to specify the --whole-archive linker flags.
+    ##
+    new_env.Depends(progname, static_lib)
+    new_env.Append(LINKFLAGS=['-Wl,--whole-archive',File(static_lib),'-Wl,--no-whole-archive'])
 
     if strip:
         if sys.platform == 'sunos5':

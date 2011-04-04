@@ -248,7 +248,7 @@ def main():
         options.usage(2)
 
     verbose = options.verbose - options.quiet
-    if options.verbose >= 0:
+    if verbose >= 0:
         print "M5 Simulator System"
         print brief_copyright
         print
