@@ -64,7 +64,7 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         // M5 expects the executable name to be in argv[0]
         // and to receive MAX_NUM_CPUS in --num-cpus
         char** new_argv = new char* [globalArgs->FuncPlatformArgc() + 3];
-        new_argv[0] = globalArgs->ExecutableName();
+        new_argv[0] = (char *)globalArgs->ExecutableName();
 
         // Initialize m5 special signal handling.
         initSignals();

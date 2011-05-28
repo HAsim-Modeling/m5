@@ -9754,3 +9754,13 @@ Bug fixes:
 
 Local changes for exporting exit() value to HAsim and for memory read/write
 callback hooks.
+
+----------
+mcadler     Date: Sat May 28 10:59:39 EDT 2011  CSN: CSN-m5-49
+                  Sat May 28 14:59:39 UTC 2011
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           48 
+
+Parameters are now const chars.
