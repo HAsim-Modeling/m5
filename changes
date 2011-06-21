@@ -9764,3 +9764,13 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.cpp         Locally Modified           48 
 
 Parameters are now const chars.
+
+----------
+mcadler     Date: Tue Jun 21 15:01:13 EDT 2011  CSN: CSN-m5-50
+                  Tue Jun 21 19:01:13 UTC 2011
+
+
+Directory m5-releases/20101029-f299139501f7-stable
+ SConstruct                Locally Modified           49 
+
+Never use MySQL in the build, even if found on the system.

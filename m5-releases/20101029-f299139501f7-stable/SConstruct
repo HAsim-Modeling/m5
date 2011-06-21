@@ -585,7 +585,9 @@ if not have_fenv:
 # Check for mysql.
 #
 mysql_config = WhereIs('mysql_config')
-have_mysql = bool(mysql_config)
+#have_mysql = bool(mysql_config)
+# Don't use MySQL
+have_mysql = False
 
 # Check MySQL version.
 if have_mysql:
