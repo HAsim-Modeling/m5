@@ -9774,3 +9774,13 @@ Directory m5-releases/20101029-f299139501f7-stable
  SConstruct                Locally Modified           49 
 
 Never use MySQL in the build, even if found on the system.
+
+----------
+mcadler     Date: Fri Jul 29 19:42:49 EDT 2011  CSN: CSN-m5-51
+                  Fri Jul 29 23:42:49 UTC 2011
+
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           50 
+
+Fix m5 naming of CPUs when there are more than 9 threads.

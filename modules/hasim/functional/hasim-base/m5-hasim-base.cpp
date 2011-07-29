@@ -26,6 +26,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <math.h>
 
 #include <Python.h>
 
@@ -95,11 +96,8 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         // scripts for hasim benchmarks and generic benchmarks.
         
         numCPUs = 0;
-        
-        VERIFY(numCPUs < MAX_NUM_CONTEXTS, "Error: more programs set up than available hardware threads!");
         for (int i = 0; i < MAX_NUM_CONTEXTS; i++)
         {
-            
             sprintf(dirName, "program.%d", i);
             struct stat stFileInfo; 
             int statRes = stat(dirName, &stFileInfo); 
@@ -109,6 +107,7 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         }
         delete dirName;
         
+        VERIFY(numCPUs <= MAX_NUM_CONTEXTS, "Error: more programs set up than available hardware threads!");
         VERIFY(numCPUs > 0, "Error: no programs found for hardware threads.");
 
         sprintf(cpuArg, "--num-cpus=%d", numCPUs);
@@ -136,11 +135,13 @@ M5_HASIM_BASE_CLASS::M5_HASIM_BASE_CLASS()
         }
         else
         {
-            // If there is a single CPU it is named system.cpu
+            // m5 CPU name width varies with the number of CPUs
+            int width = 1 + int(log10(double(numCPUs)));
+
             for (int cpu = 0; cpu < numCPUs; cpu++)
             {
                 char cpu_name[64];
-                sprintf(cpu_name, "system.cpu%d", cpu);
+                sprintf(cpu_name, "system.cpu%0*d", width, cpu);
                 SimObject *so = resolveSimObject(cpu_name);
                 m5cpus[cpu] = dynamic_cast<AtomicSimpleCPU*>(so);
                 ASSERT(m5cpus[cpu] != NULL, "Failed to find m5 cpu object: " << cpu_name);
