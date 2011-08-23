@@ -489,6 +489,8 @@ PhysicalMemory::serialize(ostream &os)
 
     gzFile compressedMem;
     string filename = name() + ".physmem";
+    uint64_t bytesWritten;
+    const uint32_t chunkSize = 16384;
 
     SERIALIZE_SCALAR(filename);
 
@@ -505,10 +507,19 @@ PhysicalMemory::serialize(ostream &os)
         fatal("Insufficient memory to allocate compression state for %s\n",
                 filename);
 
-    if (gzwrite(compressedMem, pmemAddr, params()->range.size()) !=
-        (int)params()->range.size()) {
-        fatal("Write failed on physical memory checkpoint file '%s'\n",
-              filename);
+    bytesWritten = 0;
+    while (bytesWritten < params()->range.size()) {
+        uint64_t write_bytes = params()->range.size() - bytesWritten;
+        if (write_bytes > chunkSize) {
+            write_bytes = chunkSize;
+        }
+
+        if (gzwrite(compressedMem, pmemAddr + bytesWritten, write_bytes) != write_bytes) {
+            fatal("Write failed on physical memory checkpoint file '%s'\n",
+                  filename);
+        }
+
+        bytesWritten += write_bytes;
     }
 
     if (gzclose(compressedMem))

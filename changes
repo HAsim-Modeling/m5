@@ -9784,3 +9784,19 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.cpp         Locally Modified           50 
 
 Fix m5 naming of CPUs when there are more than 9 threads.
+
+----------
+mcadler     Date: Tue Aug 23 08:39:18 EDT 2011  CSN: CSN-m5-52
+                  Tue Aug 23 12:39:18 UTC 2011
+
+
+Directory m5-releases/20101029-f299139501f7-stable/src/sim
+ process.cc                Locally Modified           51 
+
+Directory m5-releases/20101029-f299139501f7-stable/src/mem
+ physical.cc               Locally Modified           51 
+
+Fix two checkpoint restore bugs:
+
+ - Object order caused a warning / missed value for M5_pid.
+ - Memory image restoration didn't work for memory sizes > 2GB.
