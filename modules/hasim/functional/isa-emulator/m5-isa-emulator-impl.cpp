@@ -214,21 +214,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     // Update registers
     //
-    for (int r = 0; r < TheISA::NumIntArchRegs; r++)
-    {
-        ISA_REG_INDEX_CLASS rName;
-        rName.SetArchReg(r);
-        FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
-        if (intRegCache[r] != rVal)
-        {
-            FUNCP_REG v;
-            v.intReg = rVal;
-            parent->UpdateRegister(ctxId, rName, v);
-            intRegCache[r] = rVal;
-        }
-    }
-
-    for (int r = 0; r < TheISA::NumFloatArchRegs; r++)
+    for (int r = TheISA::NumFloatArchRegs - 1; r >= 0 ; r--)
     {
         ISA_REG_INDEX_CLASS rName;
         rName.SetFPReg(r);
@@ -239,6 +225,22 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
             v.fpReg = rVal;
             parent->UpdateRegister(ctxId, rName, v);
             fpRegCache[r] = rVal;
+        }
+    }
+
+    // We loop backwards because the protocol requires integer r0 to
+    // be sent last.
+    for (int r = TheISA::NumIntArchRegs - 1; r >= 0 ; r--)
+    {
+        ISA_REG_INDEX_CLASS rName;
+        rName.SetArchReg(r);
+        FUNCP_INT_REG rVal = M5Cpu(ctxId)->tc->readIntReg(r);
+        if ((intRegCache[r] != rVal) || (r == 0))
+        {
+            FUNCP_REG v;
+            v.intReg = rVal;
+            parent->UpdateRegister(ctxId, rName, v);
+            intRegCache[r] = rVal;
         }
     }
 
@@ -289,6 +291,14 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         //
         *newPC = curPC;
         skewCnt[ctxId] -= 1;
+
+        // The protocol requires we update register 0.
+        ISA_REG_INDEX_CLASS rName;
+        FUNCP_REG rVal;
+        rName.SetArchReg(0);
+        rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(0);
+        parent->UpdateRegister(ctxId, rName, rVal);
+
         return ISA_EMULATOR_SLEEP;
     }
     else
@@ -310,17 +320,7 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
             // Now set all the start register values and jump to the right PC.
             //
 
-            for (int r = 0; r < TheISA::NumIntArchRegs; r++)
-            {
-                ISA_REG_INDEX_CLASS rName;
-                FUNCP_REG rVal;
-                rName.SetArchReg(r);
-                rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(r);
-                parent->UpdateRegister(ctxId, rName, rVal);
-                intRegCache[r] = rVal.intReg;
-            }
-
-            for (int r = 0; r < TheISA::NumIntArchRegs; r++)
+            for (int r = TheISA::NumFloatArchRegs - 1; r >= 0 ; r--)
             {
                 ISA_REG_INDEX_CLASS rName;
                 FUNCP_REG rVal;
@@ -328,6 +328,18 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
                 rVal.fpReg = M5Cpu(ctxId)->tc->readFloatReg(r);
                 parent->UpdateRegister(ctxId, rName, rVal);
                 fpRegCache[r] = rVal.fpReg;
+            }
+
+            // We loop backwards because the protocol requires integer r0 to
+            // be sent last.
+            for (int r = TheISA::NumIntArchRegs - 1; r >= 0 ; r--)
+            {
+                ISA_REG_INDEX_CLASS rName;
+                FUNCP_REG rVal;
+                rName.SetArchReg(r);
+                rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(r);
+                parent->UpdateRegister(ctxId, rName, rVal);
+                intRegCache[r] = rVal.intReg;
             }
 
             ASIMWARNING("Activating Context: " << (int) ctxId << endl);

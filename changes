@@ -9800,3 +9800,13 @@ Fix two checkpoint restore bugs:
 
  - Object order caused a warning / missed value for M5_pid.
  - Memory image restoration didn't work for memory sizes > 2GB.
+
+----------
+mcadler     Date: Thu Sep  8 17:11:03 EDT 2011  CSN: CSN-m5-53
+                  Thu Sep  8 21:11:03 UTC 2011
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           52 
+
+Tweak the instruction emulation protocol to resolve a race.
