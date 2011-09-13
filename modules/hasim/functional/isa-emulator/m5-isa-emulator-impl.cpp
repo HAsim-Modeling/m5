@@ -350,6 +350,14 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         
             // Context is not ready. Tell the functional partition to sleep
             // this context for a while, and then check again.
+
+            // The protocol requires we update register 0.
+            ISA_REG_INDEX_CLASS rName;
+            FUNCP_REG rVal;
+            rName.SetArchReg(0);
+            rVal.intReg = M5Cpu(ctxId)->tc->readIntReg(0);
+            parent->UpdateRegister(ctxId, rName, rVal);
+
             return ISA_EMULATOR_SLEEP;
         }
 

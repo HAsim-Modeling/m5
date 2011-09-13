@@ -9810,3 +9810,13 @@ Directory modules/hasim/functional/isa-emulator
  m5-isa-emulator-impl.cpp  Locally Modified           52 
 
 Tweak the instruction emulation protocol to resolve a race.
+
+----------
+mcadler     Date: Tue Sep 13 10:36:05 EDT 2011  CSN: CSN-m5-54
+                  Tue Sep 13 14:36:05 UTC 2011
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           53 
+
+Missed a path in the register update protocol change.
