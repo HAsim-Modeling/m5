@@ -70,6 +70,15 @@
 using namespace std;
 using namespace TheISA;
 
+//
+// Hack!  Instead of adding a layer of memory looking like a cache to report
+// memory modified during emulation back to HAsim we simply use a few lines
+// of code to call back.
+//
+void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size) = NULL;
+void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size) = NULL;
+
+
 PhysicalMemory::PhysicalMemory(const Params *p)
     : MemObject(p), pmemAddr(NULL), lat(p->latency), lat_var(p->latency_var),
       _size(params()->range.size()), _start(params()->range.start)
@@ -268,6 +277,16 @@ PhysicalMemory::doAtomicAccess(PacketPtr pkt)
         return 0;
     }
 
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
+
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - start();
 
     if (pkt->cmd == MemCmd::SwapReq) {
@@ -341,6 +360,15 @@ PhysicalMemory::doFunctionalAccess(PacketPtr pkt)
     assert(pkt->getAddr() >= start() &&
            pkt->getAddr() + pkt->getSize() <= start() + size());
 
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
 
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - start();
 
@@ -480,6 +508,8 @@ PhysicalMemory::serialize(ostream &os)
 
     gzFile compressedMem;
     string filename = name() + ".physmem";
+    uint64_t bytesWritten;
+    const uint32_t chunkSize = 16384;
 
     SERIALIZE_SCALAR(filename);
     SERIALIZE_SCALAR(_size);
@@ -497,9 +527,19 @@ PhysicalMemory::serialize(ostream &os)
         fatal("Insufficient memory to allocate compression state for %s\n",
                 filename);
 
-    if (gzwrite(compressedMem, pmemAddr, size()) != (int)size()) {
-        fatal("Write failed on physical memory checkpoint file '%s'\n",
-              filename);
+    bytesWritten = 0;
+    while (bytesWritten < size()) {
+        uint64_t write_bytes = size() - bytesWritten;
+        if (write_bytes > chunkSize) {
+            write_bytes = chunkSize;
+        }
+
+        if (gzwrite(compressedMem, pmemAddr + bytesWritten, write_bytes) != write_bytes) {
+            fatal("Write failed on physical memory checkpoint file '%s'\n",
+                  filename);
+        }
+
+        bytesWritten += write_bytes;
     }
 
     if (gzclose(compressedMem))

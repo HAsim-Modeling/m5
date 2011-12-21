@@ -166,8 +166,10 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     // Set the machine state and execute the instruction
     //
-    cpu->setPC(pc);
-    cpu->setNextPC(pc + sizeof(TheISA::MachInst));
+    TheISA::PCState new_pc = cpu->tc->pcState();
+    new_pc.set(pc);
+    cpu->tc->pcState(new_pc);
+
     cpu->inst = inst;
     cpu->preExecute();
 
@@ -182,11 +184,11 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     // Is the instruction a branch?
     //
-    Addr branchTarget;
+    TheISA::PCState branchTarget;
     bool isBranch = cpu->curStaticInst->isControl();
     if (isBranch)
     {
-        cpu->curStaticInst->hasBranchTarget(pc, cpu->tc, branchTarget);
+        cpu->curStaticInst->hasBranchTarget(new_pc, cpu->tc, branchTarget);
     }
 
     Fault fault;
@@ -246,9 +248,10 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     if (isBranch)
     {
-        if (cpu->readPC() == branchTarget)
+        Addr cur_pc = cpu->tc->pcState().pc();
+        if (cur_pc == branchTarget.pc())
         {
-            *newPC = cpu->readPC();
+            *newPC = cur_pc;
         }
         else
         {
@@ -309,7 +312,7 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
         // If the PC is non-0 in M5 then the context is ready to start.
         // Otherwise tell it to sleep for a while and then check again.
 
-        *newPC = M5Cpu(ctxId)->readPC();
+        *newPC = M5Cpu(ctxId)->tc->pcState().pc();
         didInit[ctxId] = (*newPC != 0);
         
         if (didInit[ctxId])
@@ -426,8 +429,10 @@ ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
     //
     // Set the machine state and execute the instruction
     //
-    cpu->setPC(pc);
-    cpu->setNextPC(pc + sizeof(TheISA::MachInst));
+    TheISA::PCState new_pc = cpu->tc->pcState();
+    new_pc.set(pc);
+    cpu->tc->pcState(new_pc);
+
     cpu->inst = inst;
     cpu->preExecute();
 

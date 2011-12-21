@@ -15294,3 +15294,53 @@ Directory m5-releases/20111220-gem5-ca98021c3f96/util
 
 Add the latest m5 (gem5) release.  This is the unpatched version, direct from
 the primary source pool.
+
+----------
+mcadler     Date: Wed Dec 21 15:29:20 EST 2011  CSN: CSN-m5-57
+                  Wed Dec 21 20:29:20 UTC 2011
+
+
+Directory .
+ m5/                       Locally Modified           56 
+
+Directory m5-releases
+ 20111220-gem5-ca98021c3f96/ Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ SConstruct                Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ main.py                   Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ SConscript                Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/simple
+ base.hh                   Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ exetrace.cc               Locally Modified           56 
+ thread_context.hh         Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/sim
+ syscall_emul.cc           Locally Modified           56 
+ process.cc                Locally Modified           56 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ physical.cc               Locally Modified           56 
+ bus.cc                    Locally Modified           56 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           56 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           56 
+
+- Apply standard patches for m5/HAsim compatibility, including a few m5 bug
+  fixes.
+
+- Update HAsim modules to new gem5 interfaces.
+
+- Make the latest gem5 code the default version for HAsim.  Note that this
+  version requires a newer GCC.  We were using the ancient 3.4.4 in Hudson
+  and have now switched to 4.5.2 for HAsim.

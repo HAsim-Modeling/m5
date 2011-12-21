@@ -478,6 +478,9 @@ Bus::recvFunctional(PacketPtr pkt)
 
     // If the snooping hasn't found what we were looking for, keep going.
     if (!pkt->isResponse() && port_id != pkt->getSrc()) {
+        if ((port == defaultPort) && !defaultPort) {
+            panic("No port corresponds to address 0x%x\n", pkt->getAddr());
+        }
         port->sendFunctional(pkt);
     }
 }

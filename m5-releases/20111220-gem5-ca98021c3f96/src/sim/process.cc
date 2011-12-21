@@ -514,13 +514,13 @@ Process::serialize(std::ostream &os)
     SERIALIZE_SCALAR(mmap_end);
     SERIALIZE_SCALAR(nxm_start);
     SERIALIZE_SCALAR(nxm_end);
+    SERIALIZE_SCALAR(M5_pid);
     find_file_offsets();
     pTable->serialize(os);
     for (int x = 0; x <= MAX_FD; x++) {
         nameOut(os, csprintf("%s.FdMap%d", name(), x));
         fd_map[x].serialize(os);
     }
-    SERIALIZE_SCALAR(M5_pid);
 
 }
 
@@ -536,16 +536,18 @@ Process::unserialize(Checkpoint *cp, const std::string &section)
     UNSERIALIZE_SCALAR(mmap_end);
     UNSERIALIZE_SCALAR(nxm_start);
     UNSERIALIZE_SCALAR(nxm_end);
-    pTable->unserialize(cp, section);
-    for (int x = 0; x <= MAX_FD; x++) {
-        fd_map[x].unserialize(cp, csprintf("%s.FdMap%d", section, x));
-    }
-    fix_file_offsets();
+
     UNSERIALIZE_OPT_SCALAR(M5_pid);
     // The above returns a bool so that you could do something if you don't
     // find the param in the checkpoint if you wanted to, like set a default
     // but in this case we'll just stick with the instantianted value if not
     // found.   
+
+    pTable->unserialize(cp, section);
+    for (int x = 0; x <= MAX_FD; x++) {
+        fd_map[x].unserialize(cp, csprintf("%s.FdMap%d", section, x));
+    }
+    fix_file_offsets();
 }
 
 

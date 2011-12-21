@@ -128,9 +128,9 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
          ! gen.done(); gen.next())
     {
         req.setPhys(gen.addr(), gen.size(), 0);
-        Packet pkt(&req, cmd, Packet::Broadcast);
-        pkt.dataStatic(p);
-        mem_port->sendFunctional(&pkt);
+        PacketPtr pkt = new Packet(&req, cmd, Packet::Broadcast);
+        pkt->dataStatic(p);
+        mem_port->sendFunctional(pkt);
         p += gen.size();
     }
 }
@@ -219,8 +219,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
                         return resp;
                     }
 
-                    p->checkAndAllocNextPage(va);
-                    success = p->pTable->lookup(va, entry);
+                    if (p->fixupStackFault(va))
+                    {
+                        success = p->pTable->lookup(va, entry);
+                    }
                 }
 
                 if (! success)

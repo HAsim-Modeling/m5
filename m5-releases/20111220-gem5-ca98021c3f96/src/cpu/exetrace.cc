@@ -83,6 +83,7 @@ Trace::ExeTracerRecord::traceInst(StaticInstPtr inst, bool ran)
     std::string sym_str;
     Addr sym_addr;
     Addr cur_pc = pc.instAddr();
+    outs << "0x" << hex << cur_pc;
     if (debugSymbolTable && Debug::ExecSymbol
 #if FULL_SYSTEM
         && !inUserMode(thread)
@@ -90,9 +91,7 @@ Trace::ExeTracerRecord::traceInst(StaticInstPtr inst, bool ran)
         && debugSymbolTable->findNearestSymbol(cur_pc, sym_str, sym_addr)) {
         if (cur_pc != sym_addr)
             sym_str += csprintf("+%d",cur_pc - sym_addr);
-        outs << "@" << sym_str;
-    } else {
-        outs << "0x" << hex << cur_pc;
+        outs << " @" << sym_str;
     }
 
     if (inst->isMicroop()) {
