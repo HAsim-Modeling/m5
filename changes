@@ -15344,3 +15344,14 @@ Directory modules/hasim/functional/memory
 - Make the latest gem5 code the default version for HAsim.  Note that this
   version requires a newer GCC.  We were using the ancient 3.4.4 in Hudson
   and have now switched to 4.5.2 for HAsim.
+
+----------
+mcadler     Date: Sun Jan  8 15:57:12 EST 2012  CSN: CSN-m5-58
+                  Sun Jan  8 20:57:12 UTC 2012
+
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/sim
+ byteswap.hh               Locally Modified           57 
+
+Change preprocessor check from linux to __linux__.  The former isn't defined
+by recent compilers in the new C++ standards modes.
