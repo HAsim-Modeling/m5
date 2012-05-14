@@ -15355,3 +15355,14 @@ Directory m5-releases/20111220-gem5-ca98021c3f96/src/sim
 
 Change preprocessor check from linux to __linux__.  The former isn't defined
 by recent compilers in the new C++ standards modes.
+
+----------
+mcadler     Date: Mon May 14 09:02:14 EDT 2012  CSN: CSN-m5-59
+                  Mon May 14 13:02:14 UTC 2012
+
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ SConscript                Locally Modified           58 
+
+Add linker option "--export-dynamic" required for Intel's instance of embedded
+Python.

@@ -918,7 +918,7 @@ def makeEnv(label, objsfx, strip = False, **kwargs):
     ## Scons has no clean way to specify the --whole-archive linker flags.
     ##
     new_env.Depends(progname, static_lib)
-    new_env.Append(LINKFLAGS=['-Wl,--whole-archive',File(static_lib),'-Wl,--no-whole-archive'])
+    new_env.Append(LINKFLAGS=['-Wl,--export-dynamic','-Wl,--whole-archive',File(static_lib),'-Wl,--no-whole-archive'])
 
     if strip:
         if sys.platform == 'sunos5':
