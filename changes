@@ -15366,3 +15366,15 @@ Directory m5-releases/20111220-gem5-ca98021c3f96/src
 
 Add linker option "--export-dynamic" required for Intel's instance of embedded
 Python.
+
+----------
+mcadler     Date: Mon Sep 10 21:37:43 EDT 2012  CSN: CSN-m5-60
+                  Tue Sep 11 01:37:43 UTC 2012
+
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           59 
+ m5-memory.h               Locally Modified           59 
+
+- Context no longer passed for memory read/write.
+- Note speculative reads and return error status.

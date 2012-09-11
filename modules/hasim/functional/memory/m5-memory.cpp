@@ -70,29 +70,28 @@ FUNCP_SIMULATED_MEMORY_CLASS::~FUNCP_SIMULATED_MEMORY_CLASS()
 }
 
 
-void
+bool
 FUNCP_SIMULATED_MEMORY_CLASS::Read(
-    CONTEXT_ID ctxId,
     UINT64 paddr,
     UINT64 size,
+    bool isSpeculative,
     void *dest)
 {
     ASSERTX(size > 0);
 
-    BlobHelper(paddr, (uint8_t*)dest, size, MemCmd::ReadReq);
+    return BlobHelper(paddr, (uint8_t*)dest, size, MemCmd::ReadReq, isSpeculative);
 }
 
 
 void
 FUNCP_SIMULATED_MEMORY_CLASS::Write(
-    CONTEXT_ID ctxId,
     UINT64 paddr,
     UINT64 size,
     void *src)
 {
     ASSERTX(size > 0);
 
-    BlobHelper(paddr, (uint8_t*)src, size, MemCmd::WriteReq);
+    BlobHelper(paddr, (uint8_t*)src, size, MemCmd::WriteReq, false);
 }
 
 
@@ -100,13 +99,16 @@ FUNCP_SIMULATED_MEMORY_CLASS::Write(
 // BlobHelper is a standard m5 style, such as in mem/port.cc, for sending a
 // request to physical memory.
 //
-void
+bool
 FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
     Addr paddr,
     uint8_t *p,
     int size,
-    MemCmd cmd)
+    MemCmd cmd,
+    bool isSpeculative)
 {
+    bool success = true;
+
     if ((paddr & TheISA::PageMask) == guard_page)
     {
         //
@@ -119,7 +121,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
         // Just return 0.
         bzero(p, size);
 
-        return;
+        return success;
     }
 
     Request req;
@@ -131,8 +133,20 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
         PacketPtr pkt = new Packet(&req, cmd, Packet::Broadcast);
         pkt->dataStatic(p);
         mem_port->sendFunctional(pkt);
+
+        success = success && ! pkt->isError();
+
+        if (! isSpeculative)
+        {
+            ASSERT(! pkt->isError(), "m5 memory error " <<
+                                     (cmd == MemCmd::WriteReq ? "WRITE" : "READ") <<
+                                     " PA 0x" << fmt_x(gen.addr()));
+        }
+
         p += gen.size();
     }
+
+    return success;
 }
 
 
