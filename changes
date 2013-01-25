@@ -18818,3 +18818,47 @@ Directory m5-releases/20130123-gem5-stable-f75ee4849c40/util
  regress                   Locally Added               0 
 
 Add latest stable GEM5 version.  Not yet modified for HAsim.
+
+----------
+mcadler     Date: Thu Jan 24 20:56:09 EST 2013  CSN: CSN-m5-62
+                  Fri Jan 25 01:56:09 UTC 2013
+
+
+Directory .
+ m5/                       Locally Modified           61 
+
+Directory m5-releases
+ 20130123-gem5-stable-f75ee4849c40/ Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40
+ SConstruct                Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/python/m5
+ main.py                   Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src
+ SConscript                Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/cpu/simple
+ base.hh                   Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/cpu
+ exetrace.cc               Locally Modified           61 
+ thread_context.hh         Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/sim
+ syscall_emul.cc           Locally Modified           61 
+ process.cc                Locally Modified           61 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/mem
+ abstract_mem.cc           Locally Modified           61 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.h    Locally Modified           61 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           61 
+ m5-memory.h               Locally Modified           61 
+
+- Standard changes to latest stable gem5 for use with HAsim.
+- Update HAsim for changes to gem5 interfaces.

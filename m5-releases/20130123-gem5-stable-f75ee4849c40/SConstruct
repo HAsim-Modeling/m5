@@ -178,6 +178,7 @@ termcap = get_termcap(GetOption('use_colors'))
 #
 ########################################################################
 use_vars = set([ 'AS', 'AR', 'CC', 'CXX', 'HOME', 'LD_LIBRARY_PATH', 'PATH',
+                 'USER_ITOOLS',
                  'PYTHONPATH', 'RANLIB', 'SWIG' ])
 
 use_env = {}
@@ -1044,10 +1045,10 @@ for variant_path in variant_paths:
                          exports = 'env')
 
     # Set up the regression tests for each build.
-    for e in envList:
-        SConscript('tests/SConscript',
-                   variant_dir = joinpath(variant_path, 'tests', e.Label),
-                   exports = { 'env' : e }, duplicate = False)
+#    for e in envList:
+#        SConscript('tests/SConscript',
+#                   variant_dir = joinpath(variant_path, 'tests', e.Label),
+#                   exports = { 'env' : e }, duplicate = False)
 
 # base help text
 Help('''

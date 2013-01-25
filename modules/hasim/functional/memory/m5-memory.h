@@ -30,9 +30,9 @@
 #include "asim/provides/funcp_base_types.h"
 
 // m5 includes
-#include "config/full_system.hh"
+#include "cpu/base.hh"
 #include "mem/port.hh"
-#include "mem/translating_port.hh"
+#include "sim/process.hh"
 
 typedef class FUNCP_SIMULATED_MEMORY_CLASS *FUNCP_SIMULATED_MEMORY;
 
@@ -61,8 +61,7 @@ class FUNCP_SIMULATED_MEMORY_CLASS : public M5_HASIM_BASE_CLASS,
     FUNCP_MEM_VTOP_RESP VtoP(CONTEXT_ID ctxId, UINT64 va, bool allocOnFault);
 
   private:
-    TranslatingPort *mem_port;
-    PageTable *pTable;
+    MasterPort *memPort;
     Format fmt_va;
 
     Addr guard_page;        // Mapped to virtual address 0

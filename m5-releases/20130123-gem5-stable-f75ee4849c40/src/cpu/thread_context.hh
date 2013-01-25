@@ -115,6 +115,11 @@ class ThreadContext
         Halted
     };
 
+    ThreadContext() :
+        exit_code(0),
+        exit_called(false)
+    { };
+
     virtual ~ThreadContext() { };
 
     virtual BaseCPU *getCpuPtr() = 0;
@@ -260,7 +265,21 @@ class ThreadContext
     // This function exits the thread context in the CPU and returns
     // 1 if the CPU has no more active threads (meaning it's OK to exit);
     // Used in syscall-emulation mode when a  thread calls the exit syscall.
-    virtual int exit() { return 1; };
+    virtual int exit(int code)
+    {
+        exit_called = true;
+        exit_code = code;
+        return 1;
+    };
+
+    virtual bool exitCalled() const { return exit_called; };
+    virtual int exitCode() const { return exit_code; };
+
+  private:
+    int exit_code;
+    bool exit_called;
+
+  public:
 
     /** function to compare two thread contexts (for debugging) */
     static void compare(ThreadContext *one, ThreadContext *two);

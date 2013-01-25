@@ -28,9 +28,6 @@
 #include "asim/provides/isa_emulator.h"
 #include "asim/provides/m5_hasim_base.h"
 
-// m5 includes
-#include "config/full_system.hh"
-
 // this module provides both client and service functionalities
 typedef class ISA_EMULATOR_IMPL_CLASS* ISA_EMULATOR_IMPL;
 

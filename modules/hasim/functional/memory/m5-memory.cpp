@@ -39,8 +39,7 @@ FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
 {
     SetTraceableName("funcp_memory_m5");
 
-    mem_port = M5Cpu(0)->tc->getMemPort();
-    pTable = M5Cpu(0)->tc->getProcessPtr()->pTable;
+    memPort = &(M5Cpu(0)->tc->getCpuPtr()->getDataPort());
 
     char fmt[16];
     sprintf(fmt, "0%dx", sizeof(MEM_VALUE) * 2);
@@ -66,7 +65,6 @@ FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
 
 FUNCP_SIMULATED_MEMORY_CLASS::~FUNCP_SIMULATED_MEMORY_CLASS()
 {
-    delete mem_port;
 }
 
 
@@ -126,19 +124,19 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
 
     Request req;
 
-    for (ChunkGenerator gen(paddr, size, mem_port->peerBlockSize());
+    for (ChunkGenerator gen(paddr, size, memPort->peerBlockSize());
          ! gen.done(); gen.next())
     {
-        req.setPhys(gen.addr(), gen.size(), 0);
-        PacketPtr pkt = new Packet(&req, cmd, Packet::Broadcast);
-        pkt->dataStatic(p);
-        mem_port->sendFunctional(pkt);
+        req.setPhys(gen.addr(), gen.size(), 0, Request::funcMasterId);
+        Packet pkt(&req, cmd);
+        pkt.dataStatic(p);
+        memPort->sendFunctional(&pkt);
 
-        success = success && ! pkt->isError();
+        success = success && ! pkt.isError();
 
         if (! isSpeculative)
         {
-            ASSERT(! pkt->isError(), "m5 memory error " <<
+            ASSERT(! pkt.isError(), "m5 memory error " <<
                                      (cmd == MemCmd::WriteReq ? "WRITE" : "READ") <<
                                      " PA 0x" << fmt_x(gen.addr()));
         }
@@ -173,87 +171,34 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
         return resp;
     }
 
-    Request req;
-    Fault fault;
-    int fault_trips = 0;
-    do
+    Process *proc = M5Cpu(ctxId)->tc->getProcessPtr();
+    PageTable *pTable = proc->pTable;
+
+    Addr va_page = roundDown(va, TheISA::VMPageSize);
+    if (! pTable->translate(va_page, paddr))
     {
-        req.setVirt(0, roundDown(va, TheISA::VMPageSize), TheISA::VMPageSize, 0, 0);
-        fault = M5Cpu(ctxId)->thread->dtb->translateAtomic(&req, M5Cpu(ctxId)->tc, BaseTLB::Read);
-        if (fault != NoFault)
+        T1("\tfuncp_memory_m5: VtoP no mapping VA " << fmt_va(va_page));
+
+        if (! allocOnFault)
         {
-            const char *fault_name = fault->name();
-
-            T1("\tfuncp_memory_m5: VtoP FAULT (" << fault_name << ") VA " << fmt_va(va));
-
-            //
-            // Check for fatal fault and assume it is caused by a speculative path.
-            //
-            if ((fault_name == dfault) || ! strcmp("dfault", fault_name))
-            {
-                // Remember fault name pointer to avoid using strcmp next time
-                dfault = fault_name;
-
-                if (! allocOnFault)
-                {
-                    // Fault returns guard page as translation so the model doesn't
-                    // need too much special case code to handle faults.
-                    FUNCP_MEM_VTOP_RESP resp;
-                    resp.pa = guard_page | (va & TheISA::PageMask);
-                    resp.pageFault = true;
-                    resp.ioSpace = false;
-                    return resp;
-                }
-
-                ASIMERROR("VtoP failed: unable to allocate page for VA 0x" << fmt_x(va));
-            }
-
-            fault_trips += 1;
-            VERIFY(fault_trips < 10, "Too many faults translating VtoP of VA 0x" << fmt_x(va) << " in m5");
-
-            if ((fault_name == dtb_miss_single) || ! strcmp("dtb_miss_single", fault_name))
-            {
-                // Remember fault name pointer to avoid using strcmp next time
-                dtb_miss_single = fault_name;
-
-                // Make sure the translation won't cause a panic before invoking
-                // the handler.  This code does the early stages of
-                // NDtbMissFault::invoke
-                Process *p = M5Cpu(ctxId)->tc->getProcessPtr();
-                TheISA::TlbEntry entry;
-                bool success = p->pTable->lookup(va, entry);
-                if (! success)
-                {
-                    if (! allocOnFault)
-                    {
-                        FUNCP_MEM_VTOP_RESP resp;
-                        resp.pa = guard_page | (va & TheISA::PageMask);
-                        resp.pageFault = true;
-                        resp.ioSpace = false;
-                        return resp;
-                    }
-
-                    if (p->fixupStackFault(va))
-                    {
-                        success = p->pTable->lookup(va, entry);
-                    }
-                }
-
-                if (! success)
-                {
-                    T1("\tfuncp_memory_m5: VtoP FAULT ERROR (" << fault_name << ") VA " << fmt_va(va));
-                    ASIMERROR("VtoP failed: unable to allocate page for VA 0x" << fmt_x(va));
-                }
-            }
-
-            // Invoke the real handler
-            fault->invoke(M5Cpu(ctxId)->tc);
+            // Fault returns guard page as translation so the model doesn't
+            // need too much special case code to handle faults.
+            FUNCP_MEM_VTOP_RESP resp;
+            resp.pa = guard_page | (va & TheISA::PageMask);
+            resp.pageFault = true;
+            resp.ioSpace = false;
+            return resp;
         }
+
+        proc->allocateMem(va_page, TheISA::VMPageSize);
+        VERIFY(pTable->translate(va_page, paddr),
+               "VtoP failed: unable to allocate page for VA 0x" << fmt_x(va_page));
+
+        T1("\tfuncp_memory_m5: VtoP alloc VA " << fmt_va(va_page) << " to PA " << fmt_va(paddr));
     }
-    while (fault != NoFault);
 
     FUNCP_MEM_VTOP_RESP resp;
-    resp.pa = req.getPaddr();
+    resp.pa = paddr;
     resp.pageFault = false;
     resp.ioSpace = false;
     return resp;
