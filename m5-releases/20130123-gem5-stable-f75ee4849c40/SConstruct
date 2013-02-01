@@ -458,6 +458,9 @@ class Transform(object):
 
 Export('Transform')
 
+# Maximum line length is sometimes exceeded for StaticLibrary builds
+main['ARCOM'] = '${TEMPFILE("%s")}' % main['ARCOM']
+
 # enable the regression script to use the termcap
 main['TERMCAP'] = termcap
 
