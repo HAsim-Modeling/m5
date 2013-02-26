@@ -265,6 +265,11 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         return (cpu->tc->exitCode() == 0) ? ISA_EMULATOR_EXIT_OK : ISA_EMULATOR_EXIT_FAIL;
     }
 
+    if (cpu->tc->status() == ThreadContext::Halted)
+    {
+        return ISA_EMULATOR_SLEEP;
+    }
+
     return isBranch ? ISA_EMULATOR_BRANCH : ISA_EMULATOR_NORMAL;
 }
 

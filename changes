@@ -23813,3 +23813,17 @@ Directory m5-releases/20130123-gem5-stable-f75ee4849c40
 
 - Change the claimed Linux kernel version to something more recent to make
   newer run-time libraries happy.
+
+----------
+mcadler     Date: Tue Feb 26 07:28:41 EST 2013  CSN: CSN-m5-65
+                  Tue Feb 26 12:28:41 UTC 2013
+
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/sim
+ syscall_emul.cc           Locally Modified           64 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           64 
+
+exitGroupFunc() syscall emulation now updates the process context with the
+exit code so HAsim knows to quit.
