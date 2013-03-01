@@ -23827,3 +23827,16 @@ Directory modules/hasim/functional/isa-emulator
 
 exitGroupFunc() syscall emulation now updates the process context with the
 exit code so HAsim knows to quit.
+
+----------
+mcadler     Date: Fri Mar  1 14:04:03 EST 2013  CSN: CSN-m5-66
+                  Fri Mar  1 19:04:03 UTC 2013
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           65 
+
+Detect halt within a single thread and put it to sleep.  HAsim isn't particularly
+good at turning off statistics collection when sleeping (which should be fixed).
+
+This change makes Splash benchmarks run to completion and print results.

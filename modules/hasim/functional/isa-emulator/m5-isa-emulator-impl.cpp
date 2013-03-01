@@ -267,7 +267,11 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     if (cpu->tc->status() == ThreadContext::Halted)
     {
-        return ISA_EMULATOR_SLEEP;
+        // Emulation caused the thread to halt.  Branch to 0 (the normal startup
+        // location) and reset the context's state.
+        *newPC = 0;
+        isBranch = true;
+        didInit[ctxId] = false;
     }
 
     return isBranch ? ISA_EMULATOR_BRANCH : ISA_EMULATOR_NORMAL;
@@ -292,13 +296,27 @@ ISA_EMULATOR_IMPL_CLASS::StartProgram(
     // same thing every cycle when each context is running the same workload.
     //
 
+    bool active = true;
+
     if (skewCnt[ctxId] != 0)
+    {
+        // Artificial skew at program start requires more waiting.
+        skewCnt[ctxId] -= 1;
+        active = false;
+    }
+    
+    if (M5Cpu(ctxId)->tc->status() == ThreadContext::Halted)
+    {
+        // Thread is halted.  Continue sleeping.
+        active = false;
+    }
+
+    if (! active)
     {
         //
         // Not ready to start this context.  Loop back to same PC for a while, then check again.
         //
         *newPC = curPC;
-        skewCnt[ctxId] -= 1;
 
         // The protocol requires we update register 0.
         ISA_REG_INDEX_CLASS rName;
