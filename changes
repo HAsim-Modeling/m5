@@ -23873,3 +23873,3422 @@ Implement getdents and getdents64 syscalls, used by Parsec.
 Change mmap's remap to fail when remapping is impossible at a requested fixed
 address.  Failure is a legal response.  The old behavior silently clobbered
 storage.
+
+----------
+mcadler     Date: Wed Apr 10 10:58:12 EDT 2013  CSN: CSN-m5-68
+                  Wed Apr 10 14:58:12 UTC 2013
+
+
+Directory m5-releases
+ 20111220-gem5-ca98021c3f96/ Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ ext/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext
+ ply/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply
+ test/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/test
+ yacc_simple.py            Locally Removed            67 
+ yacc_unused_rule.py       Locally Removed            67 
+ lex_state_noerror.py      Locally Removed            67 
+ lex_re2.py                Locally Removed            67 
+ yacc_badid.py             Locally Removed            67 
+ yacc_badargs.py           Locally Removed            67 
+ lex_rule3.py              Locally Removed            67 
+ cleanup.sh                Locally Removed            67 
+ lex_token2.py             Locally Removed            67 
+ yacc_error3.py            Locally Removed            67 
+ calclex.py                Locally Removed            67 
+ lex_state_norule.py       Locally Removed            67 
+ lex_state4.py             Locally Removed            67 
+ testyacc.py               Locally Removed            67 
+ yacc_nested.py            Locally Removed            67 
+ yacc_badprec3.py          Locally Removed            67 
+ yacc_rr.py                Locally Removed            67 
+ yacc_sr.py                Locally Removed            67 
+ lex_error3.py             Locally Removed            67 
+ lex_literal1.py           Locally Removed            67 
+ lex_state_try.py          Locally Removed            67 
+ yacc_dup.py               Locally Removed            67 
+ lex_module.py             Locally Removed            67 
+ lex_doc1.py               Locally Removed            67 
+ lex_re1.py                Locally Removed            67 
+ yacc_uprec2.py            Locally Removed            67 
+ lex_rule2.py              Locally Removed            67 
+ lex_empty.py              Locally Removed            67 
+ lex_token1.py             Locally Removed            67 
+ yacc_error2.py            Locally Removed            67 
+ lex_state3.py             Locally Removed            67 
+ lex_token5.py             Locally Removed            67 
+ yacc_badprec2.py          Locally Removed            67 
+ lex_error2.py             Locally Removed            67 
+ lex_dup3.py               Locally Removed            67 
+ lex_closure.py            Locally Removed            67 
+ testlex.py                Locally Removed            67 
+ yacc_missing1.py          Locally Removed            67 
+ yacc_literal.py           Locally Removed            67 
+ lex_optimize3.py          Locally Removed            67 
+ yacc_badprec.py           Locally Removed            67 
+ lex_many_tokens.py        Locally Removed            67 
+ lex_rule1.py              Locally Removed            67 
+ yacc_nodoc.py             Locally Removed            67 
+ lex_hedit.py              Locally Removed            67 
+ lex_optimize.py           Locally Removed            67 
+ yacc_error1.py            Locally Removed            67 
+ lex_state2.py             Locally Removed            67 
+ yacc_notfunc.py           Locally Removed            67 
+ lex_token4.py             Locally Removed            67 
+ lex_ignore2.py            Locally Removed            67 
+ lex_object.py             Locally Removed            67 
+ lex_error1.py             Locally Removed            67 
+ lex_dup2.py               Locally Removed            67 
+ yacc_term1.py             Locally Removed            67 
+ yacc_notok.py             Locally Removed            67 
+ lex_optimize2.py          Locally Removed            67 
+ lex_ignore.py             Locally Removed            67 
+ yacc_nop.py               Locally Removed            67 
+ yacc_misplaced.py         Locally Removed            67 
+ lex_token_dup.py          Locally Removed            67 
+ lex_re3.py                Locally Removed            67 
+ yacc_unused.py            Locally Removed            67 
+ yacc_badtok.py            Locally Removed            67 
+ yacc_rr_unused.py         Locally Removed            67 
+ README                    Locally Removed            67 
+ lex_state1.py             Locally Removed            67 
+ yacc_prec1.py             Locally Removed            67 
+ yacc_inf.py               Locally Removed            67 
+ lex_token3.py             Locally Removed            67 
+ yacc_error4.py            Locally Removed            67 
+ yacc_badrule.py           Locally Removed            67 
+ lex_state5.py             Locally Removed            67 
+ yacc_uprec.py             Locally Removed            67 
+ lex_dup1.py               Locally Removed            67 
+ lex_opt_alias.py          Locally Removed            67 
+ lex_error4.py             Locally Removed            67 
+ yacc_noerror.py           Locally Removed            67 
+ lex_literal2.py           Locally Removed            67 
+ lex_module_import.py      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply
+ ply/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/ply
+ lex.py                    Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ yacc.py                   Locally Removed            67 
+ cpp.py                    Locally Removed            67 
+ ctokens.py                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply
+ doc/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/doc
+ internal.html             Locally Removed            67 
+ ply.html                  Locally Removed            67 
+ makedoc.py                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply
+ TODO                      Locally Removed            67 
+ ANNOUNCE                  Locally Removed            67 
+ setup.py                  Locally Removed            67 
+ CHANGES                   Locally Removed            67 
+ example/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ closurecalc/              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/closurecalc
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ cleanup.sh                Locally Removed            67 
+ BASIC/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/BASIC
+ sqrt2.bas                 Locally Removed            67 
+ basiclex.py               Locally Removed            67 
+ sears.bas                 Locally Removed            67 
+ powers.bas                Locally Removed            67 
+ gosub.bas                 Locally Removed            67 
+ basparse.py               Locally Removed            67 
+ rand.bas                  Locally Removed            67 
+ README                    Locally Removed            67 
+ func.bas                  Locally Removed            67 
+ gcd.bas                   Locally Removed            67 
+ maxsin.bas                Locally Removed            67 
+ hello.bas                 Locally Removed            67 
+ basic.py                  Locally Removed            67 
+ basiclog.py               Locally Removed            67 
+ sales.bas                 Locally Removed            67 
+ dim.bas                   Locally Removed            67 
+ linear.bas                Locally Removed            67 
+ basinterp.py              Locally Removed            67 
+ sqrt1.bas                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ GardenSnake/              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/GardenSnake
+ GardenSnake.py            Locally Removed            67 
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ calc/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/calc
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ newclasscalc/             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/newclasscalc
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ optcalc/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/optcalc
+ calc.py                   Locally Removed            67 
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ classcalc/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/classcalc
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ calcdebug/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/calcdebug
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ ansic/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/ansic
+ clex.py                   Locally Removed            67 
+ cparse.py                 Locally Removed            67 
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ hedit/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/hedit
+ hedit.py                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ yply/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/yply
+ yply.py                   Locally Removed            67 
+ ylex.py                   Locally Removed            67 
+ yparse.py                 Locally Removed            67 
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example
+ README                    Locally Removed            67 
+ unicalc/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply/example/unicalc
+ calc.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/ply
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext
+ dnet/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/dnet
+ LICENSE                   Locally Removed            67 
+ route.h                   Locally Removed            67 
+ ip6.h                     Locally Removed            67 
+ intf.h                    Locally Removed            67 
+ ip.h                      Locally Removed            67 
+ addr.h                    Locally Removed            67 
+ fw.h                      Locally Removed            67 
+ blob.h                    Locally Removed            67 
+ eth.h                     Locally Removed            67 
+ os.h                      Locally Removed            67 
+ arp.h                     Locally Removed            67 
+ rand.h                    Locally Removed            67 
+ tcp.h                     Locally Removed            67 
+ udp.h                     Locally Removed            67 
+ icmp.h                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext
+ x11keysym/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/x11keysym
+ keysymdef.h               Locally Removed            67 
+ keysym.h                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext
+ gzstream/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/gzstream
+ gzstream.cc               Locally Removed            67 
+ LICENSE                   Locally Removed            67 
+ VERSION                   Locally Removed            67 
+ SConscript                Locally Removed            67 
+ gzstream.hh               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext
+ libelf/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/ext/libelf
+ elf_flag.c                Locally Removed            67 
+ gelf_checksum.c           Locally Removed            67 
+ gelf_getclass.c           Locally Removed            67 
+ libelf.h                  Locally Removed            67 
+ libelf_msize.m4           Locally Removed            67 
+ elf_shstrndx.c            Locally Removed            67 
+ elf_next.c                Locally Removed            67 
+ gelf_sym.c                Locally Removed            67 
+ elf_hash.c                Locally Removed            67 
+ elf_begin.c               Locally Removed            67 
+ libelf_phdr.c             Locally Removed            67 
+ elf_kind.c                Locally Removed            67 
+ elf_phnum.c               Locally Removed            67 
+ gelf_fsize.c              Locally Removed            67 
+ libelf_ar.c               Locally Removed            67 
+ elf_rawfile.c             Locally Removed            67 
+ elf_shnum.c               Locally Removed            67 
+ elf32.h                   Locally Removed            67 
+ gelf_rela.c               Locally Removed            67 
+ gelf.h                    Locally Removed            67 
+ elf_strptr.c              Locally Removed            67 
+ elf_errmsg.c              Locally Removed            67 
+ elf_cntl.c                Locally Removed            67 
+ gelf_phdr.c               Locally Removed            67 
+ libelf_xlate.c            Locally Removed            67 
+ libelf_fsize.m4           Locally Removed            67 
+ elf_memory.c              Locally Removed            67 
+ elf_data.c                Locally Removed            67 
+ libelf_ehdr.c             Locally Removed            67 
+ elf_getbase.c             Locally Removed            67 
+ libelf_allocate.c         Locally Removed            67 
+ _libelf.h                 Locally Removed            67 
+ SConscript                Locally Removed            67 
+ libelf_align.c            Locally Removed            67 
+ elf_update.c              Locally Removed            67 
+ elf_scn.c                 Locally Removed            67 
+ elf_rand.c                Locally Removed            67 
+ gelf_symshndx.c           Locally Removed            67 
+ gelf_xlate.c              Locally Removed            67 
+ elf_version.c             Locally Removed            67 
+ elf_errno.c               Locally Removed            67 
+ elf_fill.c                Locally Removed            67 
+ libelf_extended.c         Locally Removed            67 
+ libelf_shdr.c             Locally Removed            67 
+ elf_queue.h               Locally Removed            67 
+ gelf_ehdr.c               Locally Removed            67 
+ gelf_rel.c                Locally Removed            67 
+ libelf_checksum.c         Locally Removed            67 
+ elf_getarsym.c            Locally Removed            67 
+ elf_common.h              Locally Removed            67 
+ elf64.h                   Locally Removed            67 
+ elf_getarhdr.c            Locally Removed            67 
+ libelf_data.c             Locally Removed            67 
+ gelf_dyn.c                Locally Removed            67 
+ elf_types.m4              Locally Removed            67 
+ elf_getident.c            Locally Removed            67 
+ libelf_convert.m4         Locally Removed            67 
+ elf_end.c                 Locally Removed            67 
+ gelf_shdr.c               Locally Removed            67 
+ libelf.c                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ .hgignore                 Locally Removed            67 
+ LICENSE                   Locally Removed            67 
+ .hg_archival.txt          Locally Removed            67 
+ build_opts/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/build_opts
+ POWER_SE                  Locally Removed            67 
+ ALPHA_SE_Network_test     Locally Removed            67 
+ ALPHA_SE_MOESI_CMP_directory Locally Removed            67 
+ SPARC_SE                  Locally Removed            67 
+ MIPS_SE                   Locally Removed            67 
+ SPARC_FS                  Locally Removed            67 
+ ALPHA_SE_MOESI_hammer     Locally Removed            67 
+ ARM_SE                    Locally Removed            67 
+ ARM_FS                    Locally Removed            67 
+ ALPHA_SE_MOESI_CMP_token  Locally Removed            67 
+ NOISA                     Locally Removed            67 
+ X86_SE                    Locally Removed            67 
+ ALPHA_SE_MESI_CMP_directory Locally Removed            67 
+ ALPHA_SE                  Locally Removed            67 
+ ALPHA_FS                  Locally Removed            67 
+ X86_FS                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ system/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system
+ arm/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/arm
+ simple_bootloader/        Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/arm/simple_bootloader
+ simple.S                  Locally Removed            67 
+ Makefile                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system
+ alpha/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha
+ console/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha/console
+ console.c                 Locally Removed            67 
+ printf.c                  Locally Removed            67 
+ dbmentry.S                Locally Removed            67 
+ paljtoslave.S             Locally Removed            67 
+ paljtokern.S              Locally Removed            67 
+ Makefile                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha
+ h/                        Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha/h
+ fromHudsonMacros.h        Locally Removed            67 
+ ev5_paldef.h              Locally Removed            67 
+ tlaser.h                  Locally Removed            67 
+ fromHudsonOsf.h           Locally Removed            67 
+ ev5_osfalpha_defs.h       Locally Removed            67 
+ ev5_defs.h                Locally Removed            67 
+ ev5_impure.h              Locally Removed            67 
+ rpb.h                     Locally Removed            67 
+ ev5_alpha_defs.h          Locally Removed            67 
+ cserve.h                  Locally Removed            67 
+ dc21164FromGasSources.h   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha
+ palcode/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/system/alpha/palcode
+ osfpal.S                  Locally Removed            67 
+ platform.S                Locally Removed            67 
+ Makefile                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ src/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ kern/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern/linux
+ linux_syscalls.cc         Locally Removed            67 
+ events.hh                 Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ printk.hh                 Locally Removed            67 
+ events.cc                 Locally Removed            67 
+ linux_syscalls.hh         Locally Removed            67 
+ printk.cc                 Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern
+ operatingsystem.cc        Locally Removed            67 
+ kernel_stats.cc           Locally Removed            67 
+ tru64/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern/tru64
+ tru64_syscalls.hh         Locally Removed            67 
+ printf.hh                 Locally Removed            67 
+ dump_mbuf.cc              Locally Removed            67 
+ tru64.hh                  Locally Removed            67 
+ tru64_syscalls.cc         Locally Removed            67 
+ printf.cc                 Locally Removed            67 
+ tru64_events.hh           Locally Removed            67 
+ mbuf.hh                   Locally Removed            67 
+ dump_mbuf.hh              Locally Removed            67 
+ tru64_events.cc           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern
+ system_events.hh          Locally Removed            67 
+ SConscript                Locally Removed            67 
+ operatingsystem.hh        Locally Removed            67 
+ solaris/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern/solaris
+ solaris.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/kern
+ kernel_stats.hh           Locally Removed            67 
+ system_events.cc          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ unittest/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/unittest
+ rangetest.cc              Locally Removed            67 
+ circletest.cc             Locally Removed            67 
+ SConscript                Locally Removed            67 
+ rangemultimaptest.cc      Locally Removed            67 
+ cprintftest.cc            Locally Removed            67 
+ symtest.cc                Locally Removed            67 
+ nmtest.cc                 Locally Removed            67 
+ stattest.cc               Locally Removed            67 
+ genini.py                 Locally Removed            67 
+ bitvectest.cc             Locally Removed            67 
+ foo.ini                   Locally Removed            67 
+ stattest.i                Locally Removed            67 
+ initest.cc                Locally Removed            67 
+ unittest.cc               Locally Removed            67 
+ tokentest.cc              Locally Removed            67 
+ refcnttest.cc             Locally Removed            67 
+ stattestmain.py           Locally Removed            67 
+ cprintftime.cc            Locally Removed            67 
+ strnumtest.cc             Locally Removed            67 
+ unittest.hh               Locally Removed            67 
+ rangemaptest.cc           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ python/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python
+ m5/                       Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ core.py                   Locally Removed            67 
+ options.py                Locally Removed            67 
+ trace.py                  Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ objects/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5/objects
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ config.py                 Locally Removed            67 
+ stats/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5/stats
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ ticks.py                  Locally Removed            67 
+ SimObject.py              Locally Removed            67 
+ proxy.py                  Locally Removed            67 
+ event.py                  Locally Removed            67 
+ simulate.py               Locally Removed            67 
+ params.py                 Locally Removed            67 
+ main.py                   Locally Removed            67 
+ internal/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5/internal
+ __init__.py               Locally Removed            67 
+ params.py                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ util/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5/util
+ jobfile.py                Locally Removed            67 
+ smartdict.py              Locally Removed            67 
+ terminal.py               Locally Removed            67 
+ code_formatter.py         Locally Removed            67 
+ attrdict.py               Locally Removed            67 
+ multidict.py              Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ orderdict.py              Locally Removed            67 
+ convert.py                Locally Removed            67 
+ region.py                 Locally Removed            67 
+ sorteddict.py             Locally Removed            67 
+ grammar.py                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/m5
+ debug.py                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python
+ SConscript                Locally Removed            67 
+ importer.py               Locally Removed            67 
+ swig/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/python/swig
+ core.i                    Locally Removed            67 
+ pyobject.cc               Locally Removed            67 
+ range.i                   Locally Removed            67 
+ stats.i                   Locally Removed            67 
+ time.i                    Locally Removed            67 
+ trace.i                   Locally Removed            67 
+ inet.i                    Locally Removed            67 
+ pyobject.i                Locally Removed            67 
+ event.i                   Locally Removed            67 
+ pyevent.hh                Locally Removed            67 
+ debug.i                   Locally Removed            67 
+ pyobject.hh               Locally Removed            67 
+ pyevent.cc                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ Doxyfile                  Locally Removed            67 
+ cpu/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ o3/                       Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/o3
+ iew.hh                    Locally Removed            67 
+ lsq.cc                    Locally Removed            67 
+ mem_dep_unit_impl.hh      Locally Removed            67 
+ cpu.hh                    Locally Removed            67 
+ commit.hh                 Locally Removed            67 
+ fetch.hh                  Locally Removed            67 
+ fu_pool.cc                Locally Removed            67 
+ mem_dep_unit.cc           Locally Removed            67 
+ thread_context_impl.hh    Locally Removed            67 
+ FUPool.py                 Locally Removed            67 
+ impl.hh                   Locally Removed            67 
+ rob.cc                    Locally Removed            67 
+ decode.cc                 Locally Removed            67 
+ sat_counter.cc            Locally Removed            67 
+ isa_specific.hh           Locally Removed            67 
+ O3CPU.py                  Locally Removed            67 
+ dyn_inst.hh               Locally Removed            67 
+ dep_graph.hh              Locally Removed            67 
+ rename_map.cc             Locally Removed            67 
+ comm.hh                   Locally Removed            67 
+ store_set.cc              Locally Removed            67 
+ rename.cc                 Locally Removed            67 
+ lsq.hh                    Locally Removed            67 
+ checker_builder.cc        Locally Removed            67 
+ inst_queue_impl.hh        Locally Removed            67 
+ free_list.cc              Locally Removed            67 
+ rob_impl.hh               Locally Removed            67 
+ fu_pool.hh                Locally Removed            67 
+ mem_dep_unit.hh           Locally Removed            67 
+ iew_impl.hh               Locally Removed            67 
+ thread_state.hh           Locally Removed            67 
+ inst_queue.cc             Locally Removed            67 
+ dyn_inst_impl.hh          Locally Removed            67 
+ scoreboard.cc             Locally Removed            67 
+ commit_impl.hh            Locally Removed            67 
+ regfile.hh                Locally Removed            67 
+ lsq_impl.hh               Locally Removed            67 
+ bpred_unit.cc             Locally Removed            67 
+ rob.hh                    Locally Removed            67 
+ cpu_builder.cc            Locally Removed            67 
+ decode.hh                 Locally Removed            67 
+ lsq_unit.cc               Locally Removed            67 
+ sat_counter.hh            Locally Removed            67 
+ O3Checker.py              Locally Removed            67 
+ thread_context.cc         Locally Removed            67 
+ rename_map.hh             Locally Removed            67 
+ decode_impl.hh            Locally Removed            67 
+ rename.hh                 Locally Removed            67 
+ store_set.hh              Locally Removed            67 
+ iew.cc                    Locally Removed            67 
+ FuncUnitConfig.py         Locally Removed            67 
+ fetch_impl.hh             Locally Removed            67 
+ free_list.hh              Locally Removed            67 
+ cpu.cc                    Locally Removed            67 
+ commit.cc                 Locally Removed            67 
+ lsq_unit_impl.hh          Locally Removed            67 
+ fetch.cc                  Locally Removed            67 
+ inst_queue.hh             Locally Removed            67 
+ scoreboard.hh             Locally Removed            67 
+ rename_impl.hh            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ bpred_unit.hh             Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ lsq_unit.hh               Locally Removed            67 
+ cpu_policy.hh             Locally Removed            67 
+ base_dyn_inst.cc          Locally Removed            67 
+ thread_context.hh         Locally Removed            67 
+ bpred_unit_impl.hh        Locally Removed            67 
+ dyn_inst.cc               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ FuncUnit.py               Locally Removed            67 
+ quiesce_event.cc          Locally Removed            67 
+ nocpu/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/nocpu
+ SConsopts                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ m5legion_interface.h      Locally Removed            67 
+ pc_event.cc               Locally Removed            67 
+ inteltrace.hh             Locally Removed            67 
+ timebuf.hh                Locally Removed            67 
+ thread_state.cc           Locally Removed            67 
+ exetrace.hh               Locally Removed            67 
+ profile.hh                Locally Removed            67 
+ checker/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/checker
+ cpu.hh                    Locally Removed            67 
+ cpu_impl.hh               Locally Removed            67 
+ thread_context.hh         Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ cpu.cc                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ IntrControl.py            Locally Removed            67 
+ decode.cc                 Locally Removed            67 
+ base.hh                   Locally Removed            67 
+ simple_thread.hh          Locally Removed            67 
+ sched_list.hh             Locally Removed            67 
+ base_dyn_inst.hh          Locally Removed            67 
+ legiontrace.cc            Locally Removed            67 
+ static_inst.hh            Locally Removed            67 
+ LegionTrace.py            Locally Removed            67 
+ cpuevent.hh               Locally Removed            67 
+ func_unit.hh              Locally Removed            67 
+ testers/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers
+ rubytest/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers/rubytest
+ RubyTester.py             Locally Removed            67 
+ Check.cc                  Locally Removed            67 
+ CheckTable.hh             Locally Removed            67 
+ RubyTester.hh             Locally Removed            67 
+ SConscript                Locally Removed            67 
+ CheckTable.cc             Locally Removed            67 
+ Check.hh                  Locally Removed            67 
+ RubyTester.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers
+ directedtest/             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers/directedtest
+ RubyDirectedTester.cc     Locally Removed            67 
+ RubyDirectedTester.py     Locally Removed            67 
+ InvalidateGenerator.hh    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ DirectedGenerator.hh      Locally Removed            67 
+ SeriesRequestGenerator.hh Locally Removed            67 
+ RubyDirectedTester.hh     Locally Removed            67 
+ InvalidateGenerator.cc    Locally Removed            67 
+ DirectedGenerator.cc      Locally Removed            67 
+ SeriesRequestGenerator.cc Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers
+ networktest/              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers/networktest
+ NetworkTest.py            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ networktest.hh            Locally Removed            67 
+ networktest.cc            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers
+ memtest/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/testers/memtest
+ memtest.cc                Locally Removed            67 
+ MemTest.py                Locally Removed            67 
+ SConscript                Locally Removed            67 
+ memtest.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ nativetrace.cc            Locally Removed            67 
+ NativeTrace.py            Locally Removed            67 
+ translation.hh            Locally Removed            67 
+ quiesce_event.hh          Locally Removed            67 
+ pc_event.hh               Locally Removed            67 
+ smt.hh                    Locally Removed            67 
+ decode_cache.hh           Locally Removed            67 
+ thread_state.hh           Locally Removed            67 
+ ExeTracer.py              Locally Removed            67 
+ activity.cc               Locally Removed            67 
+ decode.hh                 Locally Removed            67 
+ static_inst_fwd.hh        Locally Removed            67 
+ simple/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/simple
+ TimingSimpleCPU.py        Locally Removed            67 
+ atomic.cc                 Locally Removed            67 
+ BaseSimpleCPU.py          Locally Removed            67 
+ AtomicSimpleCPU.py        Locally Removed            67 
+ timing.hh                 Locally Removed            67 
+ SConscript                Locally Removed            67 
+ base.hh                   Locally Removed            67 
+ atomic.hh                 Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ timing.cc                 Locally Removed            67 
+ base.cc                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ legiontrace.hh            Locally Removed            67 
+ pred/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/pred
+ tournament.cc             Locally Removed            67 
+ ras.hh                    Locally Removed            67 
+ btb.hh                    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ 2bit_local.hh             Locally Removed            67 
+ ras.cc                    Locally Removed            67 
+ tournament.hh             Locally Removed            67 
+ btb.cc                    Locally Removed            67 
+ 2bit_local.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ thread_context.cc         Locally Removed            67 
+ intr_control.cc           Locally Removed            67 
+ inorder/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/inorder
+ pipeline_traits.5stage.hh Locally Removed            67 
+ pipeline_traits.9stage.hh Locally Removed            67 
+ resource.hh               Locally Removed            67 
+ cpu.hh                    Locally Removed            67 
+ reg_dep_map.cc            Locally Removed            67 
+ resource_sked.hh          Locally Removed            67 
+ thread_state.cc           Locally Removed            67 
+ inorder_dyn_inst.cc       Locally Removed            67 
+ pipeline_traits.9stage.smt2.cc Locally Removed            67 
+ first_stage.cc            Locally Removed            67 
+ thread_context.cc         Locally Removed            67 
+ InOrderCPU.py             Locally Removed            67 
+ inorder_cpu_builder.cc    Locally Removed            67 
+ pipeline_traits.5stage.cc Locally Removed            67 
+ InOrderTrace.py           Locally Removed            67 
+ pipeline_traits.9stage.cc Locally Removed            67 
+ resource.cc               Locally Removed            67 
+ cpu.cc                    Locally Removed            67 
+ resource_pool.hh          Locally Removed            67 
+ inorder_trace.hh          Locally Removed            67 
+ resource_sked.cc          Locally Removed            67 
+ params.hh                 Locally Removed            67 
+ pipeline_stage.hh         Locally Removed            67 
+ SConscript                Locally Removed            67 
+ pipeline_traits.hh        Locally Removed            67 
+ comm.hh                   Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ resource_pool.9stage.cc   Locally Removed            67 
+ reg_dep_map.hh            Locally Removed            67 
+ inorder_trace.cc          Locally Removed            67 
+ resource_pool.cc          Locally Removed            67 
+ thread_state.hh           Locally Removed            67 
+ inorder_dyn_inst.hh       Locally Removed            67 
+ pipeline_traits.9stage.smt2.hh Locally Removed            67 
+ first_stage.hh            Locally Removed            67 
+ thread_context.hh         Locally Removed            67 
+ resources/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/inorder/resources
+ bpred_unit.cc             Locally Removed            67 
+ decode_unit.hh            Locally Removed            67 
+ graduation_unit.cc        Locally Removed            67 
+ mult_div_unit.hh          Locally Removed            67 
+ resource_list.hh          Locally Removed            67 
+ fetch_seq_unit.cc         Locally Removed            67 
+ fetch_unit.hh             Locally Removed            67 
+ execution_unit.cc         Locally Removed            67 
+ cache_unit.cc             Locally Removed            67 
+ bpred_unit.hh             Locally Removed            67 
+ graduation_unit.hh        Locally Removed            67 
+ inst_buffer.cc            Locally Removed            67 
+ branch_predictor.cc       Locally Removed            67 
+ agen_unit.cc              Locally Removed            67 
+ use_def.cc                Locally Removed            67 
+ fetch_seq_unit.hh         Locally Removed            67 
+ execution_unit.hh         Locally Removed            67 
+ cache_unit.hh             Locally Removed            67 
+ mem_dep_unit.hh           Locally Removed            67 
+ inst_buffer.hh            Locally Removed            67 
+ tlb_unit.cc               Locally Removed            67 
+ decode_unit.cc            Locally Removed            67 
+ branch_predictor.hh       Locally Removed            67 
+ mult_div_unit.cc          Locally Removed            67 
+ agen_unit.hh              Locally Removed            67 
+ use_def.hh                Locally Removed            67 
+ fetch_unit.cc             Locally Removed            67 
+ tlb_unit.hh               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/inorder
+ pipeline_stage.cc         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ nativetrace.hh            Locally Removed            67 
+ BaseCPU.py                Locally Removed            67 
+ inteltrace.cc             Locally Removed            67 
+ IntelTrace.py             Locally Removed            67 
+ inst_seq.hh               Locally Removed            67 
+ profile.cc                Locally Removed            67 
+ exetrace.cc               Locally Removed            67 
+ exec_context.hh           Locally Removed            67 
+ SConscript                Locally Removed            67 
+ activity.hh               Locally Removed            67 
+ ozone/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/ozone
+ bpred_unit.cc             Locally Removed            67 
+ cpu_builder.cc            Locally Removed            67 
+ lsq_unit.cc               Locally Removed            67 
+ null_predictor.hh         Locally Removed            67 
+ back_end.hh               Locally Removed            67 
+ cpu.hh                    Locally Removed            67 
+ inorder_back_end_impl.hh  Locally Removed            67 
+ OzoneCPU.py               Locally Removed            67 
+ rename_table_impl.hh      Locally Removed            67 
+ lw_lsq.hh                 Locally Removed            67 
+ front_end.cc              Locally Removed            67 
+ ea_list.cc                Locally Removed            67 
+ inorder_back_end.hh       Locally Removed            67 
+ cpu_impl.hh               Locally Removed            67 
+ lw_back_end_impl.hh       Locally Removed            67 
+ simple_impl.hh            Locally Removed            67 
+ back_end.cc               Locally Removed            67 
+ cpu.cc                    Locally Removed            67 
+ rename_table.hh           Locally Removed            67 
+ lsq_unit_impl.hh          Locally Removed            67 
+ simple_base_dyn_inst.cc   Locally Removed            67 
+ inst_queue.hh             Locally Removed            67 
+ ozone_base_dyn_inst.cc    Locally Removed            67 
+ lw_lsq_impl.hh            Locally Removed            67 
+ dyn_inst.hh               Locally Removed            67 
+ lw_lsq.cc                 Locally Removed            67 
+ lw_back_end.hh            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ simple_cpu_builder.cc     Locally Removed            67 
+ simple_params.hh          Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ lsq_unit.hh               Locally Removed            67 
+ inorder_back_end.cc       Locally Removed            67 
+ front_end_impl.hh         Locally Removed            67 
+ checker_builder.cc        Locally Removed            67 
+ inst_queue_impl.hh        Locally Removed            67 
+ rename_table.cc           Locally Removed            67 
+ SimpleOzoneCPU.py         Locally Removed            67 
+ inst_queue.cc             Locally Removed            67 
+ back_end_impl.hh          Locally Removed            67 
+ base_dyn_inst.cc          Locally Removed            67 
+ thread_state.hh           Locally Removed            67 
+ dyn_inst_impl.hh          Locally Removed            67 
+ OzoneChecker.py           Locally Removed            67 
+ ozone_impl.hh             Locally Removed            67 
+ dyn_inst.cc               Locally Removed            67 
+ front_end.hh              Locally Removed            67 
+ lw_back_end.cc            Locally Removed            67 
+ ea_list.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ base.cc                   Locally Removed            67 
+ trace/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/trace
+ reader/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/trace/reader
+ m5_reader.hh              Locally Removed            67 
+ itx_reader.hh             Locally Removed            67 
+ ibm_reader.hh             Locally Removed            67 
+ m5_reader.cc              Locally Removed            67 
+ itx_reader.cc             Locally Removed            67 
+ mem_trace_reader.hh       Locally Removed            67 
+ ibm_reader.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu/trace
+ trace_cpu.hh              Locally Removed            67 
+ SConscript                Locally Removed            67 
+ opt_cpu.hh                Locally Removed            67 
+ trace_cpu.cc              Locally Removed            67 
+ opt_cpu.cc                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/cpu
+ base_dyn_inst_impl.hh     Locally Removed            67 
+ op_class.hh               Locally Removed            67 
+ CheckerCPU.py             Locally Removed            67 
+ simple_thread.cc          Locally Removed            67 
+ static_inst.cc            Locally Removed            67 
+ thread_context.hh         Locally Removed            67 
+ intr_control.hh           Locally Removed            67 
+ cpuevent.cc               Locally Removed            67 
+ func_unit.cc              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ SConscript                Locally Removed            67 
+ sim/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/sim
+ tlb.hh                    Locally Removed            67 
+ pseudo_inst.cc            Locally Removed            67 
+ serialize.hh              Locally Removed            67 
+ eventq.cc                 Locally Removed            67 
+ init.cc                   Locally Removed            67 
+ vptr.hh                   Locally Removed            67 
+ syscall_emul.hh           Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ byteswap.hh               Locally Removed            67 
+ stats.hh                  Locally Removed            67 
+ process_impl.hh           Locally Removed            67 
+ stat_control.cc           Locally Removed            67 
+ async.cc                  Locally Removed            67 
+ sim_object.cc             Locally Removed            67 
+ arguments.hh              Locally Removed            67 
+ BaseTLB.py                Locally Removed            67 
+ full_system.hh            Locally Removed            67 
+ Process.py                Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ main.cc                   Locally Removed            67 
+ fault_fwd.hh              Locally Removed            67 
+ Root.py                   Locally Removed            67 
+ sim_events.hh             Locally Removed            67 
+ System.py                 Locally Removed            67 
+ serialize.cc              Locally Removed            67 
+ process.hh                Locally Removed            67 
+ insttracer.hh             Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ sim_exit.hh               Locally Removed            67 
+ syscall_emul.cc           Locally Removed            67 
+ simulate.hh               Locally Removed            67 
+ root.hh                   Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ debug.hh                  Locally Removed            67 
+ core.hh                   Locally Removed            67 
+ SConscript                Locally Removed            67 
+ arguments.cc              Locally Removed            67 
+ pseudo_inst.hh            Locally Removed            67 
+ eventq.hh                 Locally Removed            67 
+ sim_events.cc             Locally Removed            67 
+ init.hh                   Locally Removed            67 
+ process.cc                Locally Removed            67 
+ InstTracer.py             Locally Removed            67 
+ root.cc                   Locally Removed            67 
+ simulate.cc               Locally Removed            67 
+ syscallreturn.hh          Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ stat_control.hh           Locally Removed            67 
+ debug.cc                  Locally Removed            67 
+ async.hh                  Locally Removed            67 
+ core.cc                   Locally Removed            67 
+ sim_object.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ base/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base
+ misc.cc                   Locally Removed            67 
+ cp_annotate.cc            Locally Removed            67 
+ fenv.c                    Locally Removed            67 
+ range.cc                  Locally Removed            67 
+ match.cc                  Locally Removed            67 
+ bitfield.hh               Locally Removed            67 
+ stl_helpers.hh            Locally Removed            67 
+ time.cc                   Locally Removed            67 
+ inet.cc                   Locally Removed            67 
+ vnc/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base/vnc
+ vncserver.cc              Locally Removed            67 
+ VncServer.py              Locally Removed            67 
+ convert.cc                Locally Removed            67 
+ SConscript                Locally Removed            67 
+ vncserver.hh              Locally Removed            67 
+ convert.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base
+ cast.hh                   Locally Removed            67 
+ atomicio.cc               Locally Removed            67 
+ flags.hh                  Locally Removed            67 
+ fast_alloc.cc             Locally Removed            67 
+ fenv.hh                   Locally Removed            67 
+ circlebuf.hh              Locally Removed            67 
+ trace.hh                  Locally Removed            67 
+ output.hh                 Locally Removed            67 
+ bigint.cc                 Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ varargs.hh                Locally Removed            67 
+ random_mt.cc              Locally Removed            67 
+ random.cc                 Locally Removed            67 
+ pollevent.hh              Locally Removed            67 
+ range_ops.hh              Locally Removed            67 
+ socket.cc                 Locally Removed            67 
+ hashmap.hh                Locally Removed            67 
+ callback.cc               Locally Removed            67 
+ debug.hh                  Locally Removed            67 
+ range_map.hh              Locally Removed            67 
+ cp_annotate.hh            Locally Removed            67 
+ misc.hh                   Locally Removed            67 
+ cprintf.cc                Locally Removed            67 
+ range.hh                  Locally Removed            67 
+ match.hh                  Locally Removed            67 
+ CPA.py                    Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ time.hh                   Locally Removed            67 
+ inet.hh                   Locally Removed            67 
+ atomicio.hh               Locally Removed            67 
+ inifile.cc                Locally Removed            67 
+ fast_alloc.hh             Locally Removed            67 
+ bigint.hh                 Locally Removed            67 
+ chunk_generator.hh        Locally Removed            67 
+ hostinfo.cc               Locally Removed            67 
+ statistics.cc             Locally Removed            67 
+ random.hh                 Locally Removed            67 
+ printable.hh              Locally Removed            67 
+ userinfo.cc               Locally Removed            67 
+ refcnt.hh                 Locally Removed            67 
+ bitunion.hh               Locally Removed            67 
+ socket.hh                 Locally Removed            67 
+ intmath.cc                Locally Removed            67 
+ callback.hh               Locally Removed            67 
+ str.cc                    Locally Removed            67 
+ condcodes.hh              Locally Removed            67 
+ bitmap.cc                 Locally Removed            67 
+ cprintf.hh                Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ inifile.hh                Locally Removed            67 
+ trace.cc                  Locally Removed            67 
+ circlebuf.cc              Locally Removed            67 
+ output.cc                 Locally Removed            67 
+ hostinfo.hh               Locally Removed            67 
+ SConscript                Locally Removed            67 
+ statistics.hh             Locally Removed            67 
+ userinfo.hh               Locally Removed            67 
+ pollevent.cc              Locally Removed            67 
+ mod_num.hh                Locally Removed            67 
+ stats/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base/stats
+ text.hh                   Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ text.cc                   Locally Removed            67 
+ info.hh                   Locally Removed            67 
+ output.hh                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base
+ cprintf_formats.hh        Locally Removed            67 
+ date.cc                   Locally Removed            67 
+ intmath.hh                Locally Removed            67 
+ loader/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base/loader
+ elf_object.cc             Locally Removed            67 
+ hex_file.hh               Locally Removed            67 
+ aout_object.cc            Locally Removed            67 
+ symtab.cc                 Locally Removed            67 
+ object_file.cc            Locally Removed            67 
+ elf_object.hh             Locally Removed            67 
+ coff_sym.h                Locally Removed            67 
+ ecoff_object.cc           Locally Removed            67 
+ aout_object.hh            Locally Removed            67 
+ symtab.hh                 Locally Removed            67 
+ exec_aout.h               Locally Removed            67 
+ coff_symconst.h           Locally Removed            67 
+ raw_object.cc             Locally Removed            67 
+ object_file.hh            Locally Removed            67 
+ ecoff_object.hh           Locally Removed            67 
+ hex_file.cc               Locally Removed            67 
+ exec_ecoff.h              Locally Removed            67 
+ raw_object.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/base
+ str.hh                    Locally Removed            67 
+ compiler.hh               Locally Removed            67 
+ bitmap.hh                 Locally Removed            67 
+ debug.cc                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ arch/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ arm/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm
+ tlb.hh                    Locally Removed            67 
+ table_walker.cc           Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ kernel_stats.hh           Locally Removed            67 
+ ArmNativeTrace.py         Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ predecoder.cc             Locally Removed            67 
+ isa.cc                    Locally Removed            67 
+ utility.hh                Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ nativetrace.hh            Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ ArmTLB.py                 Locally Removed            67 
+ stacktrace.cc             Locally Removed            67 
+ intregs.hh                Locally Removed            67 
+ miscregs.hh               Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ process.hh                Locally Removed            67 
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa
+ main.isa                  Locally Removed            67 
+ insts/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa/insts
+ fp.isa                    Locally Removed            67 
+ str.isa                   Locally Removed            67 
+ data.isa                  Locally Removed            67 
+ swap.isa                  Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ mult.isa                  Locally Removed            67 
+ ldr.isa                   Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+ div.isa                   Locally Removed            67 
+ misc.isa                  Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ neon.isa                  Locally Removed            67 
+ macromem.isa              Locally Removed            67 
+ insts.isa                 Locally Removed            67 
+ m5ops.isa                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa
+ bitfields.isa             Locally Removed            67 
+ includes.isa              Locally Removed            67 
+ decoder/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa/decoder
+ decoder.isa               Locally Removed            67 
+ arm.isa                   Locally Removed            67 
+ thumb.isa                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa
+ copyright.txt             Locally Removed            67 
+ operands.isa              Locally Removed            67 
+ formats/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa/formats
+ fp.isa                    Locally Removed            67 
+ data.isa                  Locally Removed            67 
+ formats.isa               Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ mult.isa                  Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+ uncond.isa                Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ pred.isa                  Locally Removed            67 
+ misc.isa                  Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ breakpoint.isa            Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+ macromem.isa              Locally Removed            67 
+ m5ops.isa                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa
+ templates/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/isa/templates
+ pred.isa                  Locally Removed            67 
+ misc.isa                  Locally Removed            67 
+ vfp.isa                   Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ templates.isa             Locally Removed            67 
+ neon.isa                  Locally Removed            67 
+ macromem.isa              Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+ mult.isa                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm
+ interrupts.hh             Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ SConscript                Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ nativetrace.cc            Locally Removed            67 
+ table_walker.hh           Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/linux
+ process.cc                Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ atag.hh                   Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm
+ insts/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm/insts
+ misc.cc                   Locally Removed            67 
+ mult.hh                   Locally Removed            67 
+ vfp.cc                    Locally Removed            67 
+ mem.cc                    Locally Removed            67 
+ static_inst.hh            Locally Removed            67 
+ macromem.cc               Locally Removed            67 
+ pred_inst.hh              Locally Removed            67 
+ static_inst.cc            Locally Removed            67 
+ misc.hh                   Locally Removed            67 
+ vfp.hh                    Locally Removed            67 
+ branch.hh                 Locally Removed            67 
+ pred_inst.cc              Locally Removed            67 
+ mem.hh                    Locally Removed            67 
+ macromem.hh               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/arm
+ miscregs.cc               Locally Removed            67 
+ isa_traits.hh             Locally Removed            67 
+ vtophys.cc                Locally Removed            67 
+ process.cc                Locally Removed            67 
+ interrupts.cc             Locally Removed            67 
+ ArmInterrupts.py          Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ ArmSystem.py              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ isa_parser.py             Locally Removed            67 
+ micro_asm_test.py         Locally Removed            67 
+ micro_asm.py              Locally Removed            67 
+ alpha/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha
+ tlb.hh                    Locally Removed            67 
+ AlphaSystem.py            Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ tru64/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha/tru64
+ process.cc                Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ tru64.hh                  Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ tru64.cc                  Locally Removed            67 
+ process.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha
+ regredir.cc               Locally Removed            67 
+ ecoff_machdep.h           Locally Removed            67 
+ kernel_stats.hh           Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ kgdb.h                    Locally Removed            67 
+ ev5.hh                    Locally Removed            67 
+ isa.cc                    Locally Removed            67 
+ utility.hh                Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ idle_event.cc             Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ stacktrace.cc             Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ freebsd/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha/freebsd
+ system.hh                 Locally Removed            67 
+ system.cc                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha
+ process.hh                Locally Removed            67 
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha/isa
+ main.isa                  Locally Removed            67 
+ decoder.isa               Locally Removed            67 
+ fp.isa                    Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ int.isa                   Locally Removed            67 
+ pal.isa                   Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ opcdec.isa                Locally Removed            67 
+ util.isa                  Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha
+ interrupts.hh             Locally Removed            67 
+ mt.hh                     Locally Removed            67 
+ AlphaTLB.py               Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ aout_machdep.h            Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ kernel_stats.cc           Locally Removed            67 
+ osfpal.hh                 Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ ev5.cc                    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ ipr.hh                    Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha/linux
+ threadinfo.hh             Locally Removed            67 
+ process.cc                Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/alpha
+ isa_traits.hh             Locally Removed            67 
+ vtophys.cc                Locally Removed            67 
+ regredir.hh               Locally Removed            67 
+ process.cc                Locally Removed            67 
+ interrupts.cc             Locally Removed            67 
+ osfpal.cc                 Locally Removed            67 
+ pagetable.cc              Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ AlphaInterrupts.py        Locally Removed            67 
+ idle_event.hh             Locally Removed            67 
+ ipr.cc                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ x86/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ tlb.hh                    Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ X86LocalApic.py           Locally Removed            67 
+ pagetable_walker.hh       Locally Removed            67 
+ bios/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/bios
+ IntelMP.py                Locally Removed            67 
+ acpi.cc                   Locally Removed            67 
+ smbios.cc                 Locally Removed            67 
+ e820.cc                   Locally Removed            67 
+ ACPI.py                   Locally Removed            67 
+ SMBios.py                 Locally Removed            67 
+ E820.py                   Locally Removed            67 
+ intelmp.hh                Locally Removed            67 
+ SConscript                Locally Removed            67 
+ acpi.hh                   Locally Removed            67 
+ smbios.hh                 Locally Removed            67 
+ e820.hh                   Locally Removed            67 
+ intelmp.cc                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ kernel_stats.hh           Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ memhelpers.hh             Locally Removed            67 
+ regs/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/regs
+ msr.hh                    Locally Removed            67 
+ segment.hh                Locally Removed            67 
+ float.hh                  Locally Removed            67 
+ msr.cc                    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ int.hh                    Locally Removed            67 
+ misc.hh                   Locally Removed            67 
+ apic.hh                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ isa.cc                    Locally Removed            67 
+ predecoder.cc             Locally Removed            67 
+ utility.hh                Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ cpuid.hh                  Locally Removed            67 
+ nativetrace.hh            Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ stacktrace.cc             Locally Removed            67 
+ emulenv.hh                Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ process.hh                Locally Removed            67 
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa
+ main.isa                  Locally Removed            67 
+ insts/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts
+ romutil.py                Locally Removed            67 
+ system/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/system
+ halt.py                   Locally Removed            67 
+ segmentation.py           Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ invlpg.py                 Locally Removed            67 
+ undefined_operation.py    Locally Removed            67 
+ msrs.py                   Locally Removed            67 
+ control_registers.py      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts
+ simd64/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64
+ __init__.py               Locally Removed            67 
+ floating_point/           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/floating_point
+ data_conversion.py        Locally Removed            67 
+ compare/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/floating_point/compare
+ compare_and_write_minimum_or_maximum.py Locally Removed            67 
+ compare_and_write_mask.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/floating_point
+ __init__.py               Locally Removed            67 
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/floating_point/arithmetic
+ addition.py               Locally Removed            67 
+ multiplication.py         Locally Removed            67 
+ subtraction.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ reciprocal_estimation.py  Locally Removed            67 
+ accumulation.py           Locally Removed            67 
+ reciprocal_square_root.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64
+ integer/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ exit_media_state.py       Locally Removed            67 
+ data_conversion.py        Locally Removed            67 
+ compare/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/compare
+ compare_and_write_minimum_or_maximum.py Locally Removed            67 
+ compare_and_write_mask.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ __init__.py               Locally Removed            67 
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/arithmetic
+ average.py                Locally Removed            67 
+ addition.py               Locally Removed            67 
+ multiplication.py         Locally Removed            67 
+ subtraction.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ sum_of_absolute_differences.py Locally Removed            67 
+ multiply_add.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ data_reordering/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/data_reordering
+ shuffle_and_swap.py       Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ extract_and_insert.py     Locally Removed            67 
+ unpack_and_interleave.py  Locally Removed            67 
+ pack_with_saturation.py   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ logical/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/logical
+ __init__.py               Locally Removed            67 
+ por.py                    Locally Removed            67 
+ pand.py                   Locally Removed            67 
+ exclusive_or.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ save_and_restore_state.py Locally Removed            67 
+ data_transfer/            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/data_transfer
+ __init__.py               Locally Removed            67 
+ move_mask.py              Locally Removed            67 
+ move_non_temporal.py      Locally Removed            67 
+ move.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer
+ shift/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd64/integer/shift
+ __init__.py               Locally Removed            67 
+ left_logical_shift.py     Locally Removed            67 
+ right_arithmetic_shift.py Locally Removed            67 
+ right_logical_shift.py    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts
+ x87/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ control/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/control
+ wait_for_exceptions.py    Locally Removed            67 
+ save_and_restore_x87_environment.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ initialize.py             Locally Removed            67 
+ save_x87_status_word.py   Locally Removed            67 
+ save_and_restore_x87_control_word.py Locally Removed            67 
+ clear_exceptions.py       Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ stack_management/         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/stack_management
+ __init__.py               Locally Removed            67 
+ stack_control.py          Locally Removed            67 
+ clear_state.py            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ no_operation.py           Locally Removed            67 
+ data_transfer_and_conversion/ Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/data_transfer_and_conversion
+ conditional_move.py       Locally Removed            67 
+ convert_and_load_or_store_integer.py Locally Removed            67 
+ extract.py                Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ exchange.py               Locally Removed            67 
+ convert_and_load_or_store_bcd.py Locally Removed            67 
+ load_or_store_floating_point.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ __init__.py               Locally Removed            67 
+ compare_and_test/         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/compare_and_test
+ floating_point_unordered_compare.py Locally Removed            67 
+ classify.py               Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ test.py                   Locally Removed            67 
+ integer_compare.py        Locally Removed            67 
+ floating_point_ordered_compare.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/arithmetic
+ addition.py               Locally Removed            67 
+ multiplication.py         Locally Removed            67 
+ subtraction.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ partial_remainder.py      Locally Removed            67 
+ square_root.py            Locally Removed            67 
+ division.py               Locally Removed            67 
+ change_sign.py            Locally Removed            67 
+ round.py                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ load_constants/           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/load_constants
+ __init__.py               Locally Removed            67 
+ load_logarithm.py         Locally Removed            67 
+ load_0_1_or_pi.py         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87
+ transcendental_functions/ Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/x87/transcendental_functions
+ logarithmic_functions.py  Locally Removed            67 
+ trigonometric_functions.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts
+ __init__.py               Locally Removed            67 
+ simd128/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128
+ __init__.py               Locally Removed            67 
+ floating_point/           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ compare/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/compare
+ compare_and_write_minimum_or_maximum.py Locally Removed            67 
+ compare_and_write_mask.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ compare_and_write_rflags.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ __init__.py               Locally Removed            67 
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/arithmetic
+ addition.py               Locally Removed            67 
+ multiplication.py         Locally Removed            67 
+ subtraction.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ reciprocal_estimation.py  Locally Removed            67 
+ simultaneous_addition_and_subtraction.py Locally Removed            67 
+ square_root.py            Locally Removed            67 
+ division.py               Locally Removed            67 
+ horizontal_addition.py    Locally Removed            67 
+ horizontal_subtraction.py Locally Removed            67 
+ reciprocal_square_root.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ data_reordering/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/data_reordering
+ shuffle.py                Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ unpack_and_interleave.py  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ logical/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/logical
+ __init__.py               Locally Removed            67 
+ orp.py                    Locally Removed            67 
+ andp.py                   Locally Removed            67 
+ exclusive_or.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ data_transfer/            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/data_transfer
+ move_with_duplication.py  Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ move_mask.py              Locally Removed            67 
+ move_non_temporal.py      Locally Removed            67 
+ move.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point
+ data_conversion/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/floating_point/data_conversion
+ convert_floating_point_to_floating_point.py Locally Removed            67 
+ convert_floating_point_to_mmx_integer.py Locally Removed            67 
+ convert_floating_point_to_xmm_integer.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ convert_floating_point_to_gpr_integer.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128
+ integer/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ save_and_restore_state/   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/save_and_restore_state
+ save_and_restore_control_and_status.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ save_and_restore_state.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ compare/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/compare
+ compare_and_write_minimum_or_maximum.py Locally Removed            67 
+ compare_and_write_mask.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ __init__.py               Locally Removed            67 
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/arithmetic
+ average.py                Locally Removed            67 
+ addition.py               Locally Removed            67 
+ multiplication.py         Locally Removed            67 
+ subtraction.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ sum_of_absolute_differences.py Locally Removed            67 
+ multiply_add.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ data_reordering/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/data_reordering
+ shuffle.py                Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ extract_and_insert.py     Locally Removed            67 
+ unpack_and_interleave.py  Locally Removed            67 
+ pack_with_saturation.py   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ logical/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/logical
+ __init__.py               Locally Removed            67 
+ por.py                    Locally Removed            67 
+ pand.py                   Locally Removed            67 
+ exclusive_or.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ data_transfer/            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/data_transfer
+ __init__.py               Locally Removed            67 
+ move_mask.py              Locally Removed            67 
+ move_non_temporal.py      Locally Removed            67 
+ move.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ shift/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/shift
+ __init__.py               Locally Removed            67 
+ left_logical_shift.py     Locally Removed            67 
+ right_arithmetic_shift.py Locally Removed            67 
+ right_logical_shift.py    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer
+ data_conversion/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/simd128/integer/data_conversion
+ convert_integer_to_floating_point.py Locally Removed            67 
+ convert_mmx_integer_to_floating_point.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ convert_gpr_integer_to_floating_point.py Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts
+ general_purpose/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ load_segment_registers.py Locally Removed            67 
+ input_output/             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/input_output
+ string_io.py              Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ general_io.py             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ no_operation.py           Locally Removed            67 
+ control_transfer/         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/control_transfer
+ loop.py                   Locally Removed            67 
+ call.py                   Locally Removed            67 
+ jump.py                   Locally Removed            67 
+ conditional_jump.py       Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ interrupts_and_exceptions.py Locally Removed            67 
+ xreturn.py                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ __init__.py               Locally Removed            67 
+ system_calls.py           Locally Removed            67 
+ arithmetic/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/arithmetic
+ increment_and_decrement.py Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ add_and_subtract.py       Locally Removed            67 
+ multiply_and_divide.py    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ load_effective_address.py Locally Removed            67 
+ flags/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/flags
+ load_and_store.py         Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ push_and_pop.py           Locally Removed            67 
+ set_and_clear.py          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ semaphores.py             Locally Removed            67 
+ cache_and_memory_management.py Locally Removed            67 
+ logical.py                Locally Removed            67 
+ string/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/string
+ scan_string.py            Locally Removed            67 
+ move_string.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ compare_strings.py        Locally Removed            67 
+ store_string.py           Locally Removed            67 
+ load_string.py            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ compare_and_test/         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/compare_and_test
+ bounds.py                 Locally Removed            67 
+ bit_test.py               Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ test.py                   Locally Removed            67 
+ set_byte_on_condition.py  Locally Removed            67 
+ bit_scan.py               Locally Removed            67 
+ compare.py                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ rotate_and_shift/         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/rotate_and_shift
+ shift.py                  Locally Removed            67 
+ rotate.py                 Locally Removed            67 
+ __init__.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ data_transfer/            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/data_transfer
+ stack_operations.py       Locally Removed            67 
+ conditional_move.py       Locally Removed            67 
+ xchg.py                   Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ move.py                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose
+ data_conversion/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/insts/general_purpose/data_conversion
+ sign_extension.py         Locally Removed            67 
+ translate.py              Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ ascii_adjust.py           Locally Removed            67 
+ bcd_adjust.py             Locally Removed            67 
+ endian_conversion.py      Locally Removed            67 
+ extract_sign_mask.py      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa
+ bitfields.isa             Locally Removed            67 
+ includes.isa              Locally Removed            67 
+ specialize.isa            Locally Removed            67 
+ decoder/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/decoder
+ decoder.isa               Locally Removed            67 
+ three_byte_opcodes.isa    Locally Removed            67 
+ x87.isa                   Locally Removed            67 
+ two_byte_opcodes.isa      Locally Removed            67 
+ locked_opcodes.isa        Locally Removed            67 
+ one_byte_opcodes.isa      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa
+ microasm.isa              Locally Removed            67 
+ operands.isa              Locally Removed            67 
+ outputblock.isa           Locally Removed            67 
+ rom.isa                   Locally Removed            67 
+ formats/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/formats
+ cpuid.isa                 Locally Removed            67 
+ string.isa                Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ error.isa                 Locally Removed            67 
+ multi.isa                 Locally Removed            67 
+ syscall.isa               Locally Removed            67 
+ formats.isa               Locally Removed            67 
+ nop.isa                   Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa
+ microops/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa/microops
+ fpop.isa                  Locally Removed            67 
+ ldstop.isa                Locally Removed            67 
+ debug.isa                 Locally Removed            67 
+ seqop.isa                 Locally Removed            67 
+ specop.isa                Locally Removed            67 
+ base.isa                  Locally Removed            67 
+ microops.isa              Locally Removed            67 
+ regop.isa                 Locally Removed            67 
+ limmop.isa                Locally Removed            67 
+ mediaop.isa               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/isa
+ macroop.isa               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ pagetable_walker.cc       Locally Removed            67 
+ interrupts.hh             Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ X86System.py              Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ SConscript                Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ cpuid.cc                  Locally Removed            67 
+ types.cc                  Locally Removed            67 
+ nativetrace.cc            Locally Removed            67 
+ predecoder_tables.cc      Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ intmessage.hh             Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/linux
+ syscalls.cc               Locally Removed            67 
+ process.cc                Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ emulenv.cc                Locally Removed            67 
+ insts/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86/insts
+ static_inst.hh            Locally Removed            67 
+ microfpop.cc              Locally Removed            67 
+ microldstop.cc            Locally Removed            67 
+ microregop.cc             Locally Removed            67 
+ microop.cc                Locally Removed            67 
+ micromediaop.cc           Locally Removed            67 
+ microfpop.hh              Locally Removed            67 
+ microldstop.hh            Locally Removed            67 
+ macroop.hh                Locally Removed            67 
+ badmicroop.cc             Locally Removed            67 
+ microregop.hh             Locally Removed            67 
+ microop.hh                Locally Removed            67 
+ micromediaop.hh           Locally Removed            67 
+ static_inst.cc            Locally Removed            67 
+ badmicroop.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/x86
+ isa_traits.hh             Locally Removed            67 
+ vtophys.cc                Locally Removed            67 
+ X86NativeTrace.py         Locally Removed            67 
+ process.cc                Locally Removed            67 
+ interrupts.cc             Locally Removed            67 
+ pagetable.cc              Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ x86_traits.hh             Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ X86TLB.py                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ SConscript                Locally Removed            67 
+ mips/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips
+ tlb.hh                    Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ dsp.hh                    Locally Removed            67 
+ BISystem.py               Locally Removed            67 
+ kernel_stats.hh           Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ isa.cc                    Locally Removed            67 
+ dt_constants.hh           Locally Removed            67 
+ utility.hh                Locally Removed            67 
+ idle_event.cc             Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ stacktrace.cc             Locally Removed            67 
+ mt_constants.hh           Locally Removed            67 
+ dsp.cc                    Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ pra_constants.hh          Locally Removed            67 
+ process.hh                Locally Removed            67 
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips/isa
+ main.isa                  Locally Removed            67 
+ bitfields.isa             Locally Removed            67 
+ decoder.isa               Locally Removed            67 
+ includes.isa              Locally Removed            67 
+ base.isa                  Locally Removed            67 
+ operands.isa              Locally Removed            67 
+ formats/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips/isa/formats
+ fp.isa                    Locally Removed            67 
+ trap.isa                  Locally Removed            67 
+ noop.isa                  Locally Removed            67 
+ formats.isa               Locally Removed            67 
+ util.isa                  Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ tlbop.isa                 Locally Removed            67 
+ mt.isa                    Locally Removed            67 
+ control.isa               Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+ dsp.isa                   Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ int.isa                   Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips
+ interrupts.hh             Locally Removed            67 
+ mt.hh                     Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ mips_core_specific.hh     Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ SConscript                Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips/linux
+ hwrpb.hh                  Locally Removed            67 
+ thread_info.hh            Locally Removed            67 
+ aligned.hh                Locally Removed            67 
+ threadinfo.hh             Locally Removed            67 
+ process.cc                Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips
+ MipsInterrupts.py         Locally Removed            67 
+ bare_iron/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips/bare_iron
+ system.hh                 Locally Removed            67 
+ system.cc                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/mips
+ isa_traits.hh             Locally Removed            67 
+ vtophys.cc                Locally Removed            67 
+ MipsTLB.py                Locally Removed            67 
+ process.cc                Locally Removed            67 
+ interrupts.cc             Locally Removed            67 
+ MipsSystem.py             Locally Removed            67 
+ MipsCPU.py                Locally Removed            67 
+ pagetable.cc              Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ mips_core_specific.cc     Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ idle_event.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ sparc/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc
+ tlb.hh                    Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ kernel_stats.hh           Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ asi.cc                    Locally Removed            67 
+ isa.cc                    Locally Removed            67 
+ utility.hh                Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ nativetrace.hh            Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ miscregs.hh               Locally Removed            67 
+ process.hh                Locally Removed            67 
+ solaris/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc/solaris
+ solaris.cc                Locally Removed            67 
+ process.cc                Locally Removed            67 
+ solaris.hh                Locally Removed            67 
+ process.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc/isa
+ main.isa                  Locally Removed            67 
+ bitfields.isa             Locally Removed            67 
+ decoder.isa               Locally Removed            67 
+ includes.isa              Locally Removed            67 
+ base.isa                  Locally Removed            67 
+ operands.isa              Locally Removed            67 
+ formats/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc/isa/formats
+ trap.isa                  Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ micro.isa                 Locally Removed            67 
+ formats.isa               Locally Removed            67 
+ integerop.isa             Locally Removed            67 
+ nop.isa                   Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+ priv.isa                  Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+ mem/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc/isa/formats/mem
+ blockmem.isa              Locally Removed            67 
+ swap.isa                  Locally Removed            67 
+ util.isa                  Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ basicmem.isa              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc
+ interrupts.hh             Locally Removed            67 
+ mt.hh                     Locally Removed            67 
+ microcode_rom.hh          Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ faults.cc                 Locally Removed            67 
+ system.hh                 Locally Removed            67 
+ SparcNativeTrace.py       Locally Removed            67 
+ SConscript                Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ nativetrace.cc            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ remote_gdb.cc             Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ sparc_traits.hh           Locally Removed            67 
+ handlers.hh               Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc/linux
+ syscalls.cc               Locally Removed            67 
+ process.cc                Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/sparc
+ SparcInterrupts.py        Locally Removed            67 
+ isa_traits.hh             Locally Removed            67 
+ ua2005.cc                 Locally Removed            67 
+ vtophys.cc                Locally Removed            67 
+ SparcTLB.py               Locally Removed            67 
+ process.cc                Locally Removed            67 
+ interrupts.cc             Locally Removed            67 
+ SparcSystem.py            Locally Removed            67 
+ pagetable.cc              Locally Removed            67 
+ system.cc                 Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ asi.hh                    Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ tlb_map.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ noisa/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/noisa
+ cpu_dummy.hh              Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ generic/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/generic
+ memhelpers.hh             Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ debugfaults.hh            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch
+ power/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power
+ microcode_rom.hh          Locally Removed            67 
+ tlb.hh                    Locally Removed            67 
+ pagetable.hh              Locally Removed            67 
+ stacktrace.hh             Locally Removed            67 
+ PowerTLB.py               Locally Removed            67 
+ SConscript                Locally Removed            67 
+ utility.cc                Locally Removed            67 
+ mmapped_ipr.hh            Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ faults.hh                 Locally Removed            67 
+ locked_mem.hh             Locally Removed            67 
+ linux/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power/linux
+ process.cc                Locally Removed            67 
+ linux.cc                  Locally Removed            67 
+ process.hh                Locally Removed            67 
+ linux.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power
+ isa_traits.hh             Locally Removed            67 
+ insts/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power/insts
+ misc.cc                   Locally Removed            67 
+ branch.cc                 Locally Removed            67 
+ floating.hh               Locally Removed            67 
+ integer.cc                Locally Removed            67 
+ mem.cc                    Locally Removed            67 
+ static_inst.hh            Locally Removed            67 
+ condition.hh              Locally Removed            67 
+ floating.cc               Locally Removed            67 
+ static_inst.cc            Locally Removed            67 
+ misc.hh                   Locally Removed            67 
+ condition.cc              Locally Removed            67 
+ branch.hh                 Locally Removed            67 
+ integer.hh                Locally Removed            67 
+ mem.hh                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power
+ utility.hh                Locally Removed            67 
+ process.cc                Locally Removed            67 
+ types.hh                  Locally Removed            67 
+ registers.hh              Locally Removed            67 
+ remote_gdb.hh             Locally Removed            67 
+ tlb.cc                    Locally Removed            67 
+ pagetable.cc              Locally Removed            67 
+ predecoder.hh             Locally Removed            67 
+ miscregs.hh               Locally Removed            67 
+ isa.hh                    Locally Removed            67 
+ vtophys.hh                Locally Removed            67 
+ isa/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power/isa
+ main.isa                  Locally Removed            67 
+ bitfields.isa             Locally Removed            67 
+ decoder.isa               Locally Removed            67 
+ includes.isa              Locally Removed            67 
+ operands.isa              Locally Removed            67 
+ formats/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power/isa/formats
+ fp.isa                    Locally Removed            67 
+ condition.isa             Locally Removed            67 
+ unimp.isa                 Locally Removed            67 
+ formats.isa               Locally Removed            67 
+ misc.isa                  Locally Removed            67 
+ branch.isa                Locally Removed            67 
+ integer.isa               Locally Removed            67 
+ util.isa                  Locally Removed            67 
+ mem.isa                   Locally Removed            67 
+ unknown.isa               Locally Removed            67 
+ basic.isa                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/arch/power
+ process.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ doxygen/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/doxygen
+ stl.hh                    Locally Removed            67 
+ footer.html               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ dev/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ mc146818.cc               Locally Removed            67 
+ i8254xGBe.hh              Locally Removed            67 
+ disk_image.cc             Locally Removed            67 
+ intel_8254_timer.cc       Locally Removed            67 
+ ide_wdcreg.h              Locally Removed            67 
+ baddev.hh                 Locally Removed            67 
+ io_device.hh              Locally Removed            67 
+ etherpkt.hh               Locally Removed            67 
+ etherdevice.hh            Locally Removed            67 
+ alpha/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev/alpha
+ AlphaBackdoor.py          Locally Removed            67 
+ backdoor.hh               Locally Removed            67 
+ tsunami_cchip.hh          Locally Removed            67 
+ tsunami_pchip.cc          Locally Removed            67 
+ access.h                  Locally Removed            67 
+ SConscript                Locally Removed            67 
+ tsunami_io.cc             Locally Removed            67 
+ tsunami_pchip.hh          Locally Removed            67 
+ tsunamireg.h              Locally Removed            67 
+ tsunami.cc                Locally Removed            67 
+ tsunami_io.hh             Locally Removed            67 
+ Tsunami.py                Locally Removed            67 
+ backdoor.cc               Locally Removed            67 
+ tsunami_cchip.cc          Locally Removed            67 
+ tsunami.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ pktfifo.cc                Locally Removed            67 
+ simple_disk.cc            Locally Removed            67 
+ etherdump.hh              Locally Removed            67 
+ etherobject.hh            Locally Removed            67 
+ copy_engine.hh            Locally Removed            67 
+ Uart.py                   Locally Removed            67 
+ Pci.py                    Locally Removed            67 
+ sparc/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev/sparc
+ mm_disk.hh                Locally Removed            67 
+ t1000.hh                  Locally Removed            67 
+ SConscript                Locally Removed            67 
+ iob.hh                    Locally Removed            67 
+ mm_disk.cc                Locally Removed            67 
+ dtod.hh                   Locally Removed            67 
+ t1000.cc                  Locally Removed            67 
+ T1000.py                  Locally Removed            67 
+ iob.cc                    Locally Removed            67 
+ dtod.cc                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ pcidev.hh                 Locally Removed            67 
+ uart.hh                   Locally Removed            67 
+ Platform.py               Locally Removed            67 
+ rtcreg.h                  Locally Removed            67 
+ i8254xGBe_defs.hh         Locally Removed            67 
+ etherint.hh               Locally Removed            67 
+ platform.hh               Locally Removed            67 
+ etherlink.hh              Locally Removed            67 
+ uart8250.hh               Locally Removed            67 
+ ps2.cc                    Locally Removed            67 
+ pciconfigall.hh           Locally Removed            67 
+ Ide.py                    Locally Removed            67 
+ sinic.cc                  Locally Removed            67 
+ mc146818.hh               Locally Removed            67 
+ disk_image.hh             Locally Removed            67 
+ intel_8254_timer.hh       Locally Removed            67 
+ ide_disk.cc               Locally Removed            67 
+ terminal.cc               Locally Removed            67 
+ pktfifo.hh                Locally Removed            67 
+ simple_disk.hh            Locally Removed            67 
+ sinicreg.hh               Locally Removed            67 
+ Ethernet.py               Locally Removed            67 
+ etherbus.cc               Locally Removed            67 
+ ide_ctrl.cc               Locally Removed            67 
+ arm/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev/arm
+ pl011.cc                  Locally Removed            67 
+ pl111.cc                  Locally Removed            67 
+ a9scu.hh                  Locally Removed            67 
+ amba_fake.hh              Locally Removed            67 
+ gic.cc                    Locally Removed            67 
+ timer_cpulocal.cc         Locally Removed            67 
+ SConscript                Locally Removed            67 
+ pl011.hh                  Locally Removed            67 
+ pl111.hh                  Locally Removed            67 
+ rv_ctrl.cc                Locally Removed            67 
+ gic.hh                    Locally Removed            67 
+ timer_cpulocal.hh         Locally Removed            67 
+ realview.cc               Locally Removed            67 
+ timer_sp804.cc            Locally Removed            67 
+ amba_device.cc            Locally Removed            67 
+ kmi.cc                    Locally Removed            67 
+ RealView.py               Locally Removed            67 
+ a9scu.cc                  Locally Removed            67 
+ rv_ctrl.hh                Locally Removed            67 
+ amba_fake.cc              Locally Removed            67 
+ realview.hh               Locally Removed            67 
+ timer_sp804.hh            Locally Removed            67 
+ amba_device.hh            Locally Removed            67 
+ kmi.hh                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ DiskImage.py              Locally Removed            67 
+ isa_fake.cc               Locally Removed            67 
+ Device.py                 Locally Removed            67 
+ CopyEngine.py             Locally Removed            67 
+ SimpleDisk.py             Locally Removed            67 
+ BadDevice.py              Locally Removed            67 
+ pcireg.h                  Locally Removed            67 
+ ns_gige.cc                Locally Removed            67 
+ ethertap.cc               Locally Removed            67 
+ Terminal.py               Locally Removed            67 
+ ps2.hh                    Locally Removed            67 
+ sinic.hh                  Locally Removed            67 
+ i8254xGBe.cc              Locally Removed            67 
+ mips/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev/mips
+ malta_pchip.hh            Locally Removed            67 
+ console                   Locally Removed            67 
+ malta.cc                  Locally Removed            67 
+ malta_cchip.hh            Locally Removed            67 
+ maltareg.h                Locally Removed            67 
+ malta_io.hh               Locally Removed            67 
+ Malta.py                  Locally Removed            67 
+ malta_pchip.cc            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ access.h                  Locally Removed            67 
+ malta_cchip.cc            Locally Removed            67 
+ malta_io.cc               Locally Removed            67 
+ malta.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ ide_disk.hh               Locally Removed            67 
+ baddev.cc                 Locally Removed            67 
+ terminal.hh               Locally Removed            67 
+ io_device.cc              Locally Removed            67 
+ etherpkt.cc               Locally Removed            67 
+ etherdevice.cc            Locally Removed            67 
+ etherbus.hh               Locally Removed            67 
+ etherdump.cc              Locally Removed            67 
+ ide_ctrl.hh               Locally Removed            67 
+ copy_engine.cc            Locally Removed            67 
+ x86/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev/x86
+ cmos.cc                   Locally Removed            67 
+ pc.cc                     Locally Removed            67 
+ intdev.hh                 Locally Removed            67 
+ speaker.hh                Locally Removed            67 
+ I82094AA.py               Locally Removed            67 
+ I8042.py                  Locally Removed            67 
+ i82094aa.hh               Locally Removed            67 
+ i8237.cc                  Locally Removed            67 
+ I8254.py                  Locally Removed            67 
+ i8259.cc                  Locally Removed            67 
+ i8042.hh                  Locally Removed            67 
+ SouthBridge.py            Locally Removed            67 
+ i8254.hh                  Locally Removed            67 
+ south_bridge.hh           Locally Removed            67 
+ intdev.cc                 Locally Removed            67 
+ speaker.cc                Locally Removed            67 
+ i82094aa.cc               Locally Removed            67 
+ SConscript                Locally Removed            67 
+ Cmos.py                   Locally Removed            67 
+ Pc.py                     Locally Removed            67 
+ i8042.cc                  Locally Removed            67 
+ X86IntPin.py              Locally Removed            67 
+ i8254.cc                  Locally Removed            67 
+ cmos.hh                   Locally Removed            67 
+ pc.hh                     Locally Removed            67 
+ south_bridge.cc           Locally Removed            67 
+ I8237.py                  Locally Removed            67 
+ PcSpeaker.py              Locally Removed            67 
+ I8259.py                  Locally Removed            67 
+ i8237.hh                  Locally Removed            67 
+ i8259.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/dev
+ SConscript                Locally Removed            67 
+ pcidev.cc                 Locally Removed            67 
+ ns_gige_reg.h             Locally Removed            67 
+ copy_engine_defs.hh       Locally Removed            67 
+ uart.cc                   Locally Removed            67 
+ isa_fake.hh               Locally Removed            67 
+ etherint.cc               Locally Removed            67 
+ platform.cc               Locally Removed            67 
+ ns_gige.hh                Locally Removed            67 
+ etherlink.cc              Locally Removed            67 
+ ide_atareg.h              Locally Removed            67 
+ ethertap.hh               Locally Removed            67 
+ pciconfigall.cc           Locally Removed            67 
+ uart8250.cc               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src
+ mem/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ ruby/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ Decomissioning_note       Locally Removed            67 
+ profiler/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/profiler
+ StoreTrace.cc             Locally Removed            67 
+ Profiler.hh               Locally Removed            67 
+ AccessTraceForAddress.cc  Locally Removed            67 
+ MemCntrlProfiler.hh       Locally Removed            67 
+ CacheProfiler.hh          Locally Removed            67 
+ AddressProfiler.hh        Locally Removed            67 
+ Profiler.cc               Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MemCntrlProfiler.cc       Locally Removed            67 
+ Profiler.py               Locally Removed            67 
+ StoreTrace.hh             Locally Removed            67 
+ CacheProfiler.cc          Locally Removed            67 
+ AccessTraceForAddress.hh  Locally Removed            67 
+ AddressProfiler.cc        Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ system/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/system
+ MachineID.hh              Locally Removed            67 
+ Sequencer.py              Locally Removed            67 
+ DirectoryMemory.cc        Locally Removed            67 
+ System.hh                 Locally Removed            67 
+ DirectoryMemory.py        Locally Removed            67 
+ TimerTable.hh             Locally Removed            67 
+ Cache.py                  Locally Removed            67 
+ CacheMemory.hh            Locally Removed            67 
+ MemoryControl.cc          Locally Removed            67 
+ WireBuffer.hh             Locally Removed            67 
+ MemoryControl.py          Locally Removed            67 
+ PerfectCacheMemory.hh     Locally Removed            67 
+ PersistentTable.hh        Locally Removed            67 
+ System.cc                 Locally Removed            67 
+ DMASequencer.hh           Locally Removed            67 
+ MemoryNode.hh             Locally Removed            67 
+ TimerTable.cc             Locally Removed            67 
+ CacheMemory.cc            Locally Removed            67 
+ LRUPolicy.hh              Locally Removed            67 
+ TBETable.hh               Locally Removed            67 
+ SparseMemory.hh           Locally Removed            67 
+ RubyPort.hh               Locally Removed            67 
+ WireBuffer.cc             Locally Removed            67 
+ AbstractMemOrCache.hh     Locally Removed            67 
+ SConscript                Locally Removed            67 
+ WireBuffer.py             Locally Removed            67 
+ Sequencer.hh              Locally Removed            67 
+ MemoryVector.hh           Locally Removed            67 
+ DirectoryMemory.hh        Locally Removed            67 
+ PersistentTable.cc        Locally Removed            67 
+ DMASequencer.cc           Locally Removed            67 
+ PseudoLRUPolicy.hh        Locally Removed            67 
+ AbstractReplacementPolicy.hh Locally Removed            67 
+ MemoryNode.cc             Locally Removed            67 
+ MemoryControl.hh          Locally Removed            67 
+ SparseMemory.cc           Locally Removed            67 
+ RubyPort.cc               Locally Removed            67 
+ RubySystem.py             Locally Removed            67 
+ Sequencer.cc              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ recorder/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/recorder
+ TraceRecord.cc            Locally Removed            67 
+ Tracer.cc                 Locally Removed            67 
+ CacheRecorder.hh          Locally Removed            67 
+ SConscript                Locally Removed            67 
+ Tracer.py                 Locally Removed            67 
+ TraceRecord.hh            Locally Removed            67 
+ CacheRecorder.cc          Locally Removed            67 
+ Tracer.hh                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ eventqueue/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/eventqueue
+ RubyEventQueueNode.cc     Locally Removed            67 
+ RubyEventQueue.hh         Locally Removed            67 
+ SConscript                Locally Removed            67 
+ RubyEventQueue.cc         Locally Removed            67 
+ RubyEventQueueNode.hh     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ README.debugging          Locally Removed            67 
+ SConscript                Locally Removed            67 
+ common/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/common
+ Set.cc                    Locally Removed            67 
+ Driver.cc                 Locally Removed            67 
+ Histogram.cc              Locally Removed            67 
+ DataBlock.hh              Locally Removed            67 
+ Address.hh                Locally Removed            67 
+ Global.cc                 Locally Removed            67 
+ SConscript                Locally Removed            67 
+ SubBlock.cc               Locally Removed            67 
+ Set.hh                    Locally Removed            67 
+ Driver.hh                 Locally Removed            67 
+ Consumer.hh               Locally Removed            67 
+ NetDest.cc                Locally Removed            67 
+ Histogram.hh              Locally Removed            67 
+ Global.hh                 Locally Removed            67 
+ SubBlock.hh               Locally Removed            67 
+ NetDest.hh                Locally Removed            67 
+ DataBlock.cc              Locally Removed            67 
+ Address.cc                Locally Removed            67 
+ TypeDefines.hh            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ filters/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/filters
+ MultiBitSelBloomFilter.cc Locally Removed            67 
+ BulkBloomFilter.cc        Locally Removed            67 
+ LSB_CountingBloomFilter.hh Locally Removed            67 
+ NonCountingBloomFilter.cc Locally Removed            67 
+ BlockBloomFilter.hh       Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MultiBitSelBloomFilter.hh Locally Removed            67 
+ BulkBloomFilter.hh        Locally Removed            67 
+ H3BloomFilter.cc          Locally Removed            67 
+ MultiGrainBloomFilter.cc  Locally Removed            67 
+ NonCountingBloomFilter.hh Locally Removed            67 
+ GenericBloomFilter.cc     Locally Removed            67 
+ AbstractBloomFilter.hh    Locally Removed            67 
+ H3BloomFilter.hh          Locally Removed            67 
+ MultiGrainBloomFilter.hh  Locally Removed            67 
+ LSB_CountingBloomFilter.cc Locally Removed            67 
+ GenericBloomFilter.hh     Locally Removed            67 
+ BlockBloomFilter.cc       Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ network/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ Network.py                Locally Removed            67 
+ BasicRouter.hh            Locally Removed            67 
+ garnet/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/garnet
+ NetworkHeader.hh          Locally Removed            67 
+ fixed-pipeline/           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/garnet/fixed-pipeline
+ flitBuffer_d.cc           Locally Removed            67 
+ flit_d.cc                 Locally Removed            67 
+ OutVcState_d.cc           Locally Removed            67 
+ SWallocator_d.hh          Locally Removed            67 
+ GarnetNetwork_d.hh        Locally Removed            67 
+ NetworkLink_d.cc          Locally Removed            67 
+ GarnetLink_d.hh           Locally Removed            67 
+ InputUnit_d.hh            Locally Removed            67 
+ OutputUnit_d.hh           Locally Removed            67 
+ Switch_d.hh               Locally Removed            67 
+ VCallocator_d.hh          Locally Removed            67 
+ NetworkInterface_d.hh     Locally Removed            67 
+ VirtualChannel_d.hh       Locally Removed            67 
+ GarnetNetwork_d.cc        Locally Removed            67 
+ SWallocator_d.cc          Locally Removed            67 
+ Router_d.hh               Locally Removed            67 
+ GarnetNetwork_d.py        Locally Removed            67 
+ GarnetLink_d.cc           Locally Removed            67 
+ InputUnit_d.cc            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ OutputUnit_d.cc           Locally Removed            67 
+ Switch_d.cc               Locally Removed            67 
+ RoutingUnit_d.hh          Locally Removed            67 
+ GarnetLink_d.py           Locally Removed            67 
+ CreditLink_d.hh           Locally Removed            67 
+ flitBuffer_d.hh           Locally Removed            67 
+ flit_d.hh                 Locally Removed            67 
+ VCallocator_d.cc          Locally Removed            67 
+ NetworkInterface_d.cc     Locally Removed            67 
+ OutVcState_d.hh           Locally Removed            67 
+ VirtualChannel_d.cc       Locally Removed            67 
+ Router_d.cc               Locally Removed            67 
+ NetworkLink_d.hh          Locally Removed            67 
+ GarnetRouter_d.py         Locally Removed            67 
+ RoutingUnit_d.cc          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/garnet
+ BaseGarnetNetwork.hh      Locally Removed            67 
+ SConscript                Locally Removed            67 
+ BaseGarnetNetwork.cc      Locally Removed            67 
+ BaseGarnetNetwork.py      Locally Removed            67 
+ flexible-pipeline/        Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/garnet/flexible-pipeline
+ VCarbiter.hh              Locally Removed            67 
+ GarnetNetwork.py          Locally Removed            67 
+ GarnetLink.cc             Locally Removed            67 
+ flit.cc                   Locally Removed            67 
+ InVcState.cc              Locally Removed            67 
+ OutVcState.cc             Locally Removed            67 
+ GarnetLink.py             Locally Removed            67 
+ flitBuffer.hh             Locally Removed            67 
+ SConscript                Locally Removed            67 
+ GarnetNetwork.hh          Locally Removed            67 
+ NetworkLink.cc            Locally Removed            67 
+ GarnetLink.hh             Locally Removed            67 
+ flit.hh                   Locally Removed            67 
+ NetworkInterface.cc       Locally Removed            67 
+ InVcState.hh              Locally Removed            67 
+ OutVcState.hh             Locally Removed            67 
+ FlexibleConsumer.hh       Locally Removed            67 
+ Router.cc                 Locally Removed            67 
+ NetworkLink.hh            Locally Removed            67 
+ VCarbiter.cc              Locally Removed            67 
+ NetworkInterface.hh       Locally Removed            67 
+ GarnetRouter.py           Locally Removed            67 
+ flitBuffer.cc             Locally Removed            67 
+ GarnetNetwork.cc          Locally Removed            67 
+ Router.hh                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ BasicLink.cc              Locally Removed            67 
+ topologies/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/topologies
+ Pt2Pt.py                  Locally Removed            67 
+ Mesh.py                   Locally Removed            67 
+ Torus.py                  Locally Removed            67 
+ Crossbar.py               Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MeshDirCorners.py         Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ BasicLink.py              Locally Removed            67 
+ orion/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion
+ Clock.cc                  Locally Removed            67 
+ Type.hh                   Locally Removed            67 
+ Allocator/                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion/Allocator
+ RRArbiter.cc              Locally Removed            67 
+ MatrixArbiter.cc          Locally Removed            67 
+ Arbiter.hh                Locally Removed            67 
+ SConscript                Locally Removed            67 
+ VCAllocator.hh            Locally Removed            67 
+ SWAllocator.hh            Locally Removed            67 
+ RRArbiter.hh              Locally Removed            67 
+ MatrixArbiter.hh          Locally Removed            67 
+ Arbiter.cc                Locally Removed            67 
+ VCAllocator.cc            Locally Removed            67 
+ SWAllocator.cc            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion
+ TechParameter.hh          Locally Removed            67 
+ orion.hh                  Locally Removed            67 
+ OrionRouter.hh            Locally Removed            67 
+ SConscript                Locally Removed            67 
+ OrionLink.cc              Locally Removed            67 
+ ConfigFile.cc             Locally Removed            67 
+ Clock.hh                  Locally Removed            67 
+ NetworkPower.cc           Locally Removed            67 
+ Wire.cc                   Locally Removed            67 
+ FlipFlop.cc               Locally Removed            67 
+ OrionConfig.cc            Locally Removed            67 
+ OrionLink.hh              Locally Removed            67 
+ ConfigFile.hh             Locally Removed            67 
+ NetworkPower.hh           Locally Removed            67 
+ Wire.hh                   Locally Removed            67 
+ TechParameter.cc          Locally Removed            67 
+ Buffer/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion/Buffer
+ OutdrvUnit.hh             Locally Removed            67 
+ WordlineUnit.hh           Locally Removed            67 
+ Register.hh               Locally Removed            67 
+ PrechargeUnit.cc          Locally Removed            67 
+ BitlineUnit.hh            Locally Removed            67 
+ SRAM.cc                   Locally Removed            67 
+ SConscript                Locally Removed            67 
+ DecoderUnit.cc            Locally Removed            67 
+ Buffer.cc                 Locally Removed            67 
+ PrechargeUnit.hh          Locally Removed            67 
+ SRAM.hh                   Locally Removed            67 
+ AmpUnit.cc                Locally Removed            67 
+ MemUnit.cc                Locally Removed            67 
+ DecoderUnit.hh            Locally Removed            67 
+ Buffer.hh                 Locally Removed            67 
+ OutdrvUnit.cc             Locally Removed            67 
+ WordlineUnit.cc           Locally Removed            67 
+ Register.cc               Locally Removed            67 
+ BitlineUnit.cc            Locally Removed            67 
+ AmpUnit.hh                Locally Removed            67 
+ MemUnit.hh                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion
+ FlipFlop.hh               Locally Removed            67 
+ OrionConfig.hh            Locally Removed            67 
+ OrionRouter.cc            Locally Removed            67 
+ Crossbar/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion/Crossbar
+ MultreeCrossbar.cc        Locally Removed            67 
+ MatrixCrossbar.hh         Locally Removed            67 
+ Crossbar.cc               Locally Removed            67 
+ MatrixCrossbar.cc         Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MultreeCrossbar.hh        Locally Removed            67 
+ Crossbar.hh               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/orion
+ router.cfg                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ SConscript                Locally Removed            67 
+ Network.hh                Locally Removed            67 
+ simple/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/simple
+ Switch.hh                 Locally Removed            67 
+ SimpleNetwork.hh          Locally Removed            67 
+ Throttle.hh               Locally Removed            67 
+ SimpleLink.hh             Locally Removed            67 
+ Switch.cc                 Locally Removed            67 
+ SConscript                Locally Removed            67 
+ SimpleNetwork.cc          Locally Removed            67 
+ PerfectSwitch.hh          Locally Removed            67 
+ Throttle.cc               Locally Removed            67 
+ SimpleNetwork.py          Locally Removed            67 
+ SimpleLink.cc             Locally Removed            67 
+ PerfectSwitch.cc          Locally Removed            67 
+ SimpleLink.py             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ fault_model/              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network/fault_model
+ FaultModel.cc             Locally Removed            67 
+ FaultModel.py             Locally Removed            67 
+ SConscript                Locally Removed            67 
+ FaultModel.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/network
+ BasicLink.hh              Locally Removed            67 
+ Topology.cc               Locally Removed            67 
+ BasicRouter.cc            Locally Removed            67 
+ BasicRouter.py            Locally Removed            67 
+ Topology.hh               Locally Removed            67 
+ Network.cc                Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ SConsopts                 Locally Removed            67 
+ buffers/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/buffers
+ MessageBuffer.cc          Locally Removed            67 
+ MessageBufferNode.hh      Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MessageBufferNode.cc      Locally Removed            67 
+ MessageBuffer.hh          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby
+ slicc_interface/          Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/ruby/slicc_interface
+ RubySlicc_Profiler_interface.hh Locally Removed            67 
+ Message.hh                Locally Removed            67 
+ AbstractProtocol.hh       Locally Removed            67 
+ AbstractEntry.hh          Locally Removed            67 
+ RubySlicc_includes.hh     Locally Removed            67 
+ SConscript                Locally Removed            67 
+ RubyRequest.hh            Locally Removed            67 
+ RubySlicc_Util.hh         Locally Removed            67 
+ RubySlicc_ComponentMapping.hh Locally Removed            67 
+ AbstractController.cc     Locally Removed            67 
+ NetworkMessage.hh         Locally Removed            67 
+ AbstractCacheEntry.cc     Locally Removed            67 
+ RubySlicc_Profiler_interface.cc Locally Removed            67 
+ AbstractController.hh     Locally Removed            67 
+ AbstractCacheEntry.hh     Locally Removed            67 
+ AbstractEntry.cc          Locally Removed            67 
+ Controller.py             Locally Removed            67 
+ RubyRequest.cc            Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ dram.hh                   Locally Removed            67 
+ Bridge.py                 Locally Removed            67 
+ mport.cc                  Locally Removed            67 
+ request.hh                Locally Removed            67 
+ packet_access.hh          Locally Removed            67 
+ mem_object.cc             Locally Removed            67 
+ translating_port.hh       Locally Removed            67 
+ bridge.hh                 Locally Removed            67 
+ packet.cc                 Locally Removed            67 
+ protocol/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/protocol
+ MESI_CMP_directory-msg.sm Locally Removed            67 
+ MI_example-msg.sm         Locally Removed            67 
+ Network_test.slicc        Locally Removed            67 
+ MOESI_CMP_token-L1cache.sm Locally Removed            67 
+ MOESI_CMP_token-dma.sm    Locally Removed            67 
+ MOESI_CMP_token-L2cache.sm Locally Removed            67 
+ MESI_CMP_directory-L1cache.sm Locally Removed            67 
+ MESI_CMP_directory-L2cache.sm Locally Removed            67 
+ MESI_CMP_directory-dma.sm Locally Removed            67 
+ MI_example-dma.sm         Locally Removed            67 
+ MOESI_hammer-dir.sm       Locally Removed            67 
+ MI_example-cache.sm       Locally Removed            67 
+ MOESI_hammer.slicc        Locally Removed            67 
+ doc/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/protocol/doc
+ MSI_MOSI_CMP_directory_2level-protocol-description.txt Locally Removed            67 
+ MSI_dir_L1_MOSI_dir_L2_SNUCA_CMP-protocol-description.txt Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/protocol
+ MOESI_hammer-msg.sm       Locally Removed            67 
+ RubySlicc_Defines.sm      Locally Removed            67 
+ RubySlicc_ComponentMapping.sm Locally Removed            67 
+ MESI_CMP_directory.slicc  Locally Removed            67 
+ MI_example.slicc          Locally Removed            67 
+ RubySlicc_MemControl.sm   Locally Removed            67 
+ RubySlicc_Profiler.sm     Locally Removed            67 
+ Network_test-dir.sm       Locally Removed            67 
+ MOESI_hammer-dma.sm       Locally Removed            67 
+ MOESI_hammer-cache.sm     Locally Removed            67 
+ SConscript                Locally Removed            67 
+ MOESI_CMP_directory-dir.sm Locally Removed            67 
+ Network_test-msg.sm       Locally Removed            67 
+ MOESI_CMP_directory.slicc Locally Removed            67 
+ SConsopts                 Locally Removed            67 
+ RubySlicc_interfaces.slicc Locally Removed            67 
+ RubySlicc_Exports.sm      Locally Removed            67 
+ MOESI_CMP_directory-msg.sm Locally Removed            67 
+ RubySlicc_Types.sm        Locally Removed            67 
+ MOESI_CMP_token-dir.sm    Locally Removed            67 
+ Network_test-cache.sm     Locally Removed            67 
+ MOESI_CMP_token.slicc     Locally Removed            67 
+ MESI_CMP_directory-dir.sm Locally Removed            67 
+ MI_example-dir.sm         Locally Removed            67 
+ RubySlicc_Util.sm         Locally Removed            67 
+ MOESI_CMP_directory-L1cache.sm Locally Removed            67 
+ MOESI_CMP_directory-L2cache.sm Locally Removed            67 
+ MOESI_CMP_directory-dma.sm Locally Removed            67 
+ MOESI_CMP_token-msg.sm    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ cache/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache
+ cache_impl.hh             Locally Removed            67 
+ BaseCache.py              Locally Removed            67 
+ cache.cc                  Locally Removed            67 
+ SConscript                Locally Removed            67 
+ blk.cc                    Locally Removed            67 
+ mshr.cc                   Locally Removed            67 
+ base.cc                   Locally Removed            67 
+ tags/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache/tags
+ lru.hh                    Locally Removed            67 
+ iic.hh                    Locally Removed            67 
+ cacheset.cc               Locally Removed            67 
+ iic_repl/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache/tags/iic_repl
+ repl.hh                   Locally Removed            67 
+ gen.hh                    Locally Removed            67 
+ Repl.py                   Locally Removed            67 
+ gen.cc                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache/tags
+ fa_lru.hh                 Locally Removed            67 
+ lru.cc                    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ base.hh                   Locally Removed            67 
+ iic.cc                    Locally Removed            67 
+ fa_lru.cc                 Locally Removed            67 
+ cacheset.hh               Locally Removed            67 
+ base.cc                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache
+ prefetch/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache/prefetch
+ tagged.cc                 Locally Removed            67 
+ ghb.cc                    Locally Removed            67 
+ SConscript                Locally Removed            67 
+ base.hh                   Locally Removed            67 
+ stride.hh                 Locally Removed            67 
+ tagged.hh                 Locally Removed            67 
+ base.cc                   Locally Removed            67 
+ ghb.hh                    Locally Removed            67 
+ stride.cc                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/cache
+ mshr_queue.cc             Locally Removed            67 
+ cache.hh                  Locally Removed            67 
+ blk.hh                    Locally Removed            67 
+ mshr.hh                   Locally Removed            67 
+ base.hh                   Locally Removed            67 
+ builder.cc                Locally Removed            67 
+ mshr_queue.hh             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ port_impl.hh              Locally Removed            67 
+ tport.hh                  Locally Removed            67 
+ dram.cc                   Locally Removed            67 
+ vport.hh                  Locally Removed            67 
+ physical.hh               Locally Removed            67 
+ translating_port.cc       Locally Removed            67 
+ Bus.py                    Locally Removed            67 
+ bridge.cc                 Locally Removed            67 
+ page_table.hh             Locally Removed            67 
+ port.hh                   Locally Removed            67 
+ SConscript                Locally Removed            67 
+ bus.hh                    Locally Removed            67 
+ tport.cc                  Locally Removed            67 
+ MemObject.py              Locally Removed            67 
+ PhysicalMemory.py         Locally Removed            67 
+ slicc/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc
+ parser.py                 Locally Removed            67 
+ util.py                   Locally Removed            67 
+ doc/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc/doc
+ tutorial.tex              Locally Removed            67 
+ SLICC_V03.txt             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc
+ __init__.py               Locally Removed            67 
+ ast/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc/ast
+ TypeAST.py                Locally Removed            67 
+ TransitionDeclAST.py      Locally Removed            67 
+ FuncDeclAST.py            Locally Removed            67 
+ TypeFieldAST.py           Locally Removed            67 
+ FuncCallExprAST.py        Locally Removed            67 
+ TypeFieldStateAST.py      Locally Removed            67 
+ PairListAST.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ InfixOperatorExprAST.py   Locally Removed            67 
+ PairAST.py                Locally Removed            67 
+ LiteralExprAST.py         Locally Removed            67 
+ EnqueueStatementAST.py    Locally Removed            67 
+ EnumDeclAST.py            Locally Removed            67 
+ CheckStopSlotsStatementAST.py Locally Removed            67 
+ LocalVariableAST.py       Locally Removed            67 
+ ObjDeclAST.py             Locally Removed            67 
+ ExprStatementAST.py       Locally Removed            67 
+ ActionDeclAST.py          Locally Removed            67 
+ MemberExprAST.py          Locally Removed            67 
+ AssignStatementAST.py     Locally Removed            67 
+ TypeDeclAST.py            Locally Removed            67 
+ TypeFieldEnumAST.py       Locally Removed            67 
+ MethodCallExprAST.py      Locally Removed            67 
+ StallAndWaitStatementAST.py Locally Removed            67 
+ ExprAST.py                Locally Removed            67 
+ AST.py                    Locally Removed            67 
+ IsValidPtrExprAST.py      Locally Removed            67 
+ OodAST.py                 Locally Removed            67 
+ CopyHeadStatementAST.py   Locally Removed            67 
+ IfStatementAST.py         Locally Removed            67 
+ TypeFieldMethodAST.py     Locally Removed            67 
+ VarExprAST.py             Locally Removed            67 
+ NewExprAST.py             Locally Removed            67 
+ ChipComponentAccessAST.py Locally Removed            67 
+ StatementListAST.py       Locally Removed            67 
+ FormalParamAST.py         Locally Removed            67 
+ StaticCastAST.py          Locally Removed            67 
+ InPortDeclAST.py          Locally Removed            67 
+ DeclListAST.py            Locally Removed            67 
+ EnumExprAST.py            Locally Removed            67 
+ OutPortDeclAST.py         Locally Removed            67 
+ MachineAST.py             Locally Removed            67 
+ ReturnStatementAST.py     Locally Removed            67 
+ StatementAST.py           Locally Removed            67 
+ CheckAllocateStatementAST.py Locally Removed            67 
+ DeclAST.py                Locally Removed            67 
+ StateDeclAST.py           Locally Removed            67 
+ PeekStatementAST.py       Locally Removed            67 
+ TypeFieldMemberAST.py     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc
+ symbols/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc/symbols
+ Var.py                    Locally Removed            67 
+ Transition.py             Locally Removed            67 
+ Func.py                   Locally Removed            67 
+ Action.py                 Locally Removed            67 
+ SymbolTable.py            Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ State.py                  Locally Removed            67 
+ Event.py                  Locally Removed            67 
+ Type.py                   Locally Removed            67 
+ StateMachine.py           Locally Removed            67 
+ Symbol.py                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc
+ generate/                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc/generate
+ __init__.py               Locally Removed            67 
+ tex.py                    Locally Removed            67 
+ html.py                   Locally Removed            67 
+ dot.py                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/slicc
+ main.py                   Locally Removed            67 
+ README                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ vport.cc                  Locally Removed            67 
+ mport.hh                  Locally Removed            67 
+ physical.cc               Locally Removed            67 
+ mem_object.hh             Locally Removed            67 
+ config/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem/config
+ cache.hh                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/src/mem
+ packet.hh                 Locally Removed            67 
+ page_table.cc             Locally Removed            67 
+ port.cc                   Locally Removed            67 
+ bus.cc                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ SConstruct                Locally Removed            67 
+ configs/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs
+ ruby/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs/ruby
+ Network_test.py           Locally Removed            67 
+ MOESI_CMP_token.py        Locally Removed            67 
+ MOESI_CMP_directory.py    Locally Removed            67 
+ MESI_CMP_directory.py     Locally Removed            67 
+ MI_example.py             Locally Removed            67 
+ Ruby.py                   Locally Removed            67 
+ MOESI_hammer.py           Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs
+ boot/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs/boot
+ equake.symbol             Locally Removed            67 
+ bzip.rcS                  Locally Removed            67 
+ nfs-client-nhfsstone.rcS  Locally Removed            67 
+ netperf-stream-client.rcS Locally Removed            67 
+ netperf-maerts-client.rcS Locally Removed            67 
+ ping-client.rcS           Locally Removed            67 
+ nfs-client-smallb.rcS     Locally Removed            67 
+ bonnie.rcS                Locally Removed            67 
+ equake.rcS                Locally Removed            67 
+ bn-app.rcS                Locally Removed            67 
+ mutex-test.rcS            Locally Removed            67 
+ netperf-rr.rcS            Locally Removed            67 
+ cc1.symbol                Locally Removed            67 
+ mesa.rcS                  Locally Removed            67 
+ iscsi-client.rcS          Locally Removed            67 
+ netperf-stream-nt-client.rcS Locally Removed            67 
+ gzip.symbol               Locally Removed            67 
+ bonnie.symbol             Locally Removed            67 
+ nfs-server-nhfsstone.rcS  Locally Removed            67 
+ ping-server.rcS           Locally Removed            67 
+ micro_syscall.rcS         Locally Removed            67 
+ hack_back_ckpt.rcS        Locally Removed            67 
+ nat-spec-surge-client.rcS Locally Removed            67 
+ setup                     Locally Removed            67 
+ null.rcS                  Locally Removed            67 
+ netperf-stream-udp-local.rcS Locally Removed            67 
+ micro_tlblat.rcS          Locally Removed            67 
+ halt.sh                   Locally Removed            67 
+ iscsi-server.rcS          Locally Removed            67 
+ art.rcS                   Locally Removed            67 
+ nat-netperf-server.rcS    Locally Removed            67 
+ spec-surge-client.rcS     Locally Removed            67 
+ natbox-netperf.rcS        Locally Removed            67 
+ gcc.rcS                   Locally Removed            67 
+ nfs-client-tcp-smallb.rcS Locally Removed            67 
+ micro_memlat8.rcS         Locally Removed            67 
+ nat-spec-surge-server.rcS Locally Removed            67 
+ surge-client.rcS          Locally Removed            67 
+ nfs-client.rcS            Locally Removed            67 
+ mesa.symbol               Locally Removed            67 
+ mcf.rcS                   Locally Removed            67 
+ netperf-server.rcS        Locally Removed            67 
+ ls.rcS                    Locally Removed            67 
+ bbench.rcS                Locally Removed            67 
+ spec-surge-server.rcS     Locally Removed            67 
+ micro_stream.rcS          Locally Removed            67 
+ surge-server.rcS          Locally Removed            67 
+ nfs-server.rcS            Locally Removed            67 
+ ammp.rcS                  Locally Removed            67 
+ micro_streamscale.rcS     Locally Removed            67 
+ micro_tlblat2.rcS         Locally Removed            67 
+ devtime.rcS               Locally Removed            67 
+ netperf-stream-udp-client.rcS Locally Removed            67 
+ micro_tlblat3.rcS         Locally Removed            67 
+ natbox-spec-surge.rcS     Locally Removed            67 
+ ammp.symbol               Locally Removed            67 
+ micro_memlat.rcS          Locally Removed            67 
+ gzip.rcS                  Locally Removed            67 
+ micro_memlat2mb.rcS       Locally Removed            67 
+ micro_memlat8mb.rcS       Locally Removed            67 
+ micro_streamcopy.rcS      Locally Removed            67 
+ nfs-client-dbench.rcS     Locally Removed            67 
+ mcf.symbol                Locally Removed            67 
+ nfs-client-tcp.rcS        Locally Removed            67 
+ micro_ctx.rcS             Locally Removed            67 
+ nat-netperf-stream-client.rcS Locally Removed            67 
+ nat-netperf-maerts-client.rcS Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs
+ common/                   Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs/common
+ CacheConfig.py            Locally Removed            67 
+ cpu2000.py                Locally Removed            67 
+ Options.py                Locally Removed            67 
+ Benchmarks.py             Locally Removed            67 
+ FSConfig.py               Locally Removed            67 
+ SysPaths.py               Locally Removed            67 
+ Simulation.py             Locally Removed            67 
+ Caches.py                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs
+ example/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs/example
+ fs.py                     Locally Removed            67 
+ ruby_fs.py                Locally Removed            67 
+ ruby_network_test.py      Locally Removed            67 
+ ruby_direct_test.py       Locally Removed            67 
+ memtest.py                Locally Removed            67 
+ ruby_mem_test.py          Locally Removed            67 
+ ruby_random_test.py       Locally Removed            67 
+ se.py                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs
+ splash2/                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/configs/splash2
+ cluster.py                Locally Removed            67 
+ run.py                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ COPYING                   Locally Removed            67 
+ .hgtags                   Locally Removed            67 
+ util/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ checkpoint_aggregator.py  Locally Removed            67 
+ gem5img.py                Locally Removed            67 
+ valgrind-suppressions     Locally Removed            67 
+ m5/                       Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/m5
+ jni/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/m5/jni
+ gem5Op.java               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/m5
+ m5op_arm.S                Locally Removed            67 
+ Makefile.alpha            Locally Removed            67 
+ Makefile.x86              Locally Removed            67 
+ m5.c                      Locally Removed            67 
+ Makefile.sparc            Locally Removed            67 
+ m5op.h                    Locally Removed            67 
+ m5op_alpha.S              Locally Removed            67 
+ m5op_x86.S                Locally Removed            67 
+ m5op_sparc.S              Locally Removed            67 
+ m5ops.h                   Locally Removed            67 
+ Makefile.arm              Locally Removed            67 
+ Makefile.thumb            Locally Removed            67 
+ jni_gem5Op.c              Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ batch/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/batch
+ send.py                   Locally Removed            67 
+ job.py                    Locally Removed            67 
+ batch.py                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ find_copyrights.py        Locally Removed            67 
+ checkpoint-tester.py      Locally Removed            67 
+ qdo                       Locally Removed            67 
+ pbs/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/pbs
+ send.py                   Locally Removed            67 
+ job.py                    Locally Removed            67 
+ pbs.py                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ tap/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/tap
+ tap.cc                    Locally Removed            67 
+ Makefile                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ tracediff                 Locally Removed            67 
+ style.py                  Locally Removed            67 
+ SConscript                Locally Removed            67 
+ fixwhite                  Locally Removed            67 
+ emacs/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/emacs
+ m5-c-style.el             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ compile                   Locally Removed            67 
+ file_types.py             Locally Removed            67 
+ rundiff                   Locally Removed            67 
+ slicc                     Locally Removed            67 
+ stats/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/stats
+ dbinit.py                 Locally Removed            67 
+ info.py                   Locally Removed            67 
+ flags.py                  Locally Removed            67 
+ print.py                  Locally Removed            67 
+ stats.py                  Locally Removed            67 
+ __init__.py               Locally Removed            67 
+ output.py                 Locally Removed            67 
+ profile.py                Locally Removed            67 
+ chart.py                  Locally Removed            67 
+ categories.py             Locally Removed            67 
+ db.py                     Locally Removed            67 
+ display.py                Locally Removed            67 
+ barchart.py               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ o3-pipeview.py            Locally Removed            67 
+ statetrace/               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace
+ SConscript                Locally Removed            67 
+ SConstruct                Locally Removed            67 
+ base/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/base
+ arch_check.h              Locally Removed            67 
+ tracechild.hh             Locally Removed            67 
+ statetrace.cc             Locally Removed            67 
+ tracechild.cc             Locally Removed            67 
+ regstate.hh               Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace
+ arch/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch
+ arm/                      Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch/arm
+ tracechild.hh             Locally Removed            67 
+ tracechild.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch
+ sparc/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch/sparc
+ tracechild.hh             Locally Removed            67 
+ tracechild.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch
+ amd64/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch/amd64
+ tracechild.hh             Locally Removed            67 
+ tracechild.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch
+ i686/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/statetrace/arch/i686
+ tracechild.hh             Locally Removed            67 
+ tracechild.cc             Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ ccdrv/                    Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/ccdrv
+ readme.txt                Locally Removed            67 
+ Makefile                  Locally Removed            67 
+ devtime.c                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ sort_includes.py          Locally Removed            67 
+ checktrace.sh             Locally Removed            67 
+ oprofile-top.py           Locally Removed            67 
+ term/                     Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util/term
+ term.c                    Locally Removed            67 
+ Makefile                  Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96/util
+ cscope-index.py           Locally Removed            67 
+ regress                   Locally Removed            67 
+ chkformat                 Locally Removed            67 
+
+Directory m5-releases/20111220-gem5-ca98021c3f96
+ README                    Locally Removed            67 
+
+Remove old version.
