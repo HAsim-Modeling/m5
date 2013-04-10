@@ -23840,3 +23840,36 @@ Detect halt within a single thread and put it to sleep.  HAsim isn't particularl
 good at turning off statistics collection when sleeping (which should be fixed).
 
 This change makes Splash benchmarks run to completion and print results.
+
+----------
+mcadler     Date: Wed Apr 10 09:46:28 EDT 2013  CSN: CSN-m5-67
+                  Wed Apr 10 13:46:28 UTC 2013
+
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/sim
+ syscall_emul.hh           Locally Modified           66 
+ syscall_emul.cc           Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/arm/linux
+ process.cc                Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/alpha/linux
+ process.cc                Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/x86/linux
+ syscalls.cc               Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/mips/linux
+ process.cc                Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/sparc/linux
+ syscalls.cc               Locally Modified           66 
+
+Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/arch/power/linux
+ process.cc                Locally Modified           66 
+
+Implement getdents and getdents64 syscalls, used by Parsec.
+
+Change mmap's remap to fail when remapping is impossible at a requested fixed
+address.  Failure is a legal response.  The old behavior silently clobbered
+storage.
