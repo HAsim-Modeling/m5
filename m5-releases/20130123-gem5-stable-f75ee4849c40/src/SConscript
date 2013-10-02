@@ -854,6 +854,7 @@ def makeEnv(label, objsfx, strip = False, **kwargs):
         swig_env.Append(CCFLAGS='-Wno-sign-compare')
         swig_env.Append(CCFLAGS='-Wno-parentheses')
         swig_env.Append(CCFLAGS='-Wno-unused-label')
+        swig_env.Append(CCFLAGS='-Wno-unused-value')
         if compareVersions(env['GCC_VERSION'], '4.6') >= 0:
             swig_env.Append(CCFLAGS='-Wno-unused-but-set-variable')
     if env['CLANG']:
