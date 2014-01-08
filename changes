@@ -27308,3 +27308,13 @@ Directory m5-releases/20130123-gem5-stable-f75ee4849c40/src/mem/ruby/network/ori
  Wire.cc                   Locally Modified           68 
 
 Compatible with gcc 4.8.
+
+----------
+mcadler     Date: Wed Jan  8 11:11:14 EST 2014  CSN: CSN-m5-70
+                  Wed Jan  8 16:11:14 UTC 2014
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           69 
+
+Detect special Gem5 statistics NOP instructions and emit/reset statistics.

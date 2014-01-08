@@ -20,9 +20,24 @@
 
 #include "asim/provides/isa_emulator_impl.h"
 #include "asim/provides/funcp_memory.h"
+#include "asim/provides/command_switches.h"
+#include "asim/provides/commands_service.h"
+#include "asim/provides/stats_service.h"
 
 // m5 includes
 #include "sim/faults.hh"
+
+
+typedef enum
+{
+    INSTR_NORMAL,
+    INSTR_STAT_RESET,
+    INSTR_STAT_DUMP,
+    INSTR_STAT_DUMP_RESET,
+}
+INSTR_SPECIAL_EMULATION;
+
+static void *StatsUpdateThread(void *arg);
 
 
 //***********************************************************************
@@ -141,6 +156,8 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         return StartProgram(ctxId, pc, newPC);
     }
 
+    INSTR_SPECIAL_EMULATION special_instr = INSTR_NORMAL;
+
 #if THE_ISA == ALPHA_ISA
     //
     // HALT?  Return an error
@@ -151,7 +168,39 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         *newPC = 0;
         return ISA_EMULATOR_EXIT_FAIL;
     }
+
+    //
+    // These should be decoded in ISA-specific code.
+    //
+    switch (inst)
+    {
+      case 0x04000040:
+        special_instr = INSTR_STAT_RESET;
+        break;
+        
+      case 0x04000041:
+        special_instr = INSTR_STAT_DUMP;
+        break;
+        
+      case 0x04000042:
+        special_instr = INSTR_STAT_DUMP_RESET;
+        break;
+    }
 #endif
+
+
+    if (special_instr != INSTR_NORMAL)
+    {
+        // Pause simulation so state doesn't change during stats dump
+        COMMANDS_SERVER_CLASS::GetInstance()->Pause();
+
+        // For now we need a separate thread to request the dump due
+        // to RRR limitations.  When RRR is eliminated this will not be
+        // needed.
+        pthread_t tid;
+        uintptr_t arg = uintptr_t(special_instr);
+        VERIFYX(! pthread_create(&tid, NULL, &StatsUpdateThread, (void*)arg));
+    }
 
     //
     // Set the m5 state and emulate a tick.  The code below is derived from
@@ -498,4 +547,68 @@ ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
     }
 
     return rVal;
+}
+
+
+//
+// StatsUpdateThread is a hack to allow calling DumpStats() as a side-effect
+// of simulating an instruction.  RRR doesn't deal well with a software service
+// that calls a hardware service when the caller blocks until some other
+// software service is called.  When we replace RRR with threads this pthreads
+// hack may become unnecessary.
+//
+static void *StatsUpdateThread(void *arg)
+{
+    INSTR_SPECIAL_EMULATION special_instr = INSTR_SPECIAL_EMULATION(uintptr_t(arg));
+
+    bool stat_dump;
+    bool stat_reset;
+    
+    switch (special_instr)
+    {
+      case INSTR_STAT_RESET:
+        stat_dump = false;
+        stat_reset = true;
+        break;
+
+      case INSTR_STAT_DUMP:
+        stat_dump = true;
+        stat_reset = false;
+        break;
+
+      case INSTR_STAT_DUMP_RESET:
+        stat_dump = true;
+        stat_reset = true;
+        break;
+
+      default:
+        stat_dump = false;
+        stat_reset = false;
+        break;
+    }
+
+    if (stat_dump)
+    {
+        static UINT32 region_id = 0;
+        cout << "Dumping region " << region_id << " statistics..." << endl;
+
+        // Scan out current values
+        STATS_SERVER_CLASS::GetInstance()->DumpStats();
+
+        // Write to a file
+        string file_name = string(globalArgs->Workload()) + "_region_" +
+                           std::to_string(region_id) + ".stats";
+        STATS_SERVER_CLASS::GetInstance()->EmitFile(file_name);
+
+        region_id += 1;
+    }
+        
+    if (stat_reset)
+    {
+        cout << "Resetting statistics..." << endl;
+        STATS_SERVER_CLASS::GetInstance()->ResetStatValues();
+    }
+
+    // Simulation was paused before when the special instruction was encountered.
+    COMMANDS_SERVER_CLASS::GetInstance()->Resume();
 }
