@@ -31,6 +31,7 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/syscall.h>
 
 #include <cstdio>
 #include <iostream>
@@ -90,9 +91,10 @@ SyscallReturn
 ignoreFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
            ThreadContext *tc)
 {
-    int index = 0;
-    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
-         process->getSyscallArg(tc, index), process->getSyscallArg(tc, index));
+// Too many messages...
+//    int index = 0;
+//    warn("ignoring syscall %s(%d, %d, ...)", desc->name,
+//         process->getSyscallArg(tc, index), process->getSyscallArg(tc, index));
 
     return 0;
 }
@@ -117,8 +119,10 @@ exitFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
     if (process->system->numRunningContexts() == 1) {
         // Last running context... exit simulator
         int index = 0;
-        exitSimLoop("target called exit()",
-                    process->getSyscallArg(tc, index) & 0xff);
+        int code = process->getSyscallArg(tc, index) & 0xff;
+        if (tc->exit(code)) {
+            exitSimLoop("target called exit()", code);
+        }
     } else {
         // other running threads... just halt this one
         tc->halt();
@@ -135,8 +139,10 @@ exitGroupFunc(SyscallDesc *desc, int callnum, LiveProcess *process,
     // really should just halt all thread contexts belonging to this
     // process in case there's another process running...
     int index = 0;
-    exitSimLoop("target called exit()",
-                process->getSyscallArg(tc, index) & 0xff);
+    int code = process->getSyscallArg(tc, index) & 0xff;
+    if (tc->exit(code)) {
+        exitSimLoop("target called exit()", code);
+    }
 
     return 1;
 }
@@ -867,4 +873,40 @@ accessFunc(SyscallDesc *desc, int callnum, LiveProcess *p, ThreadContext *tc)
 
     int result = access(path.c_str(), mode);
     return (result == -1) ? -errno : result;
+}
+
+SyscallReturn
+getdentsFunc(SyscallDesc *desc, int num, LiveProcess *p,
+             ThreadContext *tc)
+{
+    int index = 0;
+    int fd = p->sim_fd(p->getSyscallArg(tc, index));
+    Addr bufPtr = p->getSyscallArg(tc, index);
+    int nbytes = p->getSyscallArg(tc, index);
+    BufferArg bufArg(bufPtr, nbytes);
+
+    int bytes_read = syscall(SYS_getdents, fd, bufArg.bufferPtr(), nbytes);
+
+    if (bytes_read != -1)
+        bufArg.copyOut(tc->getMemProxy());
+
+    return bytes_read;
+}
+
+SyscallReturn
+getdents64Func(SyscallDesc *desc, int num, LiveProcess *p,
+               ThreadContext *tc)
+{
+    int index = 0;
+    int fd = p->sim_fd(p->getSyscallArg(tc, index));
+    Addr bufPtr = p->getSyscallArg(tc, index);
+    int nbytes = p->getSyscallArg(tc, index);
+    BufferArg bufArg(bufPtr, nbytes);
+
+    int bytes_read = syscall(SYS_getdents64, fd, bufArg.bufferPtr(), nbytes);
+
+    if (bytes_read != -1)
+        bufArg.copyOut(tc->getMemProxy());
+
+    return bytes_read;
 }

@@ -100,6 +100,8 @@ class BaseSimpleCPU : public BaseCPU
     }
 
   public:
+    Trace::InstRecord *getTraceData() const { return traceData; };
+
     void wakeup();
 
     void zero_fill_64(Addr addr) {

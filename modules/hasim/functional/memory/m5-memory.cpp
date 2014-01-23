@@ -33,6 +33,7 @@
 // m5 includes
 #include "base/chunk_generator.hh"
 #include "sim/faults.hh"
+#include "sim/eventq.hh"
 
 
 FUNCP_SIMULATED_MEMORY_CLASS::FUNCP_SIMULATED_MEMORY_CLASS()
@@ -124,9 +125,10 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
 
     Request req;
 
-    for (ChunkGenerator gen(paddr, size, memPort->peerBlockSize());
+    for (ChunkGenerator gen(paddr, size, TheISA::PageBytes);
          ! gen.done(); gen.next())
     {
+        curEventQueue(mainEventQueue[0]);
         req.setPhys(gen.addr(), gen.size(), 0, Request::funcMasterId);
         Packet pkt(&req, cmd);
         pkt.dataStatic(p);

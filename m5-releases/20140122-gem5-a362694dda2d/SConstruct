@@ -194,7 +194,8 @@ termcap = get_termcap(GetOption('use_colors'))
 # export TERM so that clang reports errors in color
 use_vars = set([ 'AS', 'AR', 'CC', 'CXX', 'HOME', 'LD_LIBRARY_PATH',
                  'LIBRARY_PATH', 'PATH', 'PKG_CONFIG_PATH', 'PYTHONPATH',
-                 'RANLIB', 'SWIG', 'TERM' ])
+                 'RANLIB', 'SWIG', 'TERM',
+                 'USER_ITOOLS' ])
 
 use_prefixes = [
     "M5",           # M5 configuration (e.g., path to kernels)
@@ -493,6 +494,9 @@ class Transform(object):
         return self.format % (com_pfx, fmt(srcs), fmt(tgts))
 
 Export('Transform')
+
+# Maximum line length is sometimes exceeded for StaticLibrary builds
+main['ARCOM'] = '${TEMPFILE("%s")}' % main['ARCOM']
 
 # enable the regression script to use the termcap
 main['TERMCAP'] = termcap
@@ -1293,10 +1297,10 @@ for variant_path in variant_paths:
                          exports = 'env')
 
     # Set up the regression tests for each build.
-    for e in envList:
-        SConscript('tests/SConscript',
-                   variant_dir = joinpath(variant_path, 'tests', e.Label),
-                   exports = { 'env' : e }, duplicate = False)
+#    for e in envList:
+#        SConscript('tests/SConscript',
+#                   variant_dir = joinpath(variant_path, 'tests', e.Label),
+#                   exports = { 'env' : e }, duplicate = False)
 
 # base help text
 Help('''

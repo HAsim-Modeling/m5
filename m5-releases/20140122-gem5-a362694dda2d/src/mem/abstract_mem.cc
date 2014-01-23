@@ -52,6 +52,15 @@
 
 using namespace std;
 
+//
+// Hack!  Instead of adding a layer of memory looking like a cache to report
+// memory modified during emulation back to HAsim we simply use a few lines
+// of code to call back.
+//
+void (*HAsimNoteMemoryRead)(Addr paddr, uint64_t size) = NULL;
+void (*HAsimNoteMemoryWrite)(Addr paddr, uint64_t size) = NULL;
+
+
 AbstractMemory::AbstractMemory(const Params *p) :
     MemObject(p), range(params()->range), pmemAddr(NULL),
     confTableReported(p->conf_table_reported), inAddrMap(p->in_addr_map),
@@ -316,6 +325,16 @@ AbstractMemory::access(PacketPtr pkt)
         return;
     }
 
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
+
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - range.start();
 
     if (pkt->cmd == MemCmd::SwapReq) {
@@ -393,6 +412,16 @@ AbstractMemory::functionalAccess(PacketPtr pkt)
 {
     assert(AddrRange(pkt->getAddr(),
                      pkt->getAddr() + pkt->getSize() - 1).isSubset(range));
+
+    if (HAsimNoteMemoryWrite != NULL)
+    {
+        if ((pkt->cmd == MemCmd::SwapReq) || ! pkt->isRead()) {
+            HAsimNoteMemoryWrite(pkt->getAddr(), pkt->getSize());
+        }
+        else {
+            HAsimNoteMemoryRead(pkt->getAddr(), pkt->getSize());
+        }
+    }
 
     uint8_t *hostAddr = pmemAddr + pkt->getAddr() - range.start();
 
