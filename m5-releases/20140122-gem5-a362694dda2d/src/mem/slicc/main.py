@@ -75,7 +75,7 @@ def main(args=None):
     output("SLICC v0.4")
     output("Parsing...")
 
-    slicc = SLICC(files[0], verbose=True, debug=opts.debug, traceback=opts.tb)
+    slicc = SLICC(files[0], '', verbose=True, debug=opts.debug, traceback=opts.tb)
 
     if opts.print_files:
         for i in sorted(slicc.files()):
@@ -85,7 +85,7 @@ def main(args=None):
         slicc.process()
 
         output("Writing C++ files...")
-        slicc.writeCodeFiles(opts.code_path)
+        slicc.writeCodeFiles(opts.code_path, '')
 
         if opts.html_path:
             output("Writing HTML files...")

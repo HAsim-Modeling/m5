@@ -30960,3 +30960,25 @@ Directory modules/hasim/functional/memory
 
 Standard changes to gem5 for HAsim.  I thought my user-mode additions of
 getdents syscall had been committed to the main code, but apparently not.
+
+----------
+mcadler     Date: Thu Feb 13 17:58:09 EST 2014  CSN: CSN-m5-73
+                  Thu Feb 13 22:58:09 UTC 2014
+
+
+Directory m5-releases/20140122-gem5-a362694dda2d/src/mem/slicc
+ main.py                   Locally Modified           72 
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           72 
+ m5-isa-emulator-impl.h    Locally Modified           72 
+
+Directory modules/hasim/functional/memory
+ m5-memory.cpp             Locally Modified           72 
+ m5-memory.h               Locally Modified           72 
+
+Directory modules/hasim/functional/hasim-base
+ m5-hasim-base.cpp         Locally Modified           72 
+ m5-hasim-base.h           Locally Modified           72 
+
+Switch to BSD license.
