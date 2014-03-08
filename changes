@@ -30982,3 +30982,20 @@ Directory modules/hasim/functional/hasim-base
  m5-hasim-base.h           Locally Modified           72 
 
 Switch to BSD license.
+
+----------
+keflemin    Date: Sat Mar  8 15:50:08 EST 2014  CSN: CSN-m5-74
+                  Sat Mar  8 20:50:08 UTC 2014
+
+
+Directory m5-releases/20140122-gem5-a362694dda2d/src/sim
+ eventq.cc                 Locally Modified           73 
+ eventq.hh                 Locally Modified           73 
+
+
+Modified the m5 global event queue to not use the __thread attribute.
+This attribute creates a new instance of the event queue pointer for
+each thread that touches the event queue.  This was breaking new-style
+LIM compilations, since the new compilations may choose to multithread
+the old RRR service handlers.
+
