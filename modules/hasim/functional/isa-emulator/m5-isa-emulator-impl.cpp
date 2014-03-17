@@ -228,6 +228,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     // Set the machine state and execute the instruction
     //
+    curEventQueue(mainEventQueue[0]);
     TheISA::PCState new_pc = cpu->tc->pcState();
     new_pc.set(pc);
     cpu->tc->pcState(new_pc);

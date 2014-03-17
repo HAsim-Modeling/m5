@@ -57,7 +57,7 @@ Tick simQuantum = 0;
 //
 uint32_t numMainEventQueues = 0;
 vector<EventQueue *> mainEventQueue;
-EventQueue *_curEventQueue = NULL;
+__thread EventQueue *_curEventQueue = NULL;
 bool inParallelMode = false;
 
 EventQueue *

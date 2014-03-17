@@ -71,7 +71,7 @@ extern std::vector<EventQueue *> mainEventQueue;
 //! The current event queue for the running thread. Access to this queue
 //! does not require any locking from the thread.
 
-extern EventQueue *_curEventQueue;
+extern __thread EventQueue *_curEventQueue;
 
 #endif
 
