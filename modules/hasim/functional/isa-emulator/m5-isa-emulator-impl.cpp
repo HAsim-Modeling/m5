@@ -177,7 +177,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     //
     if (inst == 0)
     {
-        ASIMWARNING("HALT instruction executed.  Probably a bug." << endl)
+        ASIMWARNING("HALT instruction executed.  Probably a bug." << endl);
         *newPC = 0;
         return ISA_EMULATOR_EXIT_FAIL;
     }

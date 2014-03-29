@@ -34461,3 +34461,14 @@ Directory m5-releases/20130123-gem5-stable-f75ee4849c40
  README                    Locally Removed            75 
 
 Remove old version.
+
+----------
+keflemin    Date: Sat Mar 29 16:28:01 EDT 2014  CSN: CSN-m5-77
+                  Sat Mar 29 20:28:01 UTC 2014
+
+
+Directory modules/hasim/functional/isa-emulator
+ m5-isa-emulator-impl.cpp  Locally Modified           76 
+
+
+Fixed what appears to be a typo on a macro.
