@@ -29,6 +29,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
  
+#include <mutex>
+
 #include "asim/syntax.h"
 
 #include "asim/provides/isa_emulator_impl.h"
@@ -40,7 +42,6 @@
 // m5 includes
 #include "sim/faults.hh"
 
-
 typedef enum
 {
     INSTR_NORMAL,
@@ -51,6 +52,16 @@ typedef enum
 INSTR_SPECIAL_EMULATION;
 
 static void *StatsUpdateThread(void *arg);
+
+// Allow only one instance of an emulator to be running in order to avoid
+// the danger of multiple threads driving Gem5.
+static std::mutex emulMutex;
+
+// Global Gem5 lock management is complicated by HAsimNoteMemoryRead/Write
+// because they call back to the hardware and may trigger memory operations.
+// This lock is set and cleared only after emulMutex is locked, so the
+// lock itself is shared among all users.
+static unique_lock<std::mutex> *emulGem5Lock = NULL;
 
 
 //***********************************************************************
@@ -77,7 +88,9 @@ HAsimEmulMemoryRead(Addr paddr, UINT64 size)
         VERIFY(emulationMayRefMemory, "Emulated REGOP touches memory!");
 
         inEmulation = false;    // Prevent loops
+        emulGem5Lock->unlock();
         FUNCP_MEMORY_CLASS::NoteSystemMemoryRead(emulationCtxId, paddr, size);
+        emulGem5Lock->lock();
         inEmulation = true;
     }
 }
@@ -91,7 +104,9 @@ HAsimEmulMemoryWrite(Addr paddr, UINT64 size)
         VERIFY(emulationMayRefMemory, "Emulated REGOP touches memory!");
 
         inEmulation = false;    // Prevent loops
+        emulGem5Lock->unlock();
         FUNCP_MEMORY_CLASS::NoteSystemMemoryWrite(emulationCtxId, paddr, size);
+        emulGem5Lock->lock();
         inEmulation = true;
     }
 }
@@ -107,6 +122,9 @@ ISA_EMULATOR_IMPL_CLASS::ISA_EMULATOR_IMPL_CLASS(
     ISA_EMULATOR parent) :
     parent(parent)
 {
+    emulGem5Lock = new unique_lock<std::mutex>(m5mutex);
+    emulGem5Lock->unlock();
+
     HAsimNoteMemoryRead = &HAsimEmulMemoryRead;
     HAsimNoteMemoryWrite = &HAsimEmulMemoryWrite;
 
@@ -164,6 +182,8 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     ISA_INSTRUCTION inst,
     FUNCP_VADDR *newPC)
 {
+    unique_lock<std::mutex> isa_emul_lock(emulMutex);
+
     if (! didInit[ctxId])
     {
         return StartProgram(ctxId, pc, newPC);
@@ -219,7 +239,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
     // Set the m5 state and emulate a tick.  The code below is derived from
     // m5's AtomicSimpleCPU::tick()
     //
-
+    emulGem5Lock->lock();
     AtomicSimpleCPU *cpu = M5Cpu(ctxId);
 
     // m5 better not be in the middle of an instruction
@@ -325,6 +345,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
 
     if (cpu->tc->exitCalled())
     {
+        emulGem5Lock->unlock();
         return (cpu->tc->exitCode() == 0) ? ISA_EMULATOR_EXIT_OK : ISA_EMULATOR_EXIT_FAIL;
     }
 
@@ -337,6 +358,7 @@ ISA_EMULATOR_IMPL_CLASS::Emulate(
         didInit[ctxId] = false;
     }
 
+    emulGem5Lock->unlock();
     return isBranch ? ISA_EMULATOR_BRANCH : ISA_EMULATOR_NORMAL;
 }
 
@@ -481,6 +503,9 @@ ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
     ISA_REG_INDEX_CLASS rNameSrc1,
     ISA_REG_INDEX_CLASS rNameDst)
 {
+    unique_lock<std::mutex> isa_emul_lock(emulMutex);
+    emulGem5Lock->lock();
+
     if (rNameSrc0.IsArchReg())
     {
         M5Cpu(ctxId)->tc->setIntReg(rNameSrc0.ArchRegNum(), srcVal0.intReg);
@@ -515,6 +540,7 @@ ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
     //
     // Set the machine state and execute the instruction
     //
+    curEventQueue(mainEventQueue[0]);
     TheISA::PCState new_pc = cpu->tc->pcState();
     new_pc.set(pc);
     cpu->tc->pcState(new_pc);
@@ -559,6 +585,8 @@ ISA_REGOP_EMULATOR_IMPL_CLASS::EmulateRegOp(
     {
         ASIMERROR("Unexpected register type");
     }
+
+    emulGem5Lock->unlock();
 
     return rVal;
 }

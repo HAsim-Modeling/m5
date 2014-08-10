@@ -38,6 +38,8 @@
 #ifndef __HASIM_M5_BASE__
 #define __HASIM_M5_BASE__
 
+#include <mutex>
+
 #include "asim/syntax.h"
 #include "asim/mesg.h"
 #include "asim/atomic.h"
@@ -62,6 +64,9 @@ class M5_HASIM_BASE_CLASS
         VERIFY(cpuId <= numCPUs, "Told to load a workload context that does not exist!");
         return m5cpus[cpuId];
     };
+
+    // Calling m5 in parallel is dangerous.
+    static std::mutex m5mutex;
 
   private:
     static ATOMIC32_CLASS refCnt;

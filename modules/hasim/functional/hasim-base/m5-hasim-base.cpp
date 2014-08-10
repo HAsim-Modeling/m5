@@ -54,7 +54,7 @@
 #include "sim/sim_object.hh"
 extern SimObject *resolveSimObject(const string &);
 
-
+std::mutex M5_HASIM_BASE_CLASS::m5mutex;
 ATOMIC32_CLASS M5_HASIM_BASE_CLASS::refCnt;
 AtomicSimpleCPU_PTR *M5_HASIM_BASE_CLASS::m5cpus;
 UINT32 M5_HASIM_BASE_CLASS::numCPUs;

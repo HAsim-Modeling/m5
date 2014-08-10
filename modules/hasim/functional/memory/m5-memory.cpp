@@ -121,6 +121,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::BlobHelper(
 {
     bool success = true;
 
+    unique_lock<std::mutex> isa_emul_lock(m5mutex);
+
     if ((paddr & TheISA::PageMask) == guard_page)
     {
         //
@@ -176,6 +178,8 @@ FUNCP_SIMULATED_MEMORY_CLASS::VtoP(
 
     static const char *dfault = NULL;
     static const char *dtb_miss_single = NULL;
+
+    unique_lock<std::mutex> isa_emul_lock(m5mutex);
 
     if ((va & TheISA::PageMask) == 0)
     {
